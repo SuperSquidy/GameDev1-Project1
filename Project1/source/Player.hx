@@ -1,11 +1,15 @@
 /*
 This file contains information pertaining to the player character including :
  - Controls : WASD, Arrow Keys
+ - Helper Vars for Motion : speed, rotation, drag
 
 This file WILL contain :
  - Instrument Controls
+ - Trigger Music from the Mandolin Class
  - Character images & animations
  - Character walking sound effects
+
+Reference FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html 
 */
 
 
@@ -33,22 +37,34 @@ class Player extends FlxSprite
 	var _left:Bool = false;
 	var _right:Bool = false;
 
+	//Instrument Based
+	var _mando:Mandolin;
+	var _h:Bool = false;
+	var _j:Bool = false;
+	var _k:Bool = false;
+	var _l:Bool = false;
+	var _semi:Bool = false;
+
+/* CONSTRUCTOR & UPDATE */
 	/* Currently defines our player as 
-	a 16x16 Green Square */
+	a 16x16 Green Square & Initializes instrument*/
 	public function new(?X:Float=0, ?Y:Float=0)
 	{	
 		super(X, Y);
 		makeGraphic(16,16, FlxColor.GREEN);
-		drag.x = drag.y = _drag; 
-	}
+		drag.x = drag.y = _drag;
 
+		_mando = new Mandolin();	//Initialize Mandolin
+	}
 
 	override public function update(elapsed:Float):Void
 	{
 		movement();
+		instrument();
 		super.update(elapsed);
 	}
 
+/* FUNCTIONS */
 	/* Current Movement Code, Courtesy of Dr. Marc */
 	function movement():Void
 	{
@@ -88,5 +104,21 @@ class Player extends FlxSprite
 			velocity.rotate(new FlxPoint(0,0), _rot);
 		 }
 	
+	}
+
+	/* Key Reading for Instrument 
+	 Currently Mapped to : 'h j k l ;' */
+	function instrument():Void
+	{
+		//Defining Music Keys
+		_h = FlxG.keys.anyPressed([H]);
+		_j = FlxG.keys.anyPressed([J]);
+		_k = FlxG.keys.anyPressed([K]);
+		_l = FlxG.keys.anyPressed([L]);
+		_semi = FlxG.keys.anyPressed([SEMICOLON]);	//Check API -> looking for "SEMICOLON"
+
+		//Sending active notes to Mandolin
+		var _stringsDown = [_h, _j, _k, _l, _semi];
+		_mando.playNotes(_stringsDown);
 	}
 }
