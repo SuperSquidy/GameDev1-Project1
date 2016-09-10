@@ -6,34 +6,28 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
-import flixel.effects.particles.FlxEmitter;
-import flixel.effects.particles.FlxParticle;
-import flixel.util.FlxColor;
 
 class MenuState extends FlxState
 {
-
-	private var _emitter:FlxEmitter;
-
+	var _playButton:FlxButton;
+	
 	override public function create():Void
 	{
+		// add(new FlxText(10,10,20, "Hello, world!"));
+		_playButton  = new FlxButton(0,0, "Shrine Music Game v1", clickPlay);
+		_playButton.screenCenter();
+		add(_playButton);
 		super.create();
-
-		_emitter = new FlxEmitter(FlxG.width / 2 , FlxG.height / 2, 200);
-		
-		// All we need to do to start using it is give it some particles. makeParticles() makes this easy!
-		
-		_emitter.makeParticles(2, 2, FlxColor.WHITE, 200);
-
-		add(_emitter);
-
-		_emitter.start(false, 0.01);
-
-
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+	}
+	
+	function clickPlay():Void
+	{
+		// switch to play scene!
+		FlxG.switchState(new PlayState());
 	}
 }
