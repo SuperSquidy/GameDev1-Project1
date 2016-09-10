@@ -18,18 +18,6 @@ class MenuState extends FlxState
 	override public function create():Void
 	{
 		super.create();
-
-		_emitter = new FlxEmitter(FlxG.width / 2 , FlxG.height / 2, 200);
-		
-		// All we need to do to start using it is give it some particles. makeParticles() makes this easy!
-		
-		_emitter.makeParticles(2, 2, FlxColor.WHITE, 200);
-
-		add(_emitter);
-
-		_emitter.start(false, 0.01);
-
-
 	}
 
 	override public function update(elapsed:Float):Void
