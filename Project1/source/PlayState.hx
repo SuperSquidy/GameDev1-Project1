@@ -11,6 +11,7 @@ class PlayState extends FlxState
 {
 	override public function create():Void
 	{
+		_player = new Player(20,20);	//Starting position of player
 		add(_player);
 		super.create();	
 	}
