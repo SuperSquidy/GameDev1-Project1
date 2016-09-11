@@ -22,6 +22,8 @@ import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.FlxBasic;
+import flixel.FlxG.sound;
+
 
 class Mandolin extends FlxBasic
 {
@@ -48,7 +50,7 @@ class Mandolin extends FlxBasic
 		var _tmpLen:Int = stringsDown.length;
 
 		//Determine Note to Play
-		for (i in 1..._tmpLen){
+		for (i in 1..._tmpLen+1){
 			if (stringsDown[_tmpLen-i] == true)
 				_note = i;
 		}
@@ -56,20 +58,20 @@ class Mandolin extends FlxBasic
 		//Play Note
 		switch (_note) { 
    			case 1: 
-				FlxG.sound.play("Mando_11");
+				FlxG.sound.play("Mando11");
    			case 2: 
-				FlxG.sound.play("Mando_19");
+				FlxG.sound.play("Mando19");
       		case 3:
-				FlxG.sound.play("Mando_36");
+				FlxG.sound.play("Mando36");
       		case 4:
-				FlxG.sound.play("Mando_39");
+				FlxG.sound.play("Mando39");
       		case 5:
-				FlxG.sound.play("Mando_55");
+				FlxG.sound.play("Mando55");
       		default:
-      			return -1
+      			return -1;
 		}
 
-		return stringsDown[_note];	//Return index of the note played
+		return _note;	//Return index of the note played
 	}
 
 }
