@@ -56,7 +56,24 @@ class Mandolin extends FlxBasic
 		}
 
 		//Play Note
+		//Koto
 		switch (_note) { 
+   			case 1:
+				FlxG.sound.play("koto_g2");
+      		case 2:
+				FlxG.sound.play("koto_g1");
+   			case 3: 
+				FlxG.sound.play("koto_c3");		//Logged to ";"
+   			case 4: 
+				FlxG.sound.play("koto_c2");
+      		case 5:
+				FlxG.sound.play("koto_c1");
+      		default:
+      			return -1;
+		}
+
+		//Mandolin
+		/*switch (_note) { 
    			case 1: 
 				FlxG.sound.play("Mando11");		//Logged to ";"
    			case 2: 
@@ -69,7 +86,7 @@ class Mandolin extends FlxBasic
 				FlxG.sound.play("Mando55");
       		default:
       			return -1;
-		}
+		}	*/
 
 		return _note;	//Return index of the note played
 	}
