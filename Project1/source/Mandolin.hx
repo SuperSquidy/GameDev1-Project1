@@ -12,6 +12,10 @@ Current Plan:
 	  play the note with the lowest index in stringsDown
 
 	  Reference playNotes() below
+
+
+ISSUES:
+	- Holding down any instrument key (h-;) will result in the sound looping on top of itself
 */
 
 package;
@@ -56,9 +60,9 @@ class Mandolin extends FlxBasic
 		}
 
 		//Play Note
-		switch (_note) { 
+	/*	switch (_note) { 
    			case 1: 
-				FlxG.sound.play("Mando11");
+				FlxG.sound.play("Mando11");		//Logged to ";"
    			case 2: 
 				FlxG.sound.play("Mando19");
       		case 3:
@@ -69,7 +73,7 @@ class Mandolin extends FlxBasic
 				FlxG.sound.play("Mando55");
       		default:
       			return -1;
-		}
+		} */
 
 		return _note;	//Return index of the note played
 	}

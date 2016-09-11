@@ -128,23 +128,19 @@ class Player extends FlxSprite
 		
 
 		var _notePlayed = _mando.playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
-		
+
 		if (_notePlayed != -1)								//Default case if no notes where played
 			instrumentUpdateRecentNotes(Notes[_notePlayed]);			//Storing off the played note for song recognition
 
 	}
 
 
-	/*  Updates _recentNotes as more things are played
-		
-		@function : Updates _recentNotes as keys are played
-
+	/*  @function : Updates _recentNotes as keys are played
 			The most recent 5 notes are remembered, with the newest
 			note being stored in the lowest index
 
 			I.e if _recentNotes = ["A, B, C, D, E"] & _note = 'Q'
 				_recentNotes becomes ["Q, A, B, C, D"]
-
 		@parameter : _note is the note that will be
 			replace the oldest note in _recentNotes
 	*/
