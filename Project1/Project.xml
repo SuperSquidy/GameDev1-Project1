@@ -29,7 +29,20 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
-	<assets path="assets" />
+	<assets path="assets">
+		<sound path="sounds/Mando11.wav" id="Mando11" />
+		<sound path="sounds/Mando19.wav" id="Mando19" />
+		<sound path="sounds/Mando36.wav" id="Mando36" />
+		<sound path="sounds/Mando39.wav" id="Mando39" />
+		<sound path="sounds/Mando55.wav" id="Mando55" />
+		
+		<sound path="sounds/koto_c1.wav" id="koto_c1" />
+		<sound path="sounds/koto_c2.wav" id="koto_c2" />
+		<sound path="sounds/koto_c3.wav" id="koto_c3" />
+		<sound path="sounds/koto_g1.wav" id="koto_g1" />
+		<sound path="sounds/koto_g2.wav" id="koto_g2" />	
+
+	</assets>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
