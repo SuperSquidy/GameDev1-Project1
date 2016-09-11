@@ -58,15 +58,15 @@ class Mandolin extends FlxBasic
 		//Play Note
 		//Koto
 		switch (_note) { 
-   			case 1:
-				FlxG.sound.play("koto_g2");
+   			case 1:	//Logged to ;
+				FlxG.sound.play("koto_c3");
       		case 2:
-				FlxG.sound.play("koto_g1");
+				FlxG.sound.play("koto_g2");
    			case 3: 
-				FlxG.sound.play("koto_c3");		//Logged to ";"
+				FlxG.sound.play("koto_c2");	
    			case 4: 
-				FlxG.sound.play("koto_c2");
-      		case 5:
+				FlxG.sound.play("koto_g1");
+      		case 5: //Logged to h
 				FlxG.sound.play("koto_c1");
       		default:
       			return -1;
