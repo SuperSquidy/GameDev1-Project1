@@ -29,6 +29,7 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
+	<assets path="assets" include="*" />
 	<assets path="assets">
 		<sound path="sounds/Mando11.wav" id="Mando11" />
 		<sound path="sounds/Mando19.wav" id="Mando19" />
