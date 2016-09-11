@@ -28,6 +28,11 @@ import flixel.FlxG.sound;
 class Mandolin extends FlxBasic
 {
 
+	var _waterSong:Array<String> = ["L",";"];		//Double Jump
+	var _wingSong:Array<String> = ["K", "K", "K"]	//Dash
+//	var _earthSong:Array<String>;					//Grow a temporary plant platform
+//	var _starSong:Array<String>;					//Fill the sky with stars
+
 	public function new(){
 		super();
 	}
@@ -90,5 +95,7 @@ class Mandolin extends FlxBasic
 
 		return _note;	//Return index of the note played
 	}
+
+
 
 }
