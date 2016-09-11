@@ -114,24 +114,26 @@ class Player extends FlxSprite
 	function instrumentKeys():Void
 	{
 		//Defining Music Keys
-		_h = FlxG.keys.anyPressed([H]);
-		_j = FlxG.keys.anyPressed([J]);
-		_k = FlxG.keys.anyPressed([K]);
-		_l = FlxG.keys.anyPressed([L]);
-		_semi = FlxG.keys.anyPressed([SEMICOLON]);	//Check API -> looking for "SEMICOLON"
+		_h = FlxG.keys.justPressed.H;
+		_j = FlxG.keys.justPressed.J;
+		_k = FlxG.keys.justPressed.K;
+		_l = FlxG.keys.justPressed.L;
+		_semi = FlxG.keys.justPressed.SEMICOLON;	//Check API -> looking for "SEMICOLON"
 
-		//Array that stores notes for _recentNotes
-		var Notes = ["H", "J", "K", "L", ";"];
 
-		//Sending Notes to Mandolin & determing what was played
-		var _stringsDown = [_h, _j, _k, _l, _semi];
-		
+		if (_h || _j || _k || _l || _semi){
+			//Array that stores notes for _recentNotes
+			var Notes = ["H", "J", "K", "L", ";"];
 
-		var _notePlayed = _mando.playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
+			//Sending Notes to Mandolin & determing what was played
+			var _stringsDown = [_h, _j, _k, _l, _semi];
+			
 
-		if (_notePlayed != -1)								//Default case if no notes where played
-			instrumentUpdateRecentNotes(Notes[_notePlayed]);			//Storing off the played note for song recognition
+			var _notePlayed = _mando.playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
 
+			if (_notePlayed != -1)								//Default case if no notes where played
+				instrumentUpdateRecentNotes(Notes[_notePlayed]);			//Storing off the played note for song recognition
+		}
 	}
 
 
