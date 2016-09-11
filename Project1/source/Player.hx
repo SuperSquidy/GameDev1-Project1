@@ -51,11 +51,11 @@ class Player extends FlxSprite
 
 /* CONSTRUCTOR & UPDATE */
 	/* Currently defines our player as 
-	a 16x16 Green Square & Initializes instrument*/
+	a 32x64 Green Square & Initializes instrument*/
 	public function new(?X:Float=0, ?Y:Float=0)
 	{	
 		super(X, Y);
-		makeGraphic(16,16, FlxColor.GREEN);
+		makeGraphic(32,64, FlxColor.GREEN);
 		drag.x = drag.y = _drag;
 		_mando = new Mandolin();	//Initialize Mandolin
 	}
