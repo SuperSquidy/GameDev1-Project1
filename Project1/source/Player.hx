@@ -125,7 +125,9 @@ class Player extends FlxSprite
 
 		//Sending Notes to Mandolin & determing what was played
 		var _stringsDown = [_h, _j, _k, _l, _semi];
-		var _notePlayed = _mando.playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
+		
+		if (_notePlayed != -1)	//Default case if no notes where played
+			var _notePlayed = _mando.playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
 
 		//Storing off the played note for song recognition
 		instrumentUpdateRecentNotes(Notes[_notePlayed]);
