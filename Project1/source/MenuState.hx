@@ -13,11 +13,17 @@ class MenuState extends FlxState
 	
 	override public function create():Void
 	{
+		super.create();
+		
 		// add(new FlxText(10,10,20, "Hello, world!"));
 		_playButton  = new FlxButton(0,0, "Play", clickPlay);
 		_playButton.screenCenter();
 		add(_playButton);
-		super.create();
+		
+		var demoWorldButton  = new FlxButton(0,0, "Demo World", function(){FlxG.switchState(new WorldState()});
+		demoWorldButton.screenCenter();
+		demoWorldButton.y += 30;
+		add(demoWorldButton); //Switch to WorldState
 	}
 
 	override public function update(elapsed:Float):Void
