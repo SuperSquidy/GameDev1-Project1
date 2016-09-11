@@ -5,10 +5,11 @@ This file contains information pertaining to the player character including :
  - Helper Vars for Motion : speed, rotation, drag
  - Initializes Mandolin
 
-This file WILL contain :
+This file WILL :
  - Trigger Music from the Mandolin Class
- - Character images & animations
- - Character walking sound effects
+ - Contain character images & animations
+ - Contain character walking sound effects
+ - Remember the last several keys pressed, and trigger songs as played
 
 Don't know how to refer to awkward keys, like ESC or EQUALS?
 Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html 
@@ -46,6 +47,7 @@ class Player extends FlxSprite
 	var _k:Bool = false;
 	var _l:Bool = false;
 	var _semi:Bool = false;
+	var _recentNotes:Array<String> = ["", "", "", "", ""];	//This will contain a list of the most recent keys pressed
 
 /* CONSTRUCTOR & UPDATE */
 	/* Currently defines our player as 
@@ -62,11 +64,11 @@ class Player extends FlxSprite
 	override public function update(elapsed:Float):Void
 	{
 		movement();
-		instrument();
+		instrumentKeys();
 		super.update(elapsed);
 	}
 
-/* FUNCTIONS */
+/* FUNCTIONS FOR PLAYER MOVEMENT*/
 	/* Current Movement Code, Courtesy of Dr. Marc */
 	function movement():Void
 	{
@@ -108,9 +110,9 @@ class Player extends FlxSprite
 	
 	}
 
-	/* Key Reading for Instrument 
-	 Currently Mapped to : 'h j k l ;' */
-	function instrument():Void
+/* FUNCTIONS FOR INSTRUMENT PROCESSING */
+	/* Key Reading for Instrument | Currently Mapped to : 'h j k l ;' */
+	function instrumentKeys():Void
 	{
 		//Defining Music Keys
 		_h = FlxG.keys.anyPressed([H]);
@@ -119,8 +121,34 @@ class Player extends FlxSprite
 		_l = FlxG.keys.anyPressed([L]);
 		_semi = FlxG.keys.anyPressed([SEMICOLON]);	//Check API -> looking for "SEMICOLON"
 
-		//Sending active notes to Mandolin
+		//Array that stores notes for _recentNotes
+		var Notes = ["H", "J", "K", "L", ";"];
+
+		//Sending Notes to Mandolin & determing what was played
 		var _stringsDown = [_h, _j, _k, _l, _semi];
-		_mando.playNotes(_stringsDown);
+		var _notePlayed = _mando.playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
+
+		//Storing off the played note for song recognition
+		instrumentUpdateRecentNotes(Notes[_notePlayed]);
+	}
+
+
+	/*  Updates _recentNotes as more things are played
+		
+		@function : Updates _recentNotes as keys are played
+
+			The most recent 5 notes are remembered, with the newest
+			note being stored in the lowest index
+
+			I.e if _recentNotes = ["A, B, C, D, E"] & _note = 'Q'
+				_recentNotes becomes ["Q, A, B, C, D"]
+
+		@parameter : _note is the note that will be
+			replace the oldest note in _recentNotes
+	*/
+	function instrumentUpdateRecentNotes(_note:String)
+	{
+		_recentNotes.pop();				//Remove the note on the end
+		_recentNotes.unshift(_note);	//Add the new note to the beginning
 	}
 }
