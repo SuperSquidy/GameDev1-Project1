@@ -20,7 +20,7 @@ class MenuState extends FlxState
 		_playButton.screenCenter();
 		add(_playButton);
 		
-		var demoWorldButton  = new FlxButton(0,0, "Demo World", function(){FlxG.switchState(new WorldState()});
+		var demoWorldButton  = new FlxButton(0, 0, "Demo World", function(){FlxG.switchState(new WorldState()); });
 		demoWorldButton.screenCenter();
 		demoWorldButton.y += 30;
 		add(demoWorldButton); //Switch to WorldState
