@@ -1,15 +1,17 @@
 /*
 This file contains information pertaining to the player character including :
- - Controls : WASD, Arrow Keys
+ - Player Controls : WASD & Arrow Keys for movement
+ 					 HJKL; for Instrument
  - Helper Vars for Motion : speed, rotation, drag
+ - Initializes Mandolin
 
 This file WILL contain :
- - Instrument Controls
  - Trigger Music from the Mandolin Class
  - Character images & animations
  - Character walking sound effects
 
-Reference FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html 
+Don't know how to refer to awkward keys, like ESC or EQUALS?
+Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html 
 */
 
 
