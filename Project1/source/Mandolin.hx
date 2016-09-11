@@ -31,18 +31,45 @@ class Mandolin extends FlxBasic
 	}
 
 	/*
+		@function : plays a note & returns the index of the note played
+
 		@parameters : stringsDown<Bool>
 			Array of Booleans where each index represents 
 			whether that key is currently being pressed or 
 			not, corresponding to this mapping: [ h, j, k, l, ;]
 
-		@return : returns the index of the note chosen to be played
+		@return : returns the index of the note that was played
+
 		Current mapping can be found in Player.hx under instrumentKeys()
 	*/
 	public function playNotes(stringsDown:Array<Bool>):Int{
 
-		//insert switch statement here
-		return 0;
+		var _note:Int = -1;
+		var _tmpLen:Int = stringsDown.length;
+
+		//Determine Note to Play
+		for (i in 1..._tmpLen){
+			if (stringsDown[_tmpLen-i] == true)
+				_note = i;
+		}
+
+		//Play Note
+		switch (_note) { 
+   			case 1: 
+				FlxG.sound.play("Mando_11");
+   			case 2: 
+				FlxG.sound.play("Mando_19");
+      		case 3:
+				FlxG.sound.play("Mando_36");
+      		case 4:
+				FlxG.sound.play("Mando_39");
+      		case 5:
+				FlxG.sound.play("Mando_55");
+      		default:
+      			return -1
+		}
+
+		return stringsDown[_note];	//Return index of the note played
 	}
 
 }
