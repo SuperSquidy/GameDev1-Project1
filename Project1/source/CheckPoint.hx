@@ -15,12 +15,10 @@ class CheckPoint extends FlxSprite
 
 	public function new(){
 		super();
-	
-		var checkpoint = new FlxSprite(x, y - 32);
-		var color = new FlxColor();
-		color.setRGB(255, 255, 255, 128);
-		checkpoint.makeGraphic(32, 64, color);
-		state.checkpoints.add(checkpoint);
+	}
 
-	}			
+	public function inactiveShrine(){
+		//new FlxSprite(x, y - 32);
+		loadGraphic('assets/images/Checkpoint_off.png', false, 32, 64); //Checkpoint turned off art
+	}
 }
