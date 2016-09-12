@@ -14,7 +14,13 @@ This file WILL :
  - Contain character walking sound effects
 
 Don't know how to refer to awkward keys, like ESC or EQUALS?
-Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html 
+Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html
+
+Current Jump Mechanics:
+ - Jump with W or SPACE
+ - Double Jump by pressing either a second time
+ - Double Jump can be triggered mid-air
+ 	i.e Walking off a platform, one jump can still be performed while falling
 */
 
 
@@ -130,6 +136,8 @@ class Player extends FlxSprite
 		{
 			if ((velocity.y == 0) || (_timesJumped < _jumpsAllowed)) // Only allow two jumps
 			{
+				if (_timesJumped == 0 && velocity.y!=0)	//if first jump & already falling
+					_timesJumped++;
 				_timesJumped++;
 				_jumpTime = 0;
 			}
