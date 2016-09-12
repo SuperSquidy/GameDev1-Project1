@@ -10,8 +10,8 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		FlxG.resizeWindow(1024, 768);
-		addChild(new FlxGame(1024,768, MenuState, 1));
+		FlxG.resizeWindow(1280, 960);
+		addChild(new FlxGame(1280,960, MenuState, 1));
 		
 	}
 }
