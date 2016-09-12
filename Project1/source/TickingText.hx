@@ -16,7 +16,7 @@ class TickingText extends FlxText
 	private var _time:Float = 0;
 	private var _ellipses:Float = 0;
 	private var _index:Int = 0;
-	public function new(filename:String, ?height:Int = 36,?padding:Int = 24, ?size:Int = 24,?speed:Float = .04, ?sound:String = "blip2")
+	public function new(filename:String, ?height:Int = 36,?padding:Int = 24, ?size:Int = 24,?speed:Float = .04, ?sound:String = "textScroll")
 	{
 		super(padding, height,FlxG.width-padding,"", size);
 		allText = Assets.getText("assets/data/" + filename).split("\n");
