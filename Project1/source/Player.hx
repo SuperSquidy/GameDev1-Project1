@@ -40,7 +40,7 @@ class Player extends FlxSprite
 /* HELPER VARIABLES */
 	//Jump & Physics Related
 	public static inline var _gravity:Int = 1500;
-	public static inline var _jumpSpeed:Int = 750;
+	public static inline var _jumpSpeed:Int = 650;
 	public static inline var _jumpsAllowed:Int = 2;
 
 	private var _jumpTime:Float = -1;
