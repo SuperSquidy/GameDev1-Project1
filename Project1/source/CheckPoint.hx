@@ -13,12 +13,11 @@ class CheckPoint extends FlxSprite
 {
 	
 
-	public function new(){
-		super();
+	public function new(?X:Float=0, ?Y:Float=0){
+		super(X, Y);
+		loadGraphic('assets/images/Checkpoint_off.png', false, 32, 64); //Checkpoint turned off art
 	}
 
 	public function inactiveShrine(){
-		//new FlxSprite(x, y - 32);
-		loadGraphic('assets/images/Checkpoint_off.png', false, 32, 64); //Checkpoint turned off art
 	}
 }
