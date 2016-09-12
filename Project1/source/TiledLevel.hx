@@ -11,6 +11,7 @@ import flixel.addons.editors.tiled.TiledObject;
 import flixel.addons.editors.tiled.TiledObjectLayer;
 import flixel.addons.editors.tiled.TiledTileLayer;
 import flixel.addons.editors.tiled.TiledTileSet;
+import flixel.util.FlxColor;
 import flixel.group.FlxGroup;
 import flixel.tile.FlxTilemap;
 import haxe.io.Path;
@@ -172,22 +173,28 @@ class TiledLevel extends TiledMap
 				//If player doesn't exist, create it
 				var player:Player;
 				if (state.player == null){
-					state.player = new Player(x, y);
+					state.player = new Player(x, y-32);
 					player = state.player;
 				}
 				else{
 					player = state.player;
-					player.setPosition(x, y);
+					player.setPosition(x, y-32);
 					player.velocity.set(0, 0);
 					player.acceleration.set(0, 0);
 				}
-				FlxG.camera.follow(player);
+				
 				group.add(player);
-			/*
 			case "floor":
 				var floor = new FlxObject(x, y, o.width, o.height);
-				state.floor = floor;
-			
+				state.floors.add(floor);
+			case "checkpoint":
+				//can extend FlxSprite and make an actual checkpoint class
+				var checkpoint = new FlxSprite(x, y - 32);
+				var color = new FlxColor();
+				color.setRGB(255, 255, 255, 128);
+				checkpoint.makeGraphic(32, 64, color);
+				state.checkpoints.add(checkpoint);
+			/*
 			case "coin":
 				var tileset = g.map.getGidOwner(o.gid);
 				var coin = new FlxSprite(x, y, c_PATH_LEVEL_TILESHEETS + tileset.imageSource);

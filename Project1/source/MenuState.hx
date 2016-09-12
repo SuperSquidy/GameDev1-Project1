@@ -10,7 +10,7 @@ import flixel.math.FlxMath;
 class MenuState extends FlxState
 {
 	var _playButton:FlxButton;
-	
+	var ticker:TickingText;
 	override public function create():Void
 	{
 		super.create();
@@ -24,6 +24,11 @@ class MenuState extends FlxState
 		demoWorldButton.screenCenter();
 		demoWorldButton.y += 30;
 		add(demoWorldButton); //Switch to WorldState
+		
+		var demoText  = new FlxButton(0, 0, "Demo Text", function(){if (ticker == null){ ticker = new TickingText("test.txt"); add(ticker); }else{ticker.skipText(); }});
+		demoText.screenCenter();
+		demoText.y += 60;
+		add(demoText); //Add or skip ahead ticking text
 	}
 
 	override public function update(elapsed:Float):Void
