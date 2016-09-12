@@ -84,10 +84,10 @@ class Player extends FlxSprite
 		acceleration.x = 0;
 		acceleration.y = _gravity;
 		
-		jump(elapsed);
+		jump(elapsed);		//Trigger jump logic
 
-		movement();
-		instrumentKeys();
+		movement();			//Trigger walking logic
+		instrumentKeys();	//Trigger notes-playing logic
 
 		//Reset double jump on collision
 		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
