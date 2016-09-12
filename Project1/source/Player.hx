@@ -4,13 +4,14 @@ This file contains information pertaining to the player character including :
  					 HJKL; for Instrument
  - Helper Vars for Motion : speed, rotation, drag
  - Initializes Mandolin
+ - Triggers Mandolin to play notes
+ - Jump & Double Jump Capabilities
+ - Store recent jump keypresses
 
 This file WILL :
- - Trigger Music from the Mandolin Class
+ - Trigger Songs from the Mandolin Class
  - Contain character images & animations
  - Contain character walking sound effects
- - Contain jump & world physics
- - Remember the last several keys pressed, and trigger songs as played
 
 Don't know how to refer to awkward keys, like ESC or EQUALS?
 Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html 
