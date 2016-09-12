@@ -73,10 +73,14 @@ class Player extends FlxSprite
 	{	
 		super(X, Y);
 
+		//PC Art
 		this.set_pixelPerfectRender(true); //Removes jitter
-		//makeGraphic(32, 64, FlxColor.GREEN);		//Tmp player character
 		loadGraphic('assets/images/staticPC.png', false, 32, 64); //static PC art
 		
+		// setFacingFlip(direction, flipx, flipy)
+		setFacingFlip(FlxObject.LEFT, true, false);
+		setFacingFlip(FlxObject.RIGHT, false, false);
+
 		//Physics & Jump
 		drag.set(_runSpeed * 8, _runSpeed * 8);
 		maxVelocity.set(_runSpeed, _jumpSpeed);
@@ -92,7 +96,6 @@ class Player extends FlxSprite
 		acceleration.y = _gravity;
 		
 		jump(elapsed);		//Trigger jump logic
-
 		movement();			//Trigger walking logic
 		instrumentKeys();	//Trigger notes-playing logic
 
@@ -100,8 +103,7 @@ class Player extends FlxSprite
 		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
 		{
 			_jumpTime = -1;
-			// Reset the double jump flag
-			_timesJumped = 0;  
+			_timesJumped = 0;  // Reset the double jump flag
 		}
 
 		super.update(elapsed);
@@ -122,12 +124,14 @@ class Player extends FlxSprite
 		}
 		
 		//Movement Code	 
-		if (_left)
-		{
-			acceleration.x = -drag.x;		}
-		else if (_right)
-		{
-			acceleration.x = drag.x;		}
+		if (_left)	{
+			acceleration.x = -drag.x;		
+			facing = FlxObject.LEFT;
+		}
+		else if (_right)	{
+			acceleration.x = drag.x;		
+			facing = FlxObject.RIGHT;
+		}
 	}
 
 	/* Current Jump Code, Courtesy of Project Jumper Demo */
@@ -186,7 +190,7 @@ class Player extends FlxSprite
 			var _notePlayed = _mando.playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
 
 			if (_notePlayed != -1)								//Default case if no notes where played
-				instrumentUpdateRecentNotes(Notes[_notePlayed]);			//Storing off the played note for song recognition
+				instrumentUpdateRecentNotes(Notes[_notePlayed]);	//Storing off the played note for song recognition
 		}
 	}
 
