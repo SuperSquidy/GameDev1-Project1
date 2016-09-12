@@ -9,6 +9,7 @@ This file WILL :
  - Trigger Music from the Mandolin Class
  - Contain character images & animations
  - Contain character walking sound effects
+ - Contain jump & world physics
  - Remember the last several keys pressed, and trigger songs as played
 
 Don't know how to refer to awkward keys, like ESC or EQUALS?
@@ -19,6 +20,7 @@ Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKe
 package;
 
 import flixel.FlxSprite;
+import flixel.input.keyboard.FlxKey;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.util.FlxColor;
 import flixel.FlxG;
@@ -29,14 +31,21 @@ class Player extends FlxSprite
 {
 
 /* HELPER VARIABLES */
+	//Jump & Physics Related
+	public static inline var _gravity:Int = 900;
+	public static inline var _jumpSpeed:Int = 300;
+	public static inline var _jumpsAllowed:Int = 2;
+
+	private var _jumpTime:Float = -1;
+	private var _timesJumped:Int = 0;
+	private var _jumpKeys:Array<FlxKey> = [W, SPACE];
+
 	//Movement Conditionals
-	var speed:Float = 200;
+	var _runSpeed:Float = 200;
 	var _rot: Float = 0;
 	var _drag: Float = 1300;	//Mild slide when stopping
 
 	//Key Based
-	var _up:Bool = false;
-	var _down:Bool = false;
 	var _left:Bool = false;
 	var _right:Bool = false;
 
@@ -52,18 +61,39 @@ class Player extends FlxSprite
 /* CONSTRUCTOR & UPDATE */
 	/* Currently defines our player as 
 	a 32x64 Green Square & Initializes instrument*/
+
 	public function new(?X:Float=0, ?Y:Float=0)
 	{	
 		super(X, Y);
-		makeGraphic(32,64, FlxColor.GREEN);
-		drag.x = drag.y = _drag;
-		_mando = new Mandolin();	//Initialize Mandolin
+		makeGraphic(32,64, FlxColor.GREEN);		//Tmp player character
+		
+		//Physics & Jump
+		drag.set(_runSpeed * 8, _runSpeed * 8);
+		maxVelocity.set(_runSpeed, _jumpSpeed);
+		acceleration.y = _gravity;
+
+		//Initialize Mandolin
+		_mando = new Mandolin();	
 	}
 
 	override public function update(elapsed:Float):Void
 	{
+		acceleration.x = 0;
+		acceleration.y = _gravity;
+		
+		jump(elapsed);
+
 		movement();
 		instrumentKeys();
+
+		//Reset double jump on collision
+		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
+		{
+			_jumpTime = -1;
+			// Reset the double jump flag
+			_timesJumped = 0;  
+		}
+
 		super.update(elapsed);
 	}
 
@@ -73,40 +103,52 @@ class Player extends FlxSprite
 	{
 
 		//Defining Character Keys
-		_up = FlxG.keys.anyPressed([UP, W]);
-		_down = FlxG.keys.anyPressed([DOWN, S]);
 		_left = FlxG.keys.anyPressed([LEFT, A]);
 		_right = FlxG.keys.anyPressed([RIGHT, D]);	
 
 		// Disallow Opposite Actions to occur
-		if (_up && _down){
-			_up = _down = false;
-		}
 		if (_left && _right){
 			_left = _right = false;
 		}
 		
 		//Movement Code	 
-		if (_up || _down || _left || _right){
-			if (_left)
+		if (_left)
+		{
+			acceleration.x = -drag.x;		}
+		else if (_right)
+		{
+			acceleration.x = drag.x;		}
+	}
+
+	/* Current Jump Code, Courtesy of Project Jumper Demo */
+	private function jump(elapsed:Float):Void
+	{
+		if (FlxG.keys.anyJustPressed(_jumpKeys))
+		{
+			if ((velocity.y == 0) || (_timesJumped < _jumpsAllowed)) // Only allow two jumps
 			{
-				_rot = 180;
-				if (_up) _rot += 45;
-				else if (_down) _rot -= 45;
+				_timesJumped++;
+				_jumpTime = 0;
 			}
-			else if (_right)
+		}
+		
+		// You can also use space or any other key you want
+		if ((FlxG.keys.anyPressed(_jumpKeys)) && (_jumpTime >= 0)) 
+		{
+			_jumpTime += elapsed;
+			
+			// You can't jump for more than 0.25 seconds
+			if (_jumpTime > 0.25)
 			{
-				_rot = 0;
-				if (_up) _rot -= 45;
-				else if (_down) _rot += 45;
+				_jumpTime = -1;
 			}
-			else if (_down) _rot = 90;
-			else if (_up) _rot = 270;
-			 
-		 	velocity.set(speed,0);
-			velocity.rotate(new FlxPoint(0,0), _rot);
-		 }
-	
+			else if (_jumpTime > 0)
+			{
+				velocity.y = - 0.6 * maxVelocity.y;
+			}
+		}
+		else
+			_jumpTime = -1.0;
 	}
 
 /* FUNCTIONS FOR INSTRUMENT PROCESSING */
