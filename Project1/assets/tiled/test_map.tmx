@@ -22,7 +22,7 @@
  </layer>
  <objectgroup name="images"/>
  <objectgroup name="objects">
-  <object id="4" name="start" type="player_start" x="64" y="1216" width="32" height="32"/>
+  <object id="4" name="start" type="player_start" x="64" y="1200" width="32" height="32"/>
   <object id="8" name="Floor" type="floor" x="1312" y="1215.75" width="576" height="32"/>
   <object id="10" name="Checkpoint" type="checkpoint" x="1152" y="1216" width="32" height="32"/>
  </objectgroup>
