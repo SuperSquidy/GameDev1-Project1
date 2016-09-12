@@ -40,7 +40,7 @@ class Player extends FlxSprite
 /* HELPER VARIABLES */
 	//Jump & Physics Related
 	public static inline var _gravity:Int = 1500;
-	public static inline var _jumpSpeed:Int = 650;
+	public static inline var _jumpSpeed:Int = 1075;
 	public static inline var _jumpsAllowed:Int = 2;
 
 	private var _jumpTime:Float = -1;
@@ -145,8 +145,17 @@ class Player extends FlxSprite
 					_timesJumped++;
 				_timesJumped++;
 				_jumpTime = 0;
+				velocity.y = - 0.6 * maxVelocity.y;
 			}
 		}
+
+		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0){
+			acceleration.y = _gravity * 3;
+		} else{
+			acceleration.y = _gravity;
+		}
+
+		/*
 		
 		// You can also use space or any other key you want
 		if ((FlxG.keys.anyPressed(_jumpKeys)) && (_jumpTime >= 0)) 
@@ -165,6 +174,8 @@ class Player extends FlxSprite
 		}
 		else
 			_jumpTime = -1.0;
+
+		*/
 	}
 
 /* FUNCTIONS FOR INSTRUMENT PROCESSING */
