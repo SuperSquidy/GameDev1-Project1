@@ -74,7 +74,8 @@ class Player extends FlxSprite
 		super(X, Y);
 
 		this.set_pixelPerfectRender(true); //Removes jitter
-		makeGraphic(32,64, FlxColor.GREEN);		//Tmp player character
+		//makeGraphic(32, 64, FlxColor.GREEN);		//Tmp player character
+		loadGraphic('assets/images/staticPC.png', false, 32, 64); //static PC art
 		
 		//Physics & Jump
 		drag.set(_runSpeed * 8, _runSpeed * 8);
