@@ -189,10 +189,10 @@ class TiledLevel extends TiledMap
 				state.floors.add(floor);
 			case "checkpoint":
 				//can extend FlxSprite and make an actual checkpoint class
-				var checkpoint = new FlxSprite(x, y - 32);
-				var color = new FlxColor();
-				color.setRGB(255, 255, 255, 128);
-				checkpoint.makeGraphic(32, 64, color);
+				var checkpoint = new CheckPoint(x, y - 32);
+			//	var color = new FlxColor();
+			//	color.setRGB(255, 255, 255, 128);
+			//	checkpoint.makeGraphic(32, 64, color);
 				state.checkpoints.add(checkpoint);
 			/*
 			case "coin":
