@@ -47,7 +47,7 @@ class WorldState extends FlxState
 		add(level.foregroundTiles); //add forground
 		
 		
-		FlxG.camera.follow(player,FlxCameraFollowStyle.PLATFORMER,CAMERA_LERP);
+		FlxG.camera.follow(player,FlxCameraFollowStyle.LOCKON,CAMERA_LERP);
 		FlxG.camera.snapToTarget();
 		
 		
