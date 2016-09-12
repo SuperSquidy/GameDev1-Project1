@@ -182,7 +182,7 @@ class TiledLevel extends TiledMap
 					player.velocity.set(0, 0);
 					player.acceleration.set(0, 0);
 				}
-				FlxG.camera.follow(player);
+				
 				group.add(player);
 			case "floor":
 				var floor = new FlxObject(x, y, o.width, o.height);

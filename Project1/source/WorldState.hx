@@ -8,9 +8,11 @@ import flixel.group.FlxGroup;
 import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
+import flixel.FlxCamera;
 
 class WorldState extends FlxState
 {
+	
 	public var level:TiledLevel;
 	public var player:Player;
 	public var floors:FlxGroup;
@@ -19,6 +21,7 @@ class WorldState extends FlxState
 	
 	private var _levelName:String;
 	private var _checkpointPosition:FlxPoint;
+	private static inline var CAMERA_LERP = .1;
 	
 	//Can pass a player in constructor if a player already exists (for loading multiple levels)
 	public function new(?player:Player, ?levelName:String = "test_map.tmx") 
@@ -42,6 +45,10 @@ class WorldState extends FlxState
 		add(checkpoints);
 		add(level.objectsLayer);	//add objects (including player)
 		add(level.foregroundTiles); //add forground
+		
+		
+		FlxG.camera.follow(player,FlxCameraFollowStyle.PLATFORMER,CAMERA_LERP);
+		FlxG.camera.snapToTarget();
 		
 		
 		
@@ -78,6 +85,7 @@ class WorldState extends FlxState
 	{
 		//Reset Player Health
 		player.health = 1;
-		player.setPosition(_checkpointPosition.x,_checkpointPosition.y);
+		player.setPosition(_checkpointPosition.x, _checkpointPosition.y);
+		FlxG.camera.shake(.01, .2);
 	}
 }

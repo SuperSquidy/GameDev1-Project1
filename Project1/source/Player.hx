@@ -55,9 +55,12 @@ class Player extends FlxSprite
 	public function new(?X:Float=0, ?Y:Float=0)
 	{	
 		super(X, Y);
-		makeGraphic(32,64, FlxColor.GREEN);
+		makeGraphic(32, 64, FlxColor.GREEN);
+		
 		drag.x = drag.y = _drag;
 		_mando = new Mandolin();	//Initialize Mandolin
+		
+		this.set_pixelPerfectRender(true); //Removes jitter
 	}
 
 	override public function update(elapsed:Float):Void
