@@ -14,7 +14,13 @@ This file WILL :
  - Contain character walking sound effects
 
 Don't know how to refer to awkward keys, like ESC or EQUALS?
-Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html 
+Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html
+
+Current Jump Mechanics:
+ - Jump with W or SPACE
+ - Double Jump by pressing either a second time
+ - Double Jump can be triggered mid-air
+ 	i.e Walking off a platform, one jump can still be performed while falling
 */
 
 
@@ -33,8 +39,8 @@ class Player extends FlxSprite
 
 /* HELPER VARIABLES */
 	//Jump & Physics Related
-	public static inline var _gravity:Int = 900;
-	public static inline var _jumpSpeed:Int = 300;
+	public static inline var _gravity:Int = 1500;
+	public static inline var _jumpSpeed:Int = 1075;
 	public static inline var _jumpsAllowed:Int = 2;
 
 	private var _jumpTime:Float = -1;
@@ -67,9 +73,14 @@ class Player extends FlxSprite
 	{	
 		super(X, Y);
 
+		//PC Art
 		this.set_pixelPerfectRender(true); //Removes jitter
-		makeGraphic(32,64, FlxColor.GREEN);		//Tmp player character
+		loadGraphic('assets/images/staticPC.png', false, 32, 64); //static PC art
 		
+		// setFacingFlip(direction, flipx, flipy)
+		setFacingFlip(FlxObject.LEFT, true, false);
+		setFacingFlip(FlxObject.RIGHT, false, false);
+
 		//Physics & Jump
 		drag.set(_runSpeed * 8, _runSpeed * 8);
 		maxVelocity.set(_runSpeed, _jumpSpeed);
@@ -85,7 +96,6 @@ class Player extends FlxSprite
 		acceleration.y = _gravity;
 		
 		jump(elapsed);		//Trigger jump logic
-
 		movement();			//Trigger walking logic
 		instrumentKeys();	//Trigger notes-playing logic
 
@@ -93,8 +103,7 @@ class Player extends FlxSprite
 		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
 		{
 			_jumpTime = -1;
-			// Reset the double jump flag
-			_timesJumped = 0;  
+			_timesJumped = 0;  // Reset the double jump flag
 		}
 
 		super.update(elapsed);
@@ -115,12 +124,14 @@ class Player extends FlxSprite
 		}
 		
 		//Movement Code	 
-		if (_left)
-		{
-			acceleration.x = -drag.x;		}
-		else if (_right)
-		{
-			acceleration.x = drag.x;		}
+		if (_left)	{
+			acceleration.x = -drag.x;		
+			facing = FlxObject.LEFT;
+		}
+		else if (_right)	{
+			acceleration.x = drag.x;		
+			facing = FlxObject.RIGHT;
+		}
 	}
 
 	/* Current Jump Code, Courtesy of Project Jumper Demo */
@@ -130,10 +141,21 @@ class Player extends FlxSprite
 		{
 			if ((velocity.y == 0) || (_timesJumped < _jumpsAllowed)) // Only allow two jumps
 			{
+				if (_timesJumped == 0 && velocity.y!=0)	//if first jump & already falling
+					_timesJumped++;
 				_timesJumped++;
 				_jumpTime = 0;
+				velocity.y = - 0.6 * maxVelocity.y;
 			}
 		}
+
+		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0){
+			acceleration.y = _gravity * 3;
+		} else{
+			acceleration.y = _gravity;
+		}
+
+		/*
 		
 		// You can also use space or any other key you want
 		if ((FlxG.keys.anyPressed(_jumpKeys)) && (_jumpTime >= 0)) 
@@ -152,6 +174,8 @@ class Player extends FlxSprite
 		}
 		else
 			_jumpTime = -1.0;
+
+		*/
 	}
 
 /* FUNCTIONS FOR INSTRUMENT PROCESSING */
@@ -177,7 +201,7 @@ class Player extends FlxSprite
 			var _notePlayed = _mando.playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
 
 			if (_notePlayed != -1)								//Default case if no notes where played
-				instrumentUpdateRecentNotes(Notes[_notePlayed]);			//Storing off the played note for song recognition
+				instrumentUpdateRecentNotes(Notes[_notePlayed]);	//Storing off the played note for song recognition
 		}
 	}
 
