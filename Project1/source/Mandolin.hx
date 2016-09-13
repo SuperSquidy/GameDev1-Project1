@@ -107,28 +107,28 @@ class Mandolin extends FlxBasic
 		if (checkSongPlayed(_waterSong, _waterActive)){
 			//Trigger Double Jump
 			//Trigger Succesful Song Animation | Particles
-			//Trigger additional song file
+			//Trigger additional sound file
 		}
 
 		//Wind Song
 		if (checkSongPlayed(_windSong, _windActive)){
-			_playerCharacter.dash(_playerCharacter.getElapsed());
+			_playerCharacter.setDashPlayed(true);	//Trigger Player Dash
 			//Trigger Succesful Song Animation | Particles
-			//Trigger additional song file
+			//Trigger additional sound file
 		}
 
 		//Earth Song
 		if (checkSongPlayed(_earthSong, _earthActive)){
 			//Trigger Earth Platform Thing
 			//Trigger Succesful Song Animation | Particles
-			//Trigger additional song file
+			//Trigger additional sound file
 		}
 
 		//Star Song
 		if (checkSongPlayed(_starSong, _starActive)){
 			//Trigger Star Song
 			//Trigger Succesful Song Animation | Particles
-			//Trigger additional song file
+			//Trigger additional sound file
 		}
 	}
 

@@ -25,6 +25,10 @@ Current Jump Mechanics:
  - Dash with E
  	dashing from platform to same level platform will make you fall, since gravity
  		kicks in when you get off the platform
+
+ Current Issues:
+ - Player Dash is currently buggy : does not reset after initial dash since it has been
+ 		called from the Mandolin class
 */
 
 
@@ -55,7 +59,8 @@ class Player extends FlxSprite
 	private static inline var _dashSpeed:Int = 1000;
 	private static inline var _dashDuration:Float = 0.25;
 	private static inline var _dashCooldown:Float = 3.0;
-	private var _dashElapsed:Float;
+	
+	private var dashSong:Bool = false;	//Needed for Mandolin to dash
 
 	private var _dashTime:Float = -1;
 
@@ -101,7 +106,7 @@ class Player extends FlxSprite
 		
 		jump(elapsed);		//Trigger jump logic
 		movement();			//Trigger walking logic
-		_dashElapsed = elapsed;
+		dash(elapsed);
 		_mando.instrumentKeys();
 
 		//Reset double jump on collision
@@ -185,7 +190,7 @@ class Player extends FlxSprite
 
 	/*Dash function */
 	public function dash(elapsed:Float):Void{
-		if(FlxG.keys.justPressed.J && _dashTime == -1){
+		if(dashSong && _dashTime == -1){
 			
 			if(this.facing ==FlxObject.LEFT){
 				_dashTime = 0;
@@ -198,6 +203,8 @@ class Player extends FlxSprite
 				velocity.x += _dashSpeed;
 				maxVelocity.set(_dashSpeed, _jumpSpeed);
 			}
+
+			setDashPlayed(false);
 		}
 		
 		if(_dashTime >= 0){
@@ -214,8 +221,8 @@ class Player extends FlxSprite
 		}
 	}
 
-	public function getElapsed():Float{
-		return _dashElapsed;
+	public function setDashPlayed(condition:Bool):Void{
+		dashSong = condition;
 	}
 
 
