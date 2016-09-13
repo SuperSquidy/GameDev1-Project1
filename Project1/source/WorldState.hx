@@ -50,7 +50,7 @@ class WorldState extends FlxState
 		
 		FlxG.camera.follow(player,FlxCameraFollowStyle.LOCKON,CAMERA_LERP);
 		FlxG.camera.snapToTarget();
-		
+		FlxG.sound.playMusic("ScarfDance");
 		
 		
 		var backButton  = new FlxButton(20,20, "Back", function(){FlxG.switchState(new MenuState());});
