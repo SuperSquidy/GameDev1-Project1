@@ -17,7 +17,7 @@ class WorldState extends FlxState
 	public var player:Player;
 	public var floors:FlxGroup;
 	public var checkpoints:FlxGroup;
-	
+	public var triggers:FlxGroup;
 	
 	private var _levelName:String;
 	private var _checkpointPosition:FlxPoint;
@@ -36,6 +36,8 @@ class WorldState extends FlxState
 		
 		floors = new FlxGroup();
 		checkpoints = new FlxGroup();
+		triggers = new FlxGroup();
+		
 		level = new TiledLevel("assets/tiled/" + _levelName, this);
 		_checkpointPosition = player.getPosition();
 		
@@ -43,6 +45,7 @@ class WorldState extends FlxState
 		add(level.backgroundLayer); //add backgrounds
 		add(level.imagesLayer); 	//add static images
 		add(checkpoints);
+		add(triggers);
 		add(level.objectsLayer);	//add objects (including player)
 		add(level.foregroundTiles); //add forground
 		
@@ -64,6 +67,7 @@ class WorldState extends FlxState
 		level.collideWithLevel(player);
 		
 		
+		FlxG.overlap(player, triggers,Trigger.onTriggerCollision);
 		FlxG.overlap(player, checkpoints, onCheckpointCollision);
 		if (FlxG.overlap(player,floors)){
 			//Death by pitfall

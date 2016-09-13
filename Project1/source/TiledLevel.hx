@@ -194,6 +194,9 @@ class TiledLevel extends TiledMap
 			//	color.setRGB(255, 255, 255, 128);
 			//	checkpoint.makeGraphic(32, 64, color);
 				state.checkpoints.add(checkpoint);
+			case "trigger":
+				var trigger:Trigger = new Trigger(x, y, o.width, o.height,o);
+				state.triggers.add(trigger);
 			/*
 			case "coin":
 				var tileset = g.map.getGidOwner(o.gid);
