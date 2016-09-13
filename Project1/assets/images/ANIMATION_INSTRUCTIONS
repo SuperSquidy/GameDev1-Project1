@@ -9,3 +9,7 @@ EARTH SHRINE:
 	Have still image Scarecrow_Shrine.png (32x64)
 	Use Scarecrow_Shrine_afterSong_anim.png (160x64, 32x64 per frame) frames 0-4 once when interact
 	Use Scarecrow_Shrine_afterSong_anim.png frames [3, 2, 3, 4] looping as idle animation after it has been interacted with
+WIND SHRINE:
+	Have still image Wind_Shrine.png (96x96)
+	Use Wind_Shrine_afterSong_anim.png (384x96, 96x96 per frame) frames 0-3 once when interact
+	Use Wind_Shrine_afterSong_anim.png frames 1-3 looping as idle animation after it has been interacted with
