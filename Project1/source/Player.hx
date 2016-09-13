@@ -47,6 +47,12 @@ class Player extends FlxSprite
 	private var _timesJumped:Int = 0;
 	private var _jumpKeys:Array<FlxKey> = [W, SPACE];
 
+	/*Dash stuffs*/
+	private static inline var _dashSpeed:Int = 1000;
+	private static inline var _dashDuration:Float = 0.25;
+
+	private var _dashTime:Float = -1;
+
 	//Movement Conditionals
 	var _runSpeed:Float = 200;
 	var _rot: Float = 0;
@@ -98,6 +104,7 @@ class Player extends FlxSprite
 		jump(elapsed);		//Trigger jump logic
 		movement();			//Trigger walking logic
 		instrumentKeys();	//Trigger notes-playing logic
+		dash(elapsed);
 
 		//Reset double jump on collision
 		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
@@ -176,6 +183,32 @@ class Player extends FlxSprite
 			_jumpTime = -1.0;
 
 		*/
+	}
+
+	/*Dash function */
+	function dash(elapsed:Float):Void{
+		if(FlxG.keys.justPressed.E){
+			_dashTime = 0;
+			if(this.facing ==FlxObject.LEFT){
+				//dash left
+				velocity.x -= _dashSpeed;
+				maxVelocity.set(_dashSpeed, _jumpSpeed);
+			} else if(this.facing ==FlxObject.RIGHT){
+				//dash right
+				velocity.x += _dashSpeed;
+				maxVelocity.set(_dashSpeed, _jumpSpeed);
+			}
+		}
+		
+
+		if(_dashTime >= 0){
+			_dashTime += elapsed;
+
+			if(_dashTime > _dashDuration){
+				//end the dash
+				maxVelocity.set(_runSpeed, _jumpSpeed);
+			}
+		}
 	}
 
 /* FUNCTIONS FOR INSTRUMENT PROCESSING */
