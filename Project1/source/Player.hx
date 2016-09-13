@@ -22,13 +22,14 @@ Current Jump Mechanics:
  - Double Jump by pressing either a second time
  - Double Jump can be triggered mid-air
  	i.e Walking off a platform, one jump can still be performed while falling
- - Dash with E
+ - Dash triggered by song "JJJ"
  	dashing from platform to same level platform will make you fall, since gravity
  		kicks in when you get off the platform
 
  Current Issues:
- - Player Dash is currently buggy : does not reset after initial dash since it has been
- 		called from the Mandolin class
+ 
+ Previous Issues:
+ - [FIXED] Player Dash does not reset after initial dash
 */
 
 
@@ -224,6 +225,5 @@ class Player extends FlxSprite
 	public function setDashPlayed(condition:Bool):Void{
 		dashSong = condition;
 	}
-
 
 }
