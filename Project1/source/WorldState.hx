@@ -78,12 +78,12 @@ class WorldState extends FlxState
 	/* Upon collision with player, checks if the collided checkPoint is active
 		If not, it sets it as the active checkpoint
 	*/
-	private function onCheckpointCollision(Player:FlxObject, Checkpoint:FlxObject):Void{
+	private function onCheckpointCollision(Player:FlxObject, newCheckpoint:CheckPoint):Void{
 		
 		//If this checkpoint wasn't already activated
-		if (!Checkpoint.getPosition().equals(_checkpointPosition)){
-			_checkpointPosition = Checkpoint.getPosition();
-			checkPoint.activateCheckPoint();
+		if (!newCheckpoint.getPosition().equals(_checkpointPosition)){
+			_checkpointPosition = newCheckpoint.getPosition();
+			newCheckpoint.activateCheckPoint();
 		}
 	}
 	public function onDeath():Void
