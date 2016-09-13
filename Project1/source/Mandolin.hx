@@ -95,66 +95,64 @@ class Mandolin extends FlxBasic
 	{
 		_recentNotes.pop();				//Remove the note on the end
 		_recentNotes.unshift(_note);	//Add the new note to the beginning
+		activateSongs();
 	}
 
-	private function 
+	/* @function : Determines if an unlocked song has
+			been played, and then triggers the corres-
+			ponding items that belong with it.
+	*/
+	private function activateSongs():Void{
+		//Water Song
+		if (checkSongPlayed(_waterSong, _waterActive)){
+			//Trigger Double Jump
+			//Trigger Succesful Song Animation | Particles
+			//Trigger additional song file
+		}
 
-/*FUNCTIONS FOR SONG MATCHING*/
-/*
-	These functions (one for each song) checks first, whether the
-	song is available to be played by the player
-*/
-	private function checkJumpSong(_notes:Array<String>):Bool{	//Water Song
-		if (!waterActive)
+		//Wind Song
+		if (checkSongPlayed(_windSong, _windActive)){
+			Player.dash(Player.getElapsed());
+			//Trigger Succesful Song Animation | Particles
+			//Trigger additional song file
+		}
+
+		//Earth Song
+		if (checkSongPlayed(_earthSong, _earthActive)){
+			//Trigger Earth Platform Thing
+			//Trigger Succesful Song Animation | Particles
+			//Trigger additional song file
+		}
+
+		//Star Song
+		if (checkSongPlayed(_starSong, _starActive)){
+			//Trigger Star Song
+			//Trigger Succesful Song Animation | Particles
+			//Trigger additional song file
+		}
+	}
+
+
+	/*	@function : Checks if a given song has been played & if the
+			player has unlocked the given song
+		@parameter
+			_song  : The song of the element to check
+			_songActive : Boolean if the song has been unlocked
+	*/
+	private function checkSongPlayed(_song:Array<String>, _songActive:Bool):Bool{	//Water Song
+		if (!_songActive)
 			return false;
 
 		var isActive:Bool = true;
-		for (i in 0 ... _waterSong.length){		//Otherwise check if most recent notes match the song
-			if _notes[i] != _waterSong[i]
+		for (i in 0 ... _song.length){		//Otherwise check if most recent notes match the song
+			if _recentNotes[i] != _song[i]
 				isActive false;
 		}
 			
 		return isActive;	
 	}
-	private function checkDashSong(_notes:Array<String>):Bool{	//Wind Song
-		if (!windActive)		//If song inactive, no logic neccessary
-			return false;
-
-		var isActive:Bool = true;			
-		for (i in 0 ... _windSong.length){		//Otherwise check if most recent notes match the song
-			if _notes[i] != _windSong[i]
-				isActive false;
-		}
-			
-		return isActive;
-
-	}
-	private function checkEarthSong(_notes:Array<String>):Bool{	//Earth Song
-		if (!earthActive)		//If song inactive, no logic neccessary
-			return false;
-
-		var isActive:Bool = true;
-		for (i in 0 ... _earthSong.length){		//Otherwise check if most recent notes match the song
-			if _notes[i] != _earthSong[i]
-				isActive false;
-		}
-			
-		return isActive;
-	}
-	public function checkStarSong(_notes:Array<String>):Bool{	//Ballad of Stars
-		if (!starActive)	//If song inactive, no logic neccessary
-			return false;
-
-		var isActive:Bool = true;
-		for (i in 0 ... _starSong.length){		//Otherwise check if most recent notes match the song
-			if _notes[i] != _starSong[i]
-				isActive false;
-		}
-			
-		return isActive;
-	}
-
-/*FUNCTIONS FOR WHEN PlAYER UNLOCKS SONGS */
+	
+/*FUNCTIONS UNLOCKING SONGS */
 /*
 	These functions (one for each) can be called to activate a song
 	so that the player can play it & have its action performed
