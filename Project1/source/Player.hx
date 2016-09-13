@@ -3,6 +3,7 @@ This file contains information pertaining to the player character including :
  - Player Controls : WASD & Arrow Keys for movement
  					 HJKL; for Instrument
  					 E for dash
+
  - Helper Vars for Motion : speed, rotation, drag
  - Initializes Mandolin
  - Triggers Mandolin to play notes
@@ -10,7 +11,6 @@ This file contains information pertaining to the player character including :
  - Store recent jump keypresses
 
 This file WILL :
- - Trigger Songs from the Mandolin Class
  - Contain character images & animations
  - Contain character walking sound effects
 
@@ -66,15 +66,7 @@ class Player extends FlxSprite
 	//Key Based
 	var _left:Bool = false;
 	var _right:Bool = false;
-
-	//Instrument Based
 	var _mando:Mandolin;
-	var _h:Bool = false;
-	var _j:Bool = false;
-	var _k:Bool = false;
-	var _l:Bool = false;
-	var _semi:Bool = false;
-	var _recentNotes:Array<String> = ["", "", "", "", ""];	//This will contain a list of the most recent keys pressed
 
 /* CONSTRUCTOR & UPDATE */
 	/* Currently defines our player as 
@@ -98,7 +90,7 @@ class Player extends FlxSprite
 		acceleration.y = _gravity;
 
 		//Initialize Mandolin
-		_mando = new Mandolin();	
+		_mando = new Mandolin(this);	
 	}
 
 	override public function update(elapsed:Float):Void
@@ -108,7 +100,7 @@ class Player extends FlxSprite
 		
 		jump(elapsed);		//Trigger jump logic
 		movement();			//Trigger walking logic
-		instrumentKeys();	//Trigger notes-playing logic
+		_mando.instrumentKeys();
 		dash(elapsed);
 
 		//Reset double jump on collision
@@ -207,7 +199,6 @@ class Player extends FlxSprite
 			}
 		}
 		
-
 		if(_dashTime >= 0){
 			_dashTime += elapsed;
 
@@ -222,46 +213,5 @@ class Player extends FlxSprite
 		}
 	}
 
-/* FUNCTIONS FOR INSTRUMENT PROCESSING */
-	/* Key Reading for Instrument | Currently Mapped to : 'h j k l ;' */
-	function instrumentKeys():Void
-	{
-		//Defining Music Keys
-		_h = FlxG.keys.justPressed.H;
-		_j = FlxG.keys.justPressed.J;
-		_k = FlxG.keys.justPressed.K;
-		_l = FlxG.keys.justPressed.L;
-		_semi = FlxG.keys.justPressed.SEMICOLON;	//Check API -> looking for "SEMICOLON"
 
-
-		if (_h || _j || _k || _l || _semi){
-			//Array that stores notes for _recentNotes
-			var Notes = ["H", "J", "K", "L", ";"];
-
-			//Sending Notes to Mandolin & determing what was played
-			var _stringsDown = [_h, _j, _k, _l, _semi];
-			
-
-			var _notePlayed = _mando.playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
-
-			if (_notePlayed != -1)								//Default case if no notes where played
-				instrumentUpdateRecentNotes(Notes[_notePlayed]);	//Storing off the played note for song recognition
-		}
-	}
-
-
-	/*  @function : Updates _recentNotes as keys are played
-			The most recent 5 notes are remembered, with the newest
-			note being stored in the lowest index
-
-			I.e if _recentNotes = ["A, B, C, D, E"] & _note = 'Q'
-				_recentNotes becomes ["Q, A, B, C, D"]
-		@parameter : _note is the note that will be
-			replace the oldest note in _recentNotes
-	*/
-	function instrumentUpdateRecentNotes(_note:String)
-	{
-		_recentNotes.pop();				//Remove the note on the end
-		_recentNotes.unshift(_note);	//Add the new note to the beginning
-	}
 }
