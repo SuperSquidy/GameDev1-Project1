@@ -8,7 +8,6 @@ This file contains information pertaining to the player character including :
  - Store recent jump keypresses
 
 This file WILL :
- - Trigger Songs from the Mandolin Class
  - Contain character images & animations
  - Contain character walking sound effects
 
@@ -197,7 +196,6 @@ class Player extends FlxSprite
 			}
 		}
 		
-
 		if(_dashTime >= 0){
 			_dashTime += elapsed;
 
