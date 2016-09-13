@@ -219,6 +219,8 @@ class Player extends FlxSprite
 			if(_dashTime > _dashCooldown){
 				_dashTime = -1;
 			}
+
+			setDashPlayed(false);
 		}
 	}
 
