@@ -35,7 +35,7 @@ class CheckPoint extends FlxSprite
 
 	override public function update(elapsed:Float):Void{
 		if (getState() == "Active")
-			activateCheckPoint();
+			onActivate();
 		else
 			animation.stop();
 		super.update(elapsed);
@@ -48,7 +48,7 @@ class CheckPoint extends FlxSprite
 
 /* ACTIVATION BASED FUNCTIONS */
 	//	Sets the current checkpoint to active
-	public function activateCheckPoint():Void{
+	public function onActivate():Void{
 		currentState = "Active";
 		//Flickering animation
 		loadGraphic('assets/images/Checkpoint_on_anim.png', true, 32, 96); //Checkpoint turned off art
@@ -57,7 +57,7 @@ class CheckPoint extends FlxSprite
 	}
 
 	// Sets the current checkpoint to disabled
-	public function disableCheckPoint():Void{
+	public function onDeactivate():Void{
 		currentState = "Disabled";
 		animation.play("dim");
 	}
