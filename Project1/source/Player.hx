@@ -213,5 +213,9 @@ class Player extends FlxSprite
 		}
 	}
 
+	public function getElapsed():Float{
+		return elapsed;
+	}
+
 
 }
