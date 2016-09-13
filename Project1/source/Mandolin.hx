@@ -96,6 +96,30 @@ class Mandolin extends FlxBasic
 		return _note;	//Return index of the note played
 	}
 
+/*FUNCTIONS FOR CHECKING IF A SONG WAS JUST PLAYED*/
+	public function checkJumpSong(_notes:String):Bool{	//Water Song
+		if (_notes == waterSong)
+			return true;
+		return false;
+	}
+
+	public function checkDashSong(_notes:String):Bool{	//Wind Song
+		if (_notes == windSong)
+			return true;
+		return false;
+	}
+
+	public function checkEarthSong(_notes:String):Bool{	//Earth Song
+		if (_notes == earthSong)
+			return true;
+		return false;
+	}
+
+	public function checkStarSong(_notes:String):Bool{	//Ballad of Stars
+		if (_notes == starSong)
+			return true;
+		return false;
+	}
 
 
 }
