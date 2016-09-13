@@ -60,6 +60,12 @@ class Mandolin extends FlxBasic
 	private function playC1(){
 		FlxG.sound.play("koto_c1");	}
 
+/*HELPER FUNCTIONS*/
+
+	private function resetRecentNotes(){
+		_recentNotes = ["", "", "", "", ""];	
+	}
+
 /* FUNCTIONS FOR INSTRUMENT PROCESSING */
 	
 	//@function : plays notes when a key is pressed and updates the last played note array
@@ -105,6 +111,7 @@ class Mandolin extends FlxBasic
 	private function activateSongs():Void{
 		//Water Song
 		if (checkSongPlayed(_waterSong, _waterActive)){
+			resetRecentNotes();		//Clear last song played
 			//Trigger Double Jump
 			//Trigger Succesful Song Animation | Particles
 			//Trigger additional sound file
@@ -112,13 +119,15 @@ class Mandolin extends FlxBasic
 
 		//Wind Song
 		if (checkSongPlayed(_windSong, _windActive)){
-			_playerCharacter.setDashPlayed(true);	//Trigger Player Dash
+			resetRecentNotes();		//Clear last song played
+			_playerCharacter.setDashPlayed(true);		//Trigger Player Dash
 			//Trigger Succesful Song Animation | Particles
 			//Trigger additional sound file
 		}
 
 		//Earth Song
 		if (checkSongPlayed(_earthSong, _earthActive)){
+			resetRecentNotes();		//Clear last song played
 			//Trigger Earth Platform Thing
 			//Trigger Succesful Song Animation | Particles
 			//Trigger additional sound file
@@ -126,6 +135,7 @@ class Mandolin extends FlxBasic
 
 		//Star Song
 		if (checkSongPlayed(_starSong, _starActive)){
+			resetRecentNotes();		//Clear last song played
 			//Trigger Star Song
 			//Trigger Succesful Song Animation | Particles
 			//Trigger additional sound file
@@ -169,5 +179,6 @@ class Mandolin extends FlxBasic
 	public function enableStarSong(){
 		_starActive = true;
 	}
+
 
 }
