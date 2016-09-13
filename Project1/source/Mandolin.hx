@@ -22,6 +22,10 @@ Current Implementation:
 		This means that a player can play JJ then wait 5 minutes
 		and play the third J to trigger the dash
 			^ Assuming they have played nothing else in between
+
+Need to Implement:
+	- Timer feature so that after x frames or seconds where no notes are 
+	  played, recent notes reset
 */
 
 package;
@@ -38,6 +42,8 @@ import flixel.FlxG.sound;
 class Mandolin extends FlxBasic
 {
 	var _playerCharacter:Player;
+	var _timer:Float;
+	var _notesThisFrame:Bool = false;
 
 	//Song Processing
 	var _recentNotes:Array<String>	= ["", "", "", "", ""];		//This will contain a list of the most recent keys pressed
@@ -60,6 +66,8 @@ class Mandolin extends FlxBasic
 		_playerCharacter = player;
 	}
 
+	//Need to add update function for timer implementation
+
 /* FUNCTIONS TO PLAY NOTES */
 	private function playC3(){
 		FlxG.sound.play("koto_c3");	}
@@ -73,9 +81,26 @@ class Mandolin extends FlxBasic
 		FlxG.sound.play("koto_c1");	}
 
 /*HELPER FUNCTIONS*/
-
+	//Resets the recent notes
 	private function resetRecentNotes(){
 		_recentNotes = ["", "", "", "", ""];	
+	}
+
+	//Timer Function
+	private function noteTimer(){
+		if (_notesThisFrame)
+			_timer = 0;
+		//else if (_timer >= SOME AMOUNT OF TIME)
+			resetRecentNotes();
+	}
+
+	//Notes played this frame
+	private function getNotesThisFrame():Bool{
+		return _notesThisFrame;
+	}
+
+	private function setNotesThisFrame(condition:Bool):Void{
+		_notesThisFrame = condition;
 	}
 
 /* FUNCTIONS FOR INSTRUMENT PROCESSING */
