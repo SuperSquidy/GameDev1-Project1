@@ -39,13 +39,20 @@ class Player extends FlxSprite
 
 /* HELPER VARIABLES */
 	//Jump & Physics Related
-	public static inline var _gravity:Int = 900;
-	public static inline var _jumpSpeed:Int = 300;
+	public static inline var _gravity:Int = 1500;
+	public static inline var _jumpSpeed:Int = 1075;
 	public static inline var _jumpsAllowed:Int = 2;
 
 	private var _jumpTime:Float = -1;
 	private var _timesJumped:Int = 0;
 	private var _jumpKeys:Array<FlxKey> = [W, SPACE];
+
+	/*Dash stuffs*/
+	private static inline var _dashSpeed:Int = 1000;
+	private static inline var _dashDuration:Float = 0.25;
+	private static inline var _dashCooldown:Float = 3.0;
+
+	private var _dashTime:Float = -1;
 
 	//Movement Conditionals
 	var _runSpeed:Float = 200;
@@ -73,9 +80,14 @@ class Player extends FlxSprite
 	{	
 		super(X, Y);
 
+		//PC Art
 		this.set_pixelPerfectRender(true); //Removes jitter
-		makeGraphic(32,64, FlxColor.GREEN);		//Tmp player character
+		loadGraphic('assets/images/staticPC.png', false, 32, 64); //static PC art
 		
+		// setFacingFlip(direction, flipx, flipy)
+		setFacingFlip(FlxObject.LEFT, true, false);
+		setFacingFlip(FlxObject.RIGHT, false, false);
+
 		//Physics & Jump
 		drag.set(_runSpeed * 8, _runSpeed * 8);
 		maxVelocity.set(_runSpeed, _jumpSpeed);
@@ -91,16 +103,15 @@ class Player extends FlxSprite
 		acceleration.y = _gravity;
 		
 		jump(elapsed);		//Trigger jump logic
-
 		movement();			//Trigger walking logic
 		instrumentKeys();	//Trigger notes-playing logic
+		dash(elapsed);
 
 		//Reset double jump on collision
 		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
 		{
 			_jumpTime = -1;
-			// Reset the double jump flag
-			_timesJumped = 0;  
+			_timesJumped = 0;  // Reset the double jump flag
 		}
 
 		super.update(elapsed);
@@ -121,12 +132,14 @@ class Player extends FlxSprite
 		}
 		
 		//Movement Code	 
-		if (_left)
-		{
-			acceleration.x = -drag.x;		}
-		else if (_right)
-		{
-			acceleration.x = drag.x;		}
+		if (_left)	{
+			acceleration.x = -drag.x;		
+			facing = FlxObject.LEFT;
+		}
+		else if (_right)	{
+			acceleration.x = drag.x;		
+			facing = FlxObject.RIGHT;
+		}
 	}
 
 	/* Current Jump Code, Courtesy of Project Jumper Demo */
@@ -140,8 +153,17 @@ class Player extends FlxSprite
 					_timesJumped++;
 				_timesJumped++;
 				_jumpTime = 0;
+				velocity.y = - 0.6 * maxVelocity.y;
 			}
 		}
+
+		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0){
+			acceleration.y = _gravity * 3;
+		} else{
+			acceleration.y = _gravity;
+		}
+
+		/*
 		
 		// You can also use space or any other key you want
 		if ((FlxG.keys.anyPressed(_jumpKeys)) && (_jumpTime >= 0)) 
@@ -160,6 +182,40 @@ class Player extends FlxSprite
 		}
 		else
 			_jumpTime = -1.0;
+
+		*/
+	}
+
+	/*Dash function */
+	function dash(elapsed:Float):Void{
+		if(FlxG.keys.justPressed.E && _dashTime == -1){
+			
+			if(this.facing ==FlxObject.LEFT){
+				_dashTime = 0;
+				//dash left
+				velocity.x -= _dashSpeed;
+				maxVelocity.set(_dashSpeed, _jumpSpeed);
+			} else if(this.facing ==FlxObject.RIGHT){
+				_dashTime = 0;
+				//dash right
+				velocity.x += _dashSpeed;
+				maxVelocity.set(_dashSpeed, _jumpSpeed);
+			}
+		}
+		
+
+		if(_dashTime >= 0){
+			_dashTime += elapsed;
+
+			if(_dashTime > _dashDuration){
+				//end the dash
+				maxVelocity.set(_runSpeed, _jumpSpeed);
+			}
+
+			if(_dashTime > _dashCooldown){
+				_dashTime = -1;
+			}
+		}
 	}
 
 /* FUNCTIONS FOR INSTRUMENT PROCESSING */
@@ -185,7 +241,7 @@ class Player extends FlxSprite
 			var _notePlayed = _mando.playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
 
 			if (_notePlayed != -1)								//Default case if no notes where played
-				instrumentUpdateRecentNotes(Notes[_notePlayed]);			//Storing off the played note for song recognition
+				instrumentUpdateRecentNotes(Notes[_notePlayed]);	//Storing off the played note for song recognition
 		}
 	}
 
