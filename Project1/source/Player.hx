@@ -2,6 +2,7 @@
 This file contains information pertaining to the player character including :
  - Player Controls : WASD & Arrow Keys for movement
  					 HJKL; for Instrument
+ 					 E for dash
  - Helper Vars for Motion : speed, rotation, drag
  - Initializes Mandolin
  - Triggers Mandolin to play notes
@@ -21,6 +22,9 @@ Current Jump Mechanics:
  - Double Jump by pressing either a second time
  - Double Jump can be triggered mid-air
  	i.e Walking off a platform, one jump can still be performed while falling
+ - Dash with E
+ 	dashing from platform to same level platform will make you fall, since gravity
+ 		kicks in when you get off the platform
 */
 
 
