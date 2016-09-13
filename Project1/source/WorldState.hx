@@ -12,7 +12,7 @@ import flixel.FlxCamera;
 
 class WorldState extends FlxState
 {
-	
+	static public var instance:WorldState;
 	public var level:TiledLevel;
 	public var player:Player;
 	public var floors:FlxGroup;
@@ -34,7 +34,7 @@ class WorldState extends FlxState
 	override public function create():Void 
 	{
 		super.create();
-		
+		instance = this;
 		floors = new FlxGroup();
 		checkpoints = new FlxGroup();
 		level = new TiledLevel("assets/tiled/" + _levelName, this);
@@ -51,8 +51,6 @@ class WorldState extends FlxState
 		FlxG.camera.follow(player,FlxCameraFollowStyle.LOCKON,CAMERA_LERP);
 		FlxG.camera.snapToTarget();
 		
-		
-		
 		var backButton  = new FlxButton(20,20, "Back", function(){FlxG.switchState(new MenuState());});
 		add(backButton); //Back to menu button
 		
@@ -63,7 +61,6 @@ class WorldState extends FlxState
 		super.update(elapsed);
 		
 		level.collideWithLevel(player);
-		
 		
 		FlxG.overlap(player, checkpoints, onCheckpointCollision);
 		if (FlxG.overlap(player,floors)){
