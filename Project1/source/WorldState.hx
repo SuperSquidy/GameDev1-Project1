@@ -74,11 +74,16 @@ class WorldState extends FlxState
 		}
 		
 	}
+
+	/* Upon collision with player, checks if the collided checkPoint is active
+		If not, it sets it as the active checkpoint
+	*/
 	private function onCheckpointCollision(Player:FlxObject, Checkpoint:FlxObject):Void{
-		//If this checkpoint wasn't already activated (there may be particle effects or a light or something)
+		
+		//If this checkpoint wasn't already activated
 		if (!Checkpoint.getPosition().equals(_checkpointPosition)){
-			//Activate this checkpoint
 			_checkpointPosition = Checkpoint.getPosition();
+			checkPoint.activateCheckPoint();
 		}
 	}
 	public function onDeath():Void
