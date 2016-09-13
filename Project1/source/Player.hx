@@ -50,6 +50,7 @@ class Player extends FlxSprite
 	/*Dash stuffs*/
 	private static inline var _dashSpeed:Int = 1000;
 	private static inline var _dashDuration:Float = 0.25;
+	private static inline var _dashCooldown:Float = 3.0;
 
 	private var _dashTime:Float = -1;
 
@@ -187,13 +188,15 @@ class Player extends FlxSprite
 
 	/*Dash function */
 	function dash(elapsed:Float):Void{
-		if(FlxG.keys.justPressed.E){
-			_dashTime = 0;
+		if(FlxG.keys.justPressed.E && _dashTime == -1){
+			
 			if(this.facing ==FlxObject.LEFT){
+				_dashTime = 0;
 				//dash left
 				velocity.x -= _dashSpeed;
 				maxVelocity.set(_dashSpeed, _jumpSpeed);
 			} else if(this.facing ==FlxObject.RIGHT){
+				_dashTime = 0;
 				//dash right
 				velocity.x += _dashSpeed;
 				maxVelocity.set(_dashSpeed, _jumpSpeed);
@@ -207,6 +210,10 @@ class Player extends FlxSprite
 			if(_dashTime > _dashDuration){
 				//end the dash
 				maxVelocity.set(_runSpeed, _jumpSpeed);
+			}
+
+			if(_dashTime > _dashCooldown){
+				_dashTime = -1;
 			}
 		}
 	}
