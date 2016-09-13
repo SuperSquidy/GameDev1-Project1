@@ -12,6 +12,10 @@ Current Plan:
 	  play the note with the lowest index in stringsDown
 
 	  Reference playNotes() below
+
+Potential Issue:
+	Don't know how Flixel handels array matching. There may end up being an issue where
+		["L, I"]
 */
 
 package;
@@ -27,14 +31,24 @@ import flixel.FlxG.sound;
 
 class Mandolin extends FlxBasic
 {
+	//var _playerCharacter:FlxSprite;
+	//Key Based
+	var _h:Bool = false;
+	var _j:Bool = false;
+	var _k:Bool = false;
+	var _l:Bool = false;
+	var _semi:Bool = false;
 
+	//Song Processing
+	var _recentNotes:Array<String> = ["", "", "", "", ""];	//This will contain a list of the most recent keys pressed
 	var _waterSong:Array<String> = ["L",";"];		//Double Jump
-	var _wingSong:Array<String> = ["J", "J", "J"];	//Dash
-//	var _earthSong:Array<String>;					//Grow a temporary plant platform
-//	var _starSong:Array<String>;					//Fill the sky with stars
-
-	public function new(){
+	var _windSong:Array<String> = ["J", "J", "J"];	//Dash
+	var _earthSong:Array<String>;					//Grow a temporary plant platform
+	var _starSong:Array<String>;					//Fill the sky with stars
+	
+	public function new(player:FlxSprite){
 		super();
+	//	_playerCharacter = player;
 	}
 
 	/*
@@ -49,7 +63,7 @@ class Mandolin extends FlxBasic
 
 		Current mapping can be found in Player.hx under instrumentKeys()
 	*/
-	public function playNotes(stringsDown:Array<Bool>):Int{
+	private function playNotes(stringsDown:Array<Bool>):Int{
 
 		var _note:Int = -1;
 		var _tmpLen:Int = stringsDown.length;
@@ -96,27 +110,71 @@ class Mandolin extends FlxBasic
 		return _note;	//Return index of the note played
 	}
 
+/* FUNCTIONS FOR INSTRUMENT PROCESSING */
+	/* Key Reading for Instrument | Currently Mapped to : 'h j k l ;' */
+	public function instrumentKeys():Void
+	{
+		//Defining Music Keys
+		_h = FlxG.keys.justPressed.H;
+		_j = FlxG.keys.justPressed.J;
+		_k = FlxG.keys.justPressed.K;
+		_l = FlxG.keys.justPressed.L;
+		_semi = FlxG.keys.justPressed.SEMICOLON;	//Check API -> looking for "SEMICOLON"
+
+
+		if (_h || _j || _k || _l || _semi){
+			//Array that stores notes for _recentNotes
+			var Notes = ["H", "J", "K", "L", ";"];
+
+			//Sending Notes to Mandolin & determing what was played
+			var _stringsDown = [_h, _j, _k, _l, _semi];
+			
+
+			var _notePlayed = playNotes(_stringsDown);	//_notePlayed refers to the index of Notes, not the note itself
+
+			if (_notePlayed != -1)								//Default case if no notes where played
+				instrumentUpdateRecentNotes(Notes[_notePlayed]);	//Storing off the played note for song recognition
+		}
+	}
+
+
+	/*  @function : Updates _recentNotes as keys are played
+			The most recent 5 notes are remembered, with the newest
+			note being stored in the lowest index
+
+			I.e if _recentNotes = ["A, B, C, D, E"] & _note = 'Q'
+				_recentNotes becomes ["Q, A, B, C, D"]
+		@parameter : _note is the note that will be
+			replace the oldest note in _recentNotes
+	*/
+	function instrumentUpdateRecentNotes(_note:String)
+	{
+		_recentNotes.pop();				//Remove the note on the end
+		_recentNotes.unshift(_note);	//Add the new note to the beginning
+	}
+
+
 /*FUNCTIONS FOR CHECKING IF A SONG WAS JUST PLAYED*/
-	public function checkJumpSong(_notes:String):Bool{	//Water Song
-		if (_notes == waterSong)
+	public function checkJumpSong(_notes:Array<String>):Bool{	//Water Song
+		if (_notes == _waterSong)
 			return true;
 		return false;
 	}
 
-	public function checkDashSong(_notes:String):Bool{	//Wind Song
-		if (_notes == windSong)
+	public function checkDashSong(_notes:Array<String>):Bool{	//Wind Song
+		if (_notes == _windSong)
 			return true;
 		return false;
 	}
 
-	public function checkEarthSong(_notes:String):Bool{	//Earth Song
-		if (_notes == earthSong)
+	public function checkEarthSong(_notes:Array<String>):Bool{	//Earth Song
+		if (_notes == _earthSong)
 			return true;
 		return false;
 	}
 
-	public function checkStarSong(_notes:String):Bool{	//Ballad of Stars
-		if (_notes == starSong)
+	public function checkStarSong(_notes:Array<String>):Bool{	//Ballad of Stars
+		if (_notes == _starSong)
 			return true;
 		return false;
 	}
