@@ -25,14 +25,14 @@ import flixel.FlxG.sound;
 
 class Mandolin extends FlxBasic
 {
-	var _playerCharacter:FlxSprite;
+	var _playerCharacter:Player;
 
 	//Song Processing
-	var _recentNotes:Array<String> = ["", "", "", "", ""];	//This will contain a list of the most recent keys pressed
-	var _waterSong:Array<String> = ["L",";"];		//Double Jump
-	var _windSong:Array<String> = ["J", "J", "J"];	//Dash
-	var _earthSong:Array<String>;					//Grow a temporary plant platform
-	var _starSong:Array<String>;					//Fill the sky with stars
+	var _recentNotes:Array<String>	= ["", "", "", "", ""];		//This will contain a list of the most recent keys pressed
+	var _waterSong:Array<String>	= ["L",";"];				//Double Jump
+	var _windSong:Array<String> 	= ["J", "J", "J"];			//Dash
+	var _earthSong:Array<String>	= ["", ""];					//Grow a temporary plant platform
+	var _starSong:Array<String> 	= [ "", ""];				//Fill the sky with stars
 	
 	//Flag Processing - True if the player has access to the special effects of the song
 	//NOTE : Set true for testing purposes only.
@@ -43,7 +43,7 @@ class Mandolin extends FlxBasic
 
 
 /* CONSTRUCTOR */	
-	public function new(player:FlxSprite){
+	public function new(player:Player){
 		super();
 		_playerCharacter = player;
 	}
@@ -112,7 +112,7 @@ class Mandolin extends FlxBasic
 
 		//Wind Song
 		if (checkSongPlayed(_windSong, _windActive)){
-			Player.dash(Player.getElapsed());
+			_playerCharacter.dash(_playerCharacter.getElapsed());
 			//Trigger Succesful Song Animation | Particles
 			//Trigger additional song file
 		}
@@ -145,8 +145,8 @@ class Mandolin extends FlxBasic
 
 		var isActive:Bool = true;
 		for (i in 0 ... _song.length){		//Otherwise check if most recent notes match the song
-			if _recentNotes[i] != _song[i]
-				isActive false;
+			if (_recentNotes[i] != _song[i])
+				isActive = false;
 		}
 			
 		return isActive;	

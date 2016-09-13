@@ -55,6 +55,7 @@ class Player extends FlxSprite
 	private static inline var _dashSpeed:Int = 1000;
 	private static inline var _dashDuration:Float = 0.25;
 	private static inline var _dashCooldown:Float = 3.0;
+	private var _dashElapsed:Float;
 
 	private var _dashTime:Float = -1;
 
@@ -101,6 +102,7 @@ class Player extends FlxSprite
 		jump(elapsed);		//Trigger jump logic
 		movement();			//Trigger walking logic
 		_mando.instrumentKeys();
+		_dashElapsed = elapsed;
 		dash(elapsed);
 
 		//Reset double jump on collision
@@ -183,7 +185,7 @@ class Player extends FlxSprite
 	}
 
 	/*Dash function */
-	function dash(elapsed:Float):Void{
+	public function dash(elapsed:Float):Void{
 		if(FlxG.keys.justPressed.E && _dashTime == -1){
 			
 			if(this.facing ==FlxObject.LEFT){
@@ -214,7 +216,7 @@ class Player extends FlxSprite
 	}
 
 	public function getElapsed():Float{
-		return elapsed;
+		return _dashElapsed;
 	}
 
 
