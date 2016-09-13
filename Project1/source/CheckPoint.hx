@@ -13,6 +13,7 @@ import flixel.FlxG.sound;
 class CheckPoint extends FlxSprite
 {
 	var currentState:String;
+	static inline var HITBOX_HEIGHT = 300;
 	
 	var _particles:FlxEmitter;
 
@@ -34,6 +35,9 @@ class CheckPoint extends FlxSprite
 		loadGraphic('assets/images/Checkpoint_off.png', false, 32, 96); //Checkpoint turned off art
 
 		currentState = "Undiscovered";
+		
+		y -= HITBOX_HEIGHT-height; //shifts height for higher hitbox
+		resizeHitbox();
 	}
 
 	//This function currently isn't needed
@@ -49,7 +53,12 @@ class CheckPoint extends FlxSprite
 			}
 		}
 	}
-		
+	//Call whenever loadGraphic is used to resize the hitbox
+	private function resizeHitbox():Void{
+		offset.set(0, -HITBOX_HEIGHT+height);
+		height = HITBOX_HEIGHT;
+	}
+	
 /* HELPER FUNCTIONS */
 	public function getState():String{
 		return currentState;
@@ -63,8 +72,9 @@ class CheckPoint extends FlxSprite
 		loadGraphic('assets/images/Checkpoint_on_anim.png', true, 32, 96); //Checkpoint turned off art
 		animation.add("flicker", [0, 1, 2, 1], 4, true);
 		animation.play("flicker",true);
+		resizeHitbox();
 		
-		_particles = new FireParticles(x+this.width/2, y+this.height/4);
+		_particles = new FireParticles(x+this.frameWidth/2, y-this.frameHeight*3/4+HITBOX_HEIGHT);
 		//WorldState.instance.level.imagesLayer.add(_particles); //Behind checkpoint
 		WorldState.instance.checkpoints.add(_particles);	//In front of checkpoint
 		_particles.start(false, .02);
@@ -76,6 +86,7 @@ class CheckPoint extends FlxSprite
 		loadGraphic('assets/images/Checkpoint_on_anim.png', true, 32, 96); //Checkpoint turned off art
 		animation.add("dim", [1], 1, true);
 		animation.play("dim");
+		resizeHitbox();
 	}
 
 }
