@@ -72,6 +72,7 @@ class WorldState extends FlxState
 		}
 		
 	}
+
 	private function onCheckpointCollision(Player:FlxObject, checkpoint:CheckPoint):Void{
 		//If this checkpoint wasn't already activated (there may be particle effects or a light or something)
 		if (_activeCheckPoint == null ||_activeCheckPoint != checkpoint){
