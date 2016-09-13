@@ -81,7 +81,7 @@ class TiledLevel extends TiledMap
 			tilemap.loadMapFromArray(tileLayer.tileArray, width, height, processedPath,
 				tileSet.tileWidth, tileSet.tileHeight, OFF, tileSet.firstGID, 1, 1);
 			
-			if (tileLayer.properties.contains("nocollide"))
+			if (tileLayer.properties.contains("nocollide") && tileLayer.properties.get("nocollide") == "true")
 			{
 				backgroundLayer.add(tilemap);
 			}
