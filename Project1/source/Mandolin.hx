@@ -6,10 +6,22 @@ This file contains the information & logic for processing the instrument includi
 - Keeping track of what songs the player has unlocked
 - Processes songs & triggers appropriate actions in other classes [Incomplete Feature]
 
-Current Plan:
-	- Mandolin will not play multiple notes at once:
-	  When it registers multiple buttons are pressed, it will
-	  play the note with the lowest index in stringsDown
+Current Implementation:
+	- Mandolin does not play multiple notes at once:
+	  	When it registers multiple buttons are pressed, it will
+	  	play the note with the lowest index in stringsDown
+
+	  	Note that note sounds can overlap if played a frame apart
+
+	- When a song is succesffuly played, the recent notes array clears:
+		For cases like dash ("JJJ"), this means they have to replay
+		the whole song to dash again, and cannot just hit one more J
+		to dash again after cd
+
+	- Songs will always remember notes if a song is not played:
+		This means that a player can play JJ then wait 5 minutes
+		and play the third J to trigger the dash
+			^ Assuming they have played nothing else in between
 */
 
 package;
