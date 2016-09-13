@@ -39,6 +39,15 @@ class CheckPoint extends FlxSprite
 	//This function currently isn't needed
 	override public function update(elapsed:Float):Void{
 		super.update(elapsed);
+		
+		//Properly fades out fire instead of removing it instantly
+		if (_particles != null && currentState == "Disabled"){
+			_particles.emitting = false;
+			if (_particles.countLiving() == 0){	
+			_particles.kill();
+			_particles = null;
+			}
+		}
 	}
 		
 /* HELPER FUNCTIONS */
@@ -67,11 +76,6 @@ class CheckPoint extends FlxSprite
 		loadGraphic('assets/images/Checkpoint_on_anim.png', true, 32, 96); //Checkpoint turned off art
 		animation.add("dim", [1], 1, true);
 		animation.play("dim");
-		
-		if (_particles != null){
-			_particles.kill();
-			_particles = null;
-		}
 	}
 
 }

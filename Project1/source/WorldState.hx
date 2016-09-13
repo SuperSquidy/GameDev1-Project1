@@ -61,6 +61,8 @@ class WorldState extends FlxState
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
+		//Debug key
+		if (FlxG.keys.justPressed.B) FlxG.debugger.drawDebug = !FlxG.debugger.drawDebug;
 		
 		level.collideWithLevel(player);
 		
