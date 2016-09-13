@@ -101,9 +101,8 @@ class Player extends FlxSprite
 		
 		jump(elapsed);		//Trigger jump logic
 		movement();			//Trigger walking logic
-		_mando.instrumentKeys();
 		_dashElapsed = elapsed;
-		dash(elapsed);
+		_mando.instrumentKeys();
 
 		//Reset double jump on collision
 		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
@@ -186,7 +185,7 @@ class Player extends FlxSprite
 
 	/*Dash function */
 	public function dash(elapsed:Float):Void{
-		if(FlxG.keys.justPressed.E && _dashTime == -1){
+		if(FlxG.keys.justPressed.J && _dashTime == -1){
 			
 			if(this.facing ==FlxObject.LEFT){
 				_dashTime = 0;
