@@ -20,4 +20,10 @@ class CheckPoint extends FlxSprite
 
 	public function inactiveShrine(){
 	}
+	public function onDeactivate(){
+		
+	}
+	public function onActivate(){
+		
+	}
 }

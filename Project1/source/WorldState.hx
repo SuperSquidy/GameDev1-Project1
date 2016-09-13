@@ -20,6 +20,7 @@ class WorldState extends FlxState
 	
 	
 	private var _levelName:String;
+	private var _activeCheckPoint:CheckPoint;
 	private var _checkpointPosition:FlxPoint;
 	private static inline var CAMERA_LERP = .1;
 	
@@ -74,11 +75,16 @@ class WorldState extends FlxState
 		}
 		
 	}
-	private function onCheckpointCollision(Player:FlxObject, Checkpoint:FlxObject):Void{
+	private function onCheckpointCollision(Player:FlxObject, checkpoint:CheckPoint):Void{
 		//If this checkpoint wasn't already activated (there may be particle effects or a light or something)
-		if (!Checkpoint.getPosition().equals(_checkpointPosition)){
+		if (_activeCheckPoint == null ||_activeCheckPoint != checkpoint){
+			if (_activeCheckPoint != null){
+				_activeCheckPoint.onDeactivate();
+			}
 			//Activate this checkpoint
-			_checkpointPosition = Checkpoint.getPosition();
+			_activeCheckPoint = checkpoint;
+			_checkpointPosition = checkpoint.getPosition();
+			checkpoint.onActivate();
 		}
 	}
 	public function onDeath():Void
