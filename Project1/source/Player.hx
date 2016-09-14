@@ -180,7 +180,7 @@ class Player extends FlxSprite
 
 		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0 && jumpSongGround){
 			acceleration.y = _gravity * 3;
-			setJumpSongGround(true);git
+			setJumpSongGround(true);
 		} else{
 			acceleration.y = _gravity;
 		}
