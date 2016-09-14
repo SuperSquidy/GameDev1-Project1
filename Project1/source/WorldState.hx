@@ -1,5 +1,6 @@
 package;
 
+import WaterShrine;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -22,6 +23,7 @@ class WorldState extends FlxState
 	public var floors:FlxGroup;
 	public var checkpoints:FlxGroup;
 	public var triggers:FlxGroup;
+	public var shrines:FlxGroup;
 	
 	private var _levelName:String;
 	private var _activeCheckPoint:CheckPoint;
@@ -42,6 +44,7 @@ class WorldState extends FlxState
 		floors = new FlxGroup();
 		checkpoints = new FlxGroup();
 		triggers = new FlxGroup();
+		shrines = new FlxGroup();
 		
 		level = new TiledLevel("assets/tiled/" + _levelName, this);
 		_checkpointPosition = player.getPosition();
@@ -50,6 +53,7 @@ class WorldState extends FlxState
 		add(level.backgroundLayer); //add backgrounds
 		add(level.imagesLayer); 	//add static images
 		add(checkpoints);
+		add(shrines);
 		add(triggers);
 		add(level.objectsLayer);	//add objects (including player)
 		add(level.foregroundTiles); //add forground
