@@ -149,7 +149,7 @@ class Player extends FlxSprite
 		}
 	}
 
-	/* Current Jump Code, Courtesy of Project Jumper Demo */
+	/* Current Jump Code */
 	private function jump(elapsed:Float):Void
 	{
 		if (FlxG.keys.anyJustPressed(_jumpKeys))
@@ -180,7 +180,7 @@ class Player extends FlxSprite
 
 		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0 && jumpSongGround){
 			acceleration.y = _gravity * 3;
-			setJumpSongGround(true);
+			setJumpSongGround(true);git
 		} else{
 			acceleration.y = _gravity;
 		}
@@ -221,6 +221,7 @@ class Player extends FlxSprite
 		}
 	}
 
+/* HELPER FUNCTIONS FOR SONGS */	
 	public function setDashPlayed(condition:Bool):Void{
 		dashSong = condition;
 	}
@@ -230,7 +231,4 @@ class Player extends FlxSprite
 	private function setJumpSongGround(condition:Bool):Void{
 		jumpSongGround = condition;
 	}
-
-
-
 }
