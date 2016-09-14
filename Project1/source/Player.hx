@@ -173,14 +173,14 @@ class Player extends FlxSprite
 				_timesJumped++;
 				_jumpTime = 0;
 				velocity.y = - 0.6 * maxVelocity.y;
-				jumpSongGround = false;
+				setJumpSongGround(false);
 			}
 			setJumpPlayed(false);
 		}
 
 		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0 && jumpSongGround){
 			acceleration.y = _gravity * 3;
-			jumpSongGround = true;
+			setJumpSongGround(true);
 		} else{
 			acceleration.y = _gravity;
 		}
@@ -224,9 +224,13 @@ class Player extends FlxSprite
 	public function setDashPlayed(condition:Bool):Void{
 		dashSong = condition;
 	}
-
 	public function setJumpPlayed(condition:Bool):Void{
 		jumpSong = condition;
 	}
+	private function setJumpSongGround(condition:Bool):Void{
+		jumpSongGround = condition;
+	}
+
+
 
 }
