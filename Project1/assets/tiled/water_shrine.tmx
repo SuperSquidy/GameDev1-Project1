@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="34" tilewidth="32" tileheight="32" nextobjectid="12">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="34" tilewidth="32" tileheight="32" nextobjectid="14">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="9" columns="3">
   <image source="../images/badtiles.png" width="96" height="96"/>
  </tileset>
@@ -105,5 +105,10 @@
    </properties>
   </object>
   <object id="11" name="Water Shrine" type="waterShrine" x="256" y="960" width="32" height="32"/>
+  <object id="12" name="Instrument Pickup" type="trigger" x="64" y="1024" width="32" height="32">
+   <properties>
+    <property name="triggerType" value="instrumentPickup"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
