@@ -109,6 +109,8 @@ class Player extends FlxSprite
 		movement();			//Trigger walking logic
 		dash(elapsed);
 		_mando.instrumentKeys();
+		_mando.noteTimer(elapsed);
+
 
 		//Reset double jump on collision
 		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
