@@ -16,8 +16,8 @@
  <imagelayer name="Image Layer 1">
   <image source="../images/Backgrounds/WaterArea/WaterArea_bkg_1.png" width="2880" height="1088"/>
   <properties>
-   <property name="scrollX" type="float" value="0.5"/>
-   <property name="scrollY" type="float" value="0"/>
+   <property name="scrollX" type="float" value="1"/>
+   <property name="scrollY" type="float" value="1"/>
   </properties>
  </imagelayer>
  <layer name="Foreground 2" width="90" height="34">
