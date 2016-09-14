@@ -18,11 +18,6 @@ Current Implementation:
 		the whole song to dash again, and cannot just hit one more J
 		to dash again after cd
 
-	- Songs will always remember notes if a song is not played:
-		This means that a player can play JJ then wait 5 minutes
-		and play the third J to trigger the dash
-			^ Assuming they have played nothing else in between
-
 	- Notes will be forgotten after a few seconds of nothing played
 */
 
