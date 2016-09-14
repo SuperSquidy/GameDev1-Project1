@@ -4,22 +4,36 @@ import flixel.FlxG;
 import openfl.Assets;
 /**
  * ...
- * @author ...
+ * @author wrighp
  */
 class TickingText extends FlxText
 {
 	public var allText:Array<String>;
 	public var speed:Float;
 	public var sound:String;
+	public var doSkip:Bool = true; //Should the text skip after a certain amount of time
 	
 	private var _currentText:String;
 	private var _time:Float = 0;
 	private var _ellipses:Float = 0;
 	private var _index:Int = 0;
-	public function new(filename:String, ?height:Int = 36,?padding:Int = 24, ?size:Int = 24,?speed:Float = .04, ?sound:String = "textScroll")
+	
+	/**
+	 * Creates text that will begin ticking in on update, and automatically skip forward if doSkip == true
+	 * @param	customText	If true, will not load any textData. Modify allText to add more lines.
+	 * @param	textFile	File location within assets/data/ of text file to load. Text is displayed up to every newline character.
+	 * @param	speed	Interval between every new character is added.
+	 * @param	size	Font size.
+	 * @param	sound	Sound to play at every new character.
+	 * @param	margin	Size of the margin on either side.
+	 * @param	height	Y position of the text.
+	 */
+	public function new(?customText:Bool = false,?textFile:String,?speed:Float = .04,?size:Int = 24, ?sound:String = "textScroll",?margin:Int = 24,?height:Int = 36)
 	{
-		super(padding, height,FlxG.width-padding,"", size);
-		allText = Assets.getText("assets/data/" + filename).split("\n");
+		super(margin,height, FlxG.width - margin, "", size);
+		if (!customText){
+			allText = Assets.getText("assets/data/" + textFile).split("\n");
+		}else{allText = new Array<String>(); }
 		_currentText = "";
 		this.sound = sound;
 		this.speed = speed;
@@ -44,7 +58,7 @@ class TickingText extends FlxText
 					_currentText += char;
 					text = _currentText;
 			}
-		}else{
+		}else if(doSkip){
 			_time = 0;
 			if (_ellipses < 3){
 				if (Std.int(_ellipses+elapsed) > Std.int(_ellipses )){

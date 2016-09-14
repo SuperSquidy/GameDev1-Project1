@@ -4,15 +4,17 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.FlxSubState;
 import flixel.group.FlxGroup;
 import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.FlxCamera;
-
+import flixel.util.FlxColor;
 class WorldState extends FlxState
 {
-	
+	public static var menu:PauseState;
+		
 	public var level:TiledLevel;
 	public var player:Player;
 	public var floors:FlxGroup;
@@ -22,7 +24,7 @@ class WorldState extends FlxState
 	private var _levelName:String;
 	private var _checkpointPosition:FlxPoint;
 	private static inline var CAMERA_LERP = .1;
-	
+
 	//Can pass a player in constructor if a player already exists (for loading multiple levels)
 	public function new(?player:Player, ?levelName:String = "test_map.tmx") 
 	{
@@ -53,6 +55,12 @@ class WorldState extends FlxState
 		FlxG.camera.follow(player,FlxCameraFollowStyle.LOCKON,CAMERA_LERP);
 		FlxG.camera.snapToTarget();
 		
+		//Pause screen
+		this.destroySubStates = false;
+		this.persistentDraw = true;
+		if (menu == null){
+			menu = new PauseState(FlxColor.TRANSPARENT);
+		}
 		
 		
 		var backButton  = new FlxButton(20,20, "Back", function(){FlxG.switchState(new MenuState());});
@@ -76,7 +84,10 @@ class WorldState extends FlxState
 			//Death by loss of health
 			onDeath();
 		}
-		
+		if (FlxG.keys.justPressed.TAB){
+			menu.opened();
+			openSubState(menu);
+		}
 	}
 	private function onCheckpointCollision(Player:FlxObject, Checkpoint:FlxObject):Void{
 		//If this checkpoint wasn't already activated (there may be particle effects or a light or something)
