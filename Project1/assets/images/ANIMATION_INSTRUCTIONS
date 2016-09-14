@@ -2,14 +2,14 @@ ANIMATION INSTRUCTIONS:
 	All of these files will be placed in the images folder and their names will not change. Shrines will be in the Shrine Folder, PC in PC, etc. as needed.
 
 WATER SHRINE:
-	Have still image Water_Shrine.png (64x64)
-	Use Water_Shrine_afterSong_anim.png (256x64, 64x64 per frame) frames 0-3 once when interact
-	Use Water_Shrine_afterSong_anim.png frames 1-3 looping as idle animation after it has been interacted with
+	Use Water_Shrine_SpriteSheet.png (320x64, 64x64 per frame) frame 0 as still image
+	Use Water_Shrine_SpriteSheet.png frames 1-4 once when it has been interacted with
+	Use Water_Shrine_SpriteSheet.png frames 2-4 looping as idle animation after it has been interacted with
 EARTH SHRINE:
-	Have still image Scarecrow_Shrine.png (32x64)
-	Use Scarecrow_Shrine_afterSong_anim.png (160x64, 32x64 per frame) frames 0-4 once when interact
-	Use Scarecrow_Shrine_afterSong_anim.png frames [3, 2, 3, 4] looping as idle animation after it has been interacted with
+	Use Scarecrow_Shrine_SpriteSheet.png (192x64, 32x64 per frame) frame 0 as still image
+	Use Scarecrow_Shrine_SpriteSheet.png frames 0-5 once when it has been interacted with
+	Use Scarecrow_Shrine_SpriteSheet.png frames [4, 3, 4, 5] looping as idle animation after it has been interacted with
 WIND SHRINE:
-	Have still image Wind_Shrine.png (96x96)
-	Use Wind_Shrine_afterSong_anim.png (384x96, 96x96 per frame) frames 0-3 once when interact
-	Use Wind_Shrine_afterSong_anim.png frames 1-3 looping as idle animation after it has been interacted with
+	Use Wind_Shrine_SpriteSheet.png (480x96, 96x96 per frame) frame 0 as still image
+	Use Wind_Shrine_SpriteSheet.png frames 0-4 once when interacted with
+	Use Wind_Shrine_SpriteSheet.png frames 1-4 looping as idle animation after it has been interacted with
