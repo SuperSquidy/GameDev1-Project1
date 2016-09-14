@@ -197,6 +197,12 @@ class TiledLevel extends TiledMap
 			case "trigger":
 				var trigger:Trigger = new Trigger(x, y, o.width, o.height,o);
 				state.triggers.add(trigger);
+			case "earthshrine":
+				state.shrines.add(new ScarecrowShrine(x, y));
+			case "watershrine":
+				state.shrines.add(new WaterShrine(x, y));
+			case "windshrine":
+				state.shrines.add(new WindShrine(x, y));
 			/*
 			case "coin":
 				var tileset = g.map.getGidOwner(o.gid);
