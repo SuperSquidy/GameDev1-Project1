@@ -20,8 +20,8 @@ Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKe
 
 Current Jump Mechanics:
  - Jump with W or SPACE
- - Double Jump by L; while mid-air
-	- Walking off a platform, one jump can still be performed while falling
+ - Double Jump by "L; while mid-air
+	- Walking off a platform, only double-jump can still be performed while falling
  - Dash triggered by song "JJJ"
  	-Dashing from platform to same level platform will make you fall, 
  		since gravity kicks in when you get off the platform
@@ -154,7 +154,7 @@ class Player extends FlxSprite
 	{
 		if (FlxG.keys.anyJustPressed(_jumpKeys))
 		{
-			if ((velocity.y == 0) || (_timesJumped < _jumpsAllowed-1)) // Only allow two jumps
+			if ((velocity.y == 0) && (_timesJumped < _jumpsAllowed-1)) // Only allow two jumps
 			{
 				if (_timesJumped == 0 && velocity.y!=0)	//if first jump & already falling
 					_timesJumped++;
@@ -180,7 +180,7 @@ class Player extends FlxSprite
 
 		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0 && jumpSongGround){
 			acceleration.y = _gravity * 3;
-			setJumpSongGround(true);git
+			setJumpSongGround(true);
 		} else{
 			acceleration.y = _gravity;
 		}
