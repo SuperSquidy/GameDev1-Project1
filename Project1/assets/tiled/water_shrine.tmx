@@ -6,6 +6,13 @@
  <tileset firstgid="10" name="allTerrainTiles" tilewidth="32" tileheight="32" tilecount="40" columns="5">
   <image source="../images/allTerrainTiles.png" width="160" height="256"/>
  </tileset>
+ <imagelayer name="Image Layer 1">
+  <image source="../images/Backgrounds/WaterArea/WaterArea_bkg_1.png" width="2880" height="1088"/>
+  <properties>
+   <property name="scrollX" type="float" value="0.5"/>
+   <property name="scrollY" type="float" value="0"/>
+  </properties>
+ </imagelayer>
  <layer name="Foreground 2" width="90" height="34">
   <properties>
    <property name="tileset" value="allTerrainTiles"/>
