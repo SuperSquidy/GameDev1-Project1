@@ -19,7 +19,7 @@ Don't know how to refer to awkward keys, like ESC or EQUALS?
 Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html
 
 Current Jump Mechanics:
- - Jump with W or SPACE
+ - Jump with W or SPACE or "L;"
  - Double Jump by pressing either a second time
  - Double Jump can be triggered mid-air
  	i.e Walking off a platform, one jump can still be performed while falling
@@ -63,6 +63,7 @@ class Player extends FlxSprite
 	private static inline var _dashCooldown:Float = 3.0;
 	
 	private var dashSong:Bool = false;	//Needed for Mandolin to dash
+	private var jumpSong:Bool = false;
 
 	private var _dashTime:Float = -1;
 
@@ -153,7 +154,7 @@ class Player extends FlxSprite
 	{
 		if (FlxG.keys.anyJustPressed(_jumpKeys))
 		{
-			if ((velocity.y == 0) || (_timesJumped < _jumpsAllowed)) // Only allow two jumps
+			if ((velocity.y == 0) || (_timesJumped < _jumpsAllowed-1)) // Only allow two jumps
 			{
 				if (_timesJumped == 0 && velocity.y!=0)	//if first jump & already falling
 					_timesJumped++;
@@ -163,37 +164,28 @@ class Player extends FlxSprite
 			}
 		}
 
+		if (jumpSong)
+		{
+			if ((velocity.y != 0 || _timesJumped > 0) && _timesJumped < _jumpsAllowed) // If not on ground or we've already jumped
+			{
+				if (_timesJumped == 0 && velocity.y!=0)	//if first jump & already falling
+					_timesJumped++;
+				_timesJumped++;
+				_jumpTime = 0;
+				velocity.y = - 0.6 * maxVelocity.y;
+			}
+			setJumpPlayed(false);
+		}
+
 		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0){
 			acceleration.y = _gravity * 3;
 		} else{
 			acceleration.y = _gravity;
 		}
-
-		/*
-		
-		// You can also use space or any other key you want
-		if ((FlxG.keys.anyPressed(_jumpKeys)) && (_jumpTime >= 0)) 
-		{
-			_jumpTime += elapsed;
-			
-			// You can't jump for more than 0.25 seconds
-			if (_jumpTime > 0.25)
-			{
-				_jumpTime = -1;
-			}
-			else if (_jumpTime > 0)
-			{
-				velocity.y = - 0.6 * maxVelocity.y;
-			}
-		}
-		else
-			_jumpTime = -1.0;
-
-		*/
 	}
 
 	/*Dash function */
-	public function dash(elapsed:Float):Void{
+	private function dash(elapsed:Float):Void{
 		if(dashSong && _dashTime == -1){
 			
 			if(this.facing ==FlxObject.LEFT){
@@ -229,6 +221,10 @@ class Player extends FlxSprite
 
 	public function setDashPlayed(condition:Bool):Void{
 		dashSong = condition;
+	}
+
+	public function setJumpPlayed(condition:Bool):Void{
+		jumpSong = condition;
 	}
 
 }
