@@ -44,7 +44,7 @@ class Mandolin extends FlxBasic
 	private static inline var _timerCooldown:Float = 3.0;
 	var _notesThisFrame:Bool = false;
 
-	//Song Processing
+	//Song Processing : Note songs are stored backwards
 	var _recentNotes:Array<String>	= ["", "", "", "", ""];		//This will contain a list of the most recent keys pressed
 	var _waterSong:Array<String>	= [";","L"];				//Double Jump
 	var _windSong:Array<String> 	= ["J", "J", "J"];			//Dash
