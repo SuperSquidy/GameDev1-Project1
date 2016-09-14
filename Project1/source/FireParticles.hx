@@ -11,10 +11,10 @@ class FireParticles extends FlxEmitter
 {
 	private static inline var NUM_PARTICLES = 100;
 	
-	public function new(?x:Float,?y:Float) 
+	public function new(?x:Float=0,?y:Float=0) 
 	{
 		var spread = 5;
-		super(x-spread/2, y);
+		super((x - spread / 2), y);
 		
 		for (i in 0 ... NUM_PARTICLES){
 			var part = new FlxParticle();
@@ -30,5 +30,12 @@ class FireParticles extends FlxEmitter
 		this.lifespan.set(.75,1.25);
 		this.color.set(0xF60000, 0xFF6000, 0x000000, 0x000000);
 		this.scale.set(.25, .5, 1, 1.25);
+	}
+	override public function update(elapsed:Float):Void 
+	{
+		super.update(elapsed);
+		if (_explode && countLiving() == 0){
+			kill();
+		}
 	}
 }

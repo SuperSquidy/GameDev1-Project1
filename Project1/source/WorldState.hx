@@ -6,6 +6,7 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.FlxSubState;
+import flixel.effects.particles.FlxEmitter;
 import flixel.group.FlxGroup;
 import flixel.math.FlxPoint;
 import flixel.text.FlxText;
@@ -110,6 +111,16 @@ class WorldState extends FlxState
 	}
 	public function onDeath():Void
 	{
+		//Particle "splash" on death
+		var particles = new FireParticles();
+		particles.focusOn(player); particles.y += 32;
+		particles.acceleration.set(0, 100, 0, 200, 0, 200, 0, 200);
+		particles.velocity.set( -80, -80, 80, 80);
+		particles.lifespan.set(.25, .5);
+		particles.color.set(0x444444, 0x444444, 0x000000, 0x000000);
+		add(particles);
+		particles.start(true, 0, 50);
+		
 		//Reset Player Health
 		player.health = 1;
 		player.setPosition(_checkpointPosition.x, _checkpointPosition.y);
