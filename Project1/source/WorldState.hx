@@ -16,8 +16,6 @@ import flixel.effects.FlxFlicker;
 class WorldState extends FlxState
 {
 
-	public static var menu:PauseState;
-
 	static public var instance:WorldState;
 	public var level:TiledLevel;
 	public var player:Player;
@@ -61,11 +59,8 @@ class WorldState extends FlxState
 		FlxG.camera.snapToTarget();
 		
 		//Pause screen
-		this.destroySubStates = false;
+		this.destroySubStates = true;
 		this.persistentDraw = true;
-		if (menu == null){
-			menu = new PauseState(FlxColor.TRANSPARENT);
-		}
 
 		FlxG.sound.playMusic("ScarfDance");
 
@@ -91,8 +86,9 @@ class WorldState extends FlxState
 			onDeath();
 		}
 		if (FlxG.keys.justPressed.TAB){
-			menu.opened();
-			openSubState(menu);
+			var pauseState = new PauseState(FlxColor.TRANSPARENT);
+			pauseState.opened();
+			openSubState(pauseState);
 		}
 	}
 

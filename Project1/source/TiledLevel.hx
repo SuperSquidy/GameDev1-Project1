@@ -166,7 +166,7 @@ class TiledLevel extends TiledMap
 		// objects in tiled are aligned bottom-left (top-left in flixel)
 		if (o.gid != -1)
 			y -= g.map.getGidOwner(o.gid).tileHeight;
-		
+		if (o.type.toLowerCase() == "player_spawn") o.type = "player_start"; //This is a fix so that both names work
 		switch (o.type.toLowerCase())
 		{
 			case "player_start":
