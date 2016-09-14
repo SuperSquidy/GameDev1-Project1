@@ -66,10 +66,6 @@ class Mandolin extends FlxBasic
 		_playerCharacter = player;
 	}
 
-	override public function update(elapsed:Float):Void{
-		noteTimer(elapsed);
-	}
-
 /* FUNCTIONS TO PLAY NOTES */
 	private function playC3(){
 		FlxG.sound.play("koto_c3");	}
@@ -91,8 +87,8 @@ class Mandolin extends FlxBasic
 	/* @function : Keeps track of timer & scrubs 
 		recent notes if timer runs out
 	*/
-	private function noteTimer(elapsed:Float){
-		if (_notesThisFrame)					//If played a note, reset timer
+	public function noteTimer(elapsed:Float){
+		if (getNotesThisFrame())					//If played a note, reset timer
 			_timer = 0;
 		else 									//Else Increment timer
 			_timer += elapsed;
@@ -115,6 +111,7 @@ class Mandolin extends FlxBasic
 	//@function : plays notes when a key is pressed and updates the last played note array
 	public function instrumentKeys():Void
 	{
+		setNotesThisFrame(true);
 		if (FlxG.keys.justPressed.H){
 			playC1();
 			updateNotes("H");		}
@@ -130,6 +127,9 @@ class Mandolin extends FlxBasic
 		else if (FlxG.keys.justPressed.SEMICOLON){
 			playC3();
 			updateNotes(";");		}
+		else{
+			setNotesThisFrame(false);
+		}
 	}
 
 	/*  @function : Updates _recentNotes as keys are played
