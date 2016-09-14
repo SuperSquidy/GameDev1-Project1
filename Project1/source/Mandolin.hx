@@ -44,9 +44,9 @@ class Mandolin extends FlxBasic
 	private static inline var _timerCooldown:Float = 3.0;
 	var _notesThisFrame:Bool = false;
 
-	//Song Processing
+	//Song Processing : Note songs are stored backwards
 	var _recentNotes:Array<String>	= ["", "", "", "", ""];		//This will contain a list of the most recent keys pressed
-	var _waterSong:Array<String>	= ["L",";"];				//Double Jump
+	var _waterSong:Array<String>	= [";","L"];				//Double Jump
 	var _windSong:Array<String> 	= ["J", "J", "J"];			//Dash
 	var _earthSong:Array<String>	= ["", ""];					//Grow a temporary plant platform
 	var _starSong:Array<String> 	= [ "", ""];				//Fill the sky with stars
@@ -153,18 +153,18 @@ class Mandolin extends FlxBasic
 	private function activateSongs():Void{
 		//Water Song
 		if (checkSongPlayed(_waterSong, _waterActive)){
-			resetRecentNotes();		//Clear last song played
-			//Trigger Double Jump
+			resetRecentNotes();							//Clear last song played
+			_playerCharacter.setJumpPlayed(true);		//Trigger Player DoubleJump
 			//Trigger Succesful Song Animation | Particles
-			//Trigger additional sound file
+			//Trigger additional sound file ?
 		}
 
 		//Wind Song
 		if (checkSongPlayed(_windSong, _windActive)){
-			resetRecentNotes();		//Clear last song played
+			resetRecentNotes();							//Clear last song played
 			_playerCharacter.setDashPlayed(true);		//Trigger Player Dash
 			//Trigger Succesful Song Animation | Particles
-			//Trigger additional sound file
+			//Trigger additional sound file ?
 		}
 
 		//Earth Song
@@ -172,7 +172,7 @@ class Mandolin extends FlxBasic
 			resetRecentNotes();		//Clear last song played
 			//Trigger Earth Platform Thing
 			//Trigger Succesful Song Animation | Particles
-			//Trigger additional sound file
+			//Trigger additional sound file ?
 		}
 
 		//Star Song
@@ -180,7 +180,7 @@ class Mandolin extends FlxBasic
 			resetRecentNotes();		//Clear last song played
 			//Trigger Star Song
 			//Trigger Succesful Song Animation | Particles
-			//Trigger additional sound file
+			//Trigger additional sound file ?
 		}
 	}
 
@@ -210,17 +210,11 @@ class Mandolin extends FlxBasic
 	so that the player can play it & have its action performed
 */
 	public function enableWaterSong(){
-		_waterActive = true;
-	}
+		_waterActive = true;	}
 	public function enableWindSong(){
-		_windActive = true;
-	}
+		_windActive = true;		}
 	public function enableEarthSong(){
-		_earthActive = true;
-	}
+		_earthActive = true;	}
 	public function enableStarSong(){
-		_starActive = true;
-	}
-
-
+		_starActive = true;		}
 }
