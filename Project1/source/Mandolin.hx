@@ -42,7 +42,8 @@ import flixel.FlxG.sound;
 class Mandolin extends FlxBasic
 {
 	var _playerCharacter:Player;
-	var _timer:Float;
+	var _timer:Float = -1;
+	private static inline var _timerCooldown:Float = 3.0;
 	var _notesThisFrame:Bool = false;
 
 	//Song Processing
@@ -59,14 +60,15 @@ class Mandolin extends FlxBasic
 	var _earthActive:Bool = true;
 	var _starActive:Bool = true;
 
-
 /* CONSTRUCTOR */	
 	public function new(player:Player){
 		super();
 		_playerCharacter = player;
 	}
 
-	//Need to add update function for timer implementation
+	override public function update(elapsed:Float):Void{
+		noteTimer(elapsed);
+	}
 
 /* FUNCTIONS TO PLAY NOTES */
 	private function playC3(){
@@ -86,11 +88,16 @@ class Mandolin extends FlxBasic
 		_recentNotes = ["", "", "", "", ""];	
 	}
 
-	//Timer Function
-	private function noteTimer(){
-		if (_notesThisFrame)
+	/* @function : Keeps track of timer & scrubs 
+		recent notes if timer runs out
+	*/
+	private function noteTimer(elapsed:Float){
+		if (_notesThisFrame)					//If played a note, reset timer
 			_timer = 0;
-		//else if (_timer >= SOME AMOUNT OF TIME)
+		else 									//Else Increment timer
+			_timer += elapsed;
+		
+		if (_timer >= _timerCooldown)			//If timer reaches CD, scrub recent notes
 			resetRecentNotes();
 	}
 
@@ -109,19 +116,19 @@ class Mandolin extends FlxBasic
 	public function instrumentKeys():Void
 	{
 		if (FlxG.keys.justPressed.H){
-			playC3();
+			playC1();
 			updateNotes("H");		}
 		else if (FlxG.keys.justPressed.J){
-			playG2();
+			playG1();
 			updateNotes("J");		}
 		else if (FlxG.keys.justPressed.K){
 			playC2();
 			updateNotes("K");		}
 		else if (FlxG.keys.justPressed.L){
-			playG1();
+			playG2();
 			updateNotes("L");		}
 		else if (FlxG.keys.justPressed.SEMICOLON){
-			playC1();
+			playC3();
 			updateNotes(";");		}
 	}
 
