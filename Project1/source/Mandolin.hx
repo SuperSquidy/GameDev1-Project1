@@ -23,9 +23,7 @@ Current Implementation:
 		and play the third J to trigger the dash
 			^ Assuming they have played nothing else in between
 
-Need to Implement:
-	- Timer feature so that after x frames or seconds where no notes are 
-	  played, recent notes reset
+	- Notes will be forgotten after a few seconds of nothing played
 */
 
 package;

@@ -9,6 +9,7 @@ This file contains information pertaining to the player character including :
  - Triggers Mandolin to play notes
  - Jump & Double Jump Capabilities
  - Store recent jump keypresses
+ - Keeps track of reset-timer for when to forget Mandolin notes
 
 This file WILL :
  - Contain character images & animations
