@@ -230,6 +230,9 @@ _LEVEL_TILESHEETS + tileset.imageSource);
 
 			var image:TiledImageLayer = cast layer;
 			var sprite = new FlxSprite(image.offsetX, image.offsetY, c_PATH_LEVEL_TILESHEETS + image.imagePath.substring(10, image.imagePath.length));
+			var tileLayer:TiledTileLayer = cast layer;
+			//Scrollfactor
+			sprite.scrollFactor.set(Std.parseFloat(tileLayer.properties.get("scrollX")), Std.parseFloat(tileLayer.properties.get("scrollY")));
 			imagesLayer.add(sprite);
 		}
 	}
