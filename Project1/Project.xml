@@ -35,6 +35,7 @@
 		<sound path="sounds/blip2.wav" id="blip2" />
 		<sound path="sounds/textScroll.wav" id="textScroll"/>
 	
+   		<music path="music/ScarfDance.wav" id="ScarfDance" />
 		
 		<sound path="sounds/Mando11.wav" id="Mando11" />
 		<sound path="sounds/Mando19.wav" id="Mando19" />

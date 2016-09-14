@@ -13,8 +13,10 @@ import flixel.FlxCamera;
 import flixel.util.FlxColor;
 class WorldState extends FlxState
 {
+
 	public static var menu:PauseState;
-		
+
+	static public var instance:WorldState;
 	public var level:TiledLevel;
 	public var player:Player;
 	public var floors:FlxGroup;
@@ -22,6 +24,7 @@ class WorldState extends FlxState
 	public var triggers:FlxGroup;
 	
 	private var _levelName:String;
+	private var _activeCheckPoint:CheckPoint;
 	private var _checkpointPosition:FlxPoint;
 	private static inline var CAMERA_LERP = .1;
 
@@ -35,7 +38,7 @@ class WorldState extends FlxState
 	override public function create():Void 
 	{
 		super.create();
-		
+		instance = this;
 		floors = new FlxGroup();
 		checkpoints = new FlxGroup();
 		triggers = new FlxGroup();
@@ -61,8 +64,9 @@ class WorldState extends FlxState
 		if (menu == null){
 			menu = new PauseState(FlxColor.TRANSPARENT);
 		}
-		
-		
+
+		FlxG.sound.playMusic("ScarfDance");
+
 		var backButton  = new FlxButton(20,20, "Back", function(){FlxG.switchState(new MenuState());});
 		add(backButton); //Back to menu button
 		
@@ -71,10 +75,10 @@ class WorldState extends FlxState
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
+		//Debug key
+		if (FlxG.keys.justPressed.B) FlxG.debugger.drawDebug = !FlxG.debugger.drawDebug;
 		
 		level.collideWithLevel(player);
-		
-		
 		FlxG.overlap(player, triggers,Trigger.onTriggerCollision);
 		FlxG.overlap(player, checkpoints, onCheckpointCollision);
 		if (FlxG.overlap(player,floors)){
@@ -89,11 +93,17 @@ class WorldState extends FlxState
 			openSubState(menu);
 		}
 	}
-	private function onCheckpointCollision(Player:FlxObject, Checkpoint:FlxObject):Void{
+
+	private function onCheckpointCollision(Player:FlxObject, checkpoint:CheckPoint):Void{
 		//If this checkpoint wasn't already activated (there may be particle effects or a light or something)
-		if (!Checkpoint.getPosition().equals(_checkpointPosition)){
+		if (_activeCheckPoint == null ||_activeCheckPoint != checkpoint){
+			if (_activeCheckPoint != null){
+				_activeCheckPoint.onDeactivate();
+			}
 			//Activate this checkpoint
-			_checkpointPosition = Checkpoint.getPosition();
+			_activeCheckPoint = checkpoint;
+			_checkpointPosition = checkpoint.getPosition();
+			checkpoint.onActivate();
 		}
 	}
 	public function onDeath():Void
