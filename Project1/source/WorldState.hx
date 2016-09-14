@@ -51,8 +51,9 @@ class WorldState extends FlxState
 		_checkpointPosition = player.getPosition();
 		
 		//Added in order of depth, back to front
-		add(level.backgroundLayer); //add backgrounds
+		
 		add(level.imagesLayer); 	//add static images
+		add(level.backgroundLayer); //add backgrounds
 		add(checkpoints);
 		add(shrines);
 		add(triggers);
