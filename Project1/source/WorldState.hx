@@ -11,6 +11,8 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.FlxCamera;
 import flixel.util.FlxColor;
+import flixel.effects.FlxFlicker;
+
 class WorldState extends FlxState
 {
 
@@ -113,6 +115,9 @@ class WorldState extends FlxState
 		player.setPosition(_checkpointPosition.x, _checkpointPosition.y);
 		//Kill player movement (and probably abilities too)
 		player.velocity.set(0, 0);
+		
+		//Effects (shake, flicker, sound, etc)
 		FlxG.camera.shake(.01, .2);
+		FlxFlicker.flicker(player, .5, .06);
 	}
 }
