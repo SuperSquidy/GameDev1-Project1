@@ -102,7 +102,7 @@ class WorldState extends FlxState
 			}
 			//Activate this checkpoint
 			_activeCheckPoint = checkpoint;
-			_checkpointPosition = checkpoint.getPosition();
+			_checkpointPosition = checkpoint.getSpawnPosition();
 			checkpoint.onActivate();
 		}
 	}
@@ -111,6 +111,8 @@ class WorldState extends FlxState
 		//Reset Player Health
 		player.health = 1;
 		player.setPosition(_checkpointPosition.x, _checkpointPosition.y);
+		//Kill player movement (and probably abilities too)
+		player.velocity.set(0, 0);
 		FlxG.camera.shake(.01, .2);
 	}
 }

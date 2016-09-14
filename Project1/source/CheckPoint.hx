@@ -13,7 +13,7 @@ import flixel.FlxG.sound;
 class CheckPoint extends FlxSprite
 {
 	var currentState:String;
-	static inline var HITBOX_HEIGHT = 300;
+	public static inline var HITBOX_HEIGHT = 300;
 	
 	var _particles:FlxEmitter;
 
@@ -36,7 +36,7 @@ class CheckPoint extends FlxSprite
 
 		currentState = "Undiscovered";
 		
-		y -= HITBOX_HEIGHT-height; //shifts height for higher hitbox
+		y -= HITBOX_HEIGHT-this.frameHeight; //shifts height for higher hitbox
 		resizeHitbox();
 	}
 
@@ -88,5 +88,7 @@ class CheckPoint extends FlxSprite
 		animation.play("dim");
 		resizeHitbox();
 	}
-
+	public function getSpawnPosition():FlxPoint{
+		return new FlxPoint(x,y + HITBOX_HEIGHT-this.frameHeight);
+	}
 }
