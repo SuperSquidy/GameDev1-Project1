@@ -19,13 +19,12 @@ Don't know how to refer to awkward keys, like ESC or EQUALS?
 Reference the FlxKeyList : http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html
 
 Current Jump Mechanics:
- - Jump with W or SPACE or "L;"
- - Double Jump by pressing either a second time
- - Double Jump can be triggered mid-air
- 	i.e Walking off a platform, one jump can still be performed while falling
+ - Jump with W or SPACE
+ - Double Jump by L; while mid-air
+	- Walking off a platform, one jump can still be performed while falling
  - Dash triggered by song "JJJ"
- 	dashing from platform to same level platform will make you fall, since gravity
- 		kicks in when you get off the platform
+ 	-Dashing from platform to same level platform will make you fall, 
+ 		since gravity kicks in when you get off the platform
 
  Current Issues:
  
@@ -64,6 +63,7 @@ class Player extends FlxSprite
 	
 	private var dashSong:Bool = false;	//Needed for Mandolin to dash
 	private var jumpSong:Bool = false;
+	private var jumpSongGround = false;
 
 	private var _dashTime:Float = -1;
 
@@ -173,12 +173,14 @@ class Player extends FlxSprite
 				_timesJumped++;
 				_jumpTime = 0;
 				velocity.y = - 0.6 * maxVelocity.y;
+				jumpSongGround = false;
 			}
 			setJumpPlayed(false);
 		}
 
-		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0){
+		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0 && jumpSongGround){
 			acceleration.y = _gravity * 3;
+			jumpSongGround = true;
 		} else{
 			acceleration.y = _gravity;
 		}
