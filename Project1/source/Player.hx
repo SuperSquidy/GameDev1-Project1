@@ -9,6 +9,7 @@ This file contains information pertaining to the player character including :
  - Triggers Mandolin to play notes
  - Jump & Double Jump Capabilities
  - Store recent jump keypresses
+ - Keeps track of reset-timer for when to forget Mandolin notes
 
 This file WILL :
  - Contain character images & animations
@@ -22,9 +23,14 @@ Current Jump Mechanics:
  - Double Jump by pressing either a second time
  - Double Jump can be triggered mid-air
  	i.e Walking off a platform, one jump can still be performed while falling
- - Dash with E
+ - Dash triggered by song "JJJ"
  	dashing from platform to same level platform will make you fall, since gravity
  		kicks in when you get off the platform
+
+ Current Issues:
+ 
+ Previous Issues:
+ - [FIXED] Player Dash does not reset after initial dash
 */
 
 
@@ -55,6 +61,8 @@ class Player extends FlxSprite
 	private static inline var _dashSpeed:Int = 1000;
 	private static inline var _dashDuration:Float = 0.25;
 	private static inline var _dashCooldown:Float = 3.0;
+	
+	private var dashSong:Bool = false;	//Needed for Mandolin to dash
 
 	private var _dashTime:Float = -1;
 
@@ -100,8 +108,10 @@ class Player extends FlxSprite
 		
 		jump(elapsed);		//Trigger jump logic
 		movement();			//Trigger walking logic
-		_mando.instrumentKeys();
 		dash(elapsed);
+		_mando.instrumentKeys();
+		_mando.noteTimer(elapsed);
+
 
 		//Reset double jump on collision
 		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
@@ -183,8 +193,8 @@ class Player extends FlxSprite
 	}
 
 	/*Dash function */
-	function dash(elapsed:Float):Void{
-		if(FlxG.keys.justPressed.E && _dashTime == -1){
+	public function dash(elapsed:Float):Void{
+		if(dashSong && _dashTime == -1){
 			
 			if(this.facing ==FlxObject.LEFT){
 				_dashTime = 0;
@@ -197,6 +207,8 @@ class Player extends FlxSprite
 				velocity.x += _dashSpeed;
 				maxVelocity.set(_dashSpeed, _jumpSpeed);
 			}
+
+			setDashPlayed(false);
 		}
 		
 		if(_dashTime >= 0){
@@ -210,8 +222,13 @@ class Player extends FlxSprite
 			if(_dashTime > _dashCooldown){
 				_dashTime = -1;
 			}
+
+			setDashPlayed(false);
 		}
 	}
 
+	public function setDashPlayed(condition:Bool):Void{
+		dashSong = condition;
+	}
 
 }
