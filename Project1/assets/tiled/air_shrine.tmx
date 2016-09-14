@@ -126,7 +126,7 @@
     <property name="triggerType" value="airShrine"/>
    </properties>
   </object>
-  <object id="13" name="Player Spawn" type="player_start" x="4224" y="1232" width="32" height="32" visible="0"/>
+  <object id="13" name="Player Spawn" type="player_start" x="4224" y="1232" width="32" height="32"/>
   <object id="14" name="Air to main area" type="trigger" x="4320" y="321.333" width="32" height="960">
    <properties>
     <property name="triggerType" value="airToMainArea"/>
@@ -147,6 +147,5 @@
   <object id="28" name="Checkpoint" type="checkpoint" x="192" y="1184" width="32" height="32"/>
   <object id="29" name="Killzone" type="floor" x="384" y="1504" width="320" height="32"/>
   <object id="30" name="Killzone" type="floor" x="896" y="1504" width="288" height="32"/>
-  <object id="32" name="Player Spawn" type="player_start" x="1957.33" y="1324" width="32" height="32"/>
  </objectgroup>
 </map>
