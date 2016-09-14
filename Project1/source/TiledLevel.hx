@@ -206,7 +206,8 @@ class TiledLevel extends TiledMap
 			/*
 			case "coin":
 				var tileset = g.map.getGidOwner(o.gid);
-				var coin = new FlxSprite(x, y, c_PATH_LEVEL_TILESHEETS + tileset.imageSource);
+				var coin = new FlxSprite(x, y, 
+_LEVEL_TILESHEETS + tileset.imageSource);
 				state.coins.add(coin);
 				
 			case "exit":
@@ -228,7 +229,7 @@ class TiledLevel extends TiledMap
 				continue;
 
 			var image:TiledImageLayer = cast layer;
-			var sprite = new FlxSprite(image.x, image.y, c_PATH_LEVEL_TILESHEETS + image.imagePath);
+			var sprite = new FlxSprite(image.offsetX, image.offsetY, c_PATH_LEVEL_TILESHEETS + image.imagePath.substring(10, image.imagePath.length));
 			imagesLayer.add(sprite);
 		}
 	}
