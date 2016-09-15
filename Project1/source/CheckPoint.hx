@@ -13,7 +13,7 @@ import flixel.FlxG.sound;
 class CheckPoint extends FlxSprite
 {
 	var currentState:String;
-	public static inline var HITBOX_HEIGHT = 300;
+	public static inline var HITBOX_HEIGHT = 160;
 	
 	var _particles:FlxEmitter;
 
