@@ -119,6 +119,7 @@ class Player extends FlxSprite
 		{
 			_jumpTime = -1;
 			_timesJumped = 0;  // Reset the double jump flag
+			setJumpSongGround(true);
 		}
 
 		super.update(elapsed);
@@ -180,7 +181,6 @@ class Player extends FlxSprite
 
 		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0 && jumpSongGround){
 			acceleration.y = _gravity * 3;
-			setJumpSongGround(true);
 		} else{
 			acceleration.y = _gravity;
 		}
