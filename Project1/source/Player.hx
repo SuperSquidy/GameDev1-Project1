@@ -85,22 +85,20 @@ class Player extends FlxSprite
 	{	
 		super(X, Y);
 
-		//PC Art
+		//Player Character Art
 		this.set_pixelPerfectRender(true); //Removes jitter
-		loadGraphic('assets/images/PC_SpriteSheet.png', true, 32, 64); //PC sprite sheet
-		animation.add('idle', [13, 14], 5, true); // idle animation
-		animation.add('walk', [1, 2, 3, 4], 12, true); //walk animation
-		animation.add('jump', [5, 6], 5, false); //jump animation
-		animation.add('dbljump', [7, 8, 9], 5, false); //dbl jump animation
-		animation.add('fall', [10, 11, 12], 12, true); //fall animation
-		animation.add('dash', [15, 16, 17], 12, true);//dash animation
-		
-		
-		
-		// setFacingFlip(direction, flipx, flipy)
+		loadGraphic('assets/images/PC_SpriteSheet.png', true, 32, 64);	//PC sprite sheet
 		setFacingFlip(FlxObject.LEFT, true, false);
 		setFacingFlip(FlxObject.RIGHT, false, false);
 
+		//Player Character Animations
+		animation.add('idle', [13, 14], 5, true);		// Idle
+		animation.add('walk', [1, 2, 3, 4], 12, true);	// Walk
+		animation.add('jump', [5, 6], 5, false);		// Jump
+		animation.add('dbljump', [7, 8, 9, 6], 5, false);	// Double Jump
+		animation.add('fall', [10, 11, 12], 12, true);	// Fall
+		animation.add('dash', [15, 16, 17], 12, true);	// Dash
+		
 		//Physics & Jump
 		drag.set(_runSpeed * 8, _runSpeed * 8);
 		maxVelocity.set(_runSpeed, _jumpSpeed);
@@ -116,11 +114,10 @@ class Player extends FlxSprite
 		acceleration.y = _gravity;
 		
 		jump(elapsed);		//Trigger jump logic
-		movement();			//Trigger walking logic
-		dash(elapsed);
+		movement();			//Trigger walking logic		
+		dash(elapsed);		//Trigger dash logic
 		_mando.instrumentKeys();
 		_mando.noteTimer(elapsed);
-
 
 		//Reset double jump on collision
 		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
@@ -137,8 +134,7 @@ class Player extends FlxSprite
 	/* Current Movement Code, Courtesy of Dr. Marc */
 	function movement():Void
 	{
-
-		//Defining Character Keys
+		// Defining Character Keys
 		_left = FlxG.keys.anyPressed([LEFT, A]);
 		_right = FlxG.keys.anyPressed([RIGHT, D]);	
 
@@ -147,7 +143,7 @@ class Player extends FlxSprite
 			_left = _right = false;
 		}
 		
-		//Movement Code	 
+		//Walking Code	 
 		if (_left)	{
 			acceleration.x = -drag.x;
 			if (velocity.y == 0){
@@ -162,11 +158,11 @@ class Player extends FlxSprite
 			}
 			facing = FlxObject.RIGHT;
 		}
-		if ((acceleration.x == 0) || (acceleration.y == 0)){
+		
+		//Idle Animation
+		if ((acceleration.x == 0) && (acceleration.y == 0)){
 			animation.play('idle');
 		}
-		
-		
 	}
 
 	/* Current Jump Code */
