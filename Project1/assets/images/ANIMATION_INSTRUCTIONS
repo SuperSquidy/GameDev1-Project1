@@ -18,6 +18,8 @@ PC:
 	/12 fps is just my guess atm, can be changed for each depending on how it looks in game
 	STANDING STILL:
 		frame 0
+	IDLE:
+		animation.add('idle', [13, 14], 5, true);
 	WALK:
 		animation.add('walk', [1,2,3,4], 12, true);
 	JUMP:

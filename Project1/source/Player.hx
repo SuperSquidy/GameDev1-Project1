@@ -87,7 +87,15 @@ class Player extends FlxSprite
 
 		//PC Art
 		this.set_pixelPerfectRender(true); //Removes jitter
-		loadGraphic('assets/images/staticPC.png', false, 32, 64); //static PC art
+		loadGraphic('assets/images/PC_SpriteSheet.png', true, 32, 64); //PC sprite sheet
+		animation.add('idle', [13, 14], 5, true); // idle animation
+		animation.add('walk', [1, 2, 3, 4], 12, true); //walk animation
+		animation.add('jump', [5, 6], 5, false); //jump animation
+		animation.add('dbljump', [7, 8, 9], 5, false); //dbl jump animation
+		animation.add('fall', [10, 11, 12], 12, true); //fall animation
+		animation.add('dash', [15, 16, 17], 12, true);//dash animation
+		
+		
 		
 		// setFacingFlip(direction, flipx, flipy)
 		setFacingFlip(FlxObject.LEFT, true, false);
@@ -141,13 +149,24 @@ class Player extends FlxSprite
 		
 		//Movement Code	 
 		if (_left)	{
-			acceleration.x = -drag.x;		
+			acceleration.x = -drag.x;
+			if (velocity.y == 0){
+				animation.play('walk');
+			}
 			facing = FlxObject.LEFT;
 		}
 		else if (_right)	{
-			acceleration.x = drag.x;		
+			acceleration.x = drag.x;
+			if (velocity.y == 0){
+				animation.play('walk');
+			}
 			facing = FlxObject.RIGHT;
 		}
+		if ((acceleration.x == 0) || (acceleration.y == 0)){
+			animation.play('idle');
+		}
+		
+		
 	}
 
 	/* Current Jump Code */
@@ -162,6 +181,7 @@ class Player extends FlxSprite
 				_timesJumped++;
 				_jumpTime = 0;
 				velocity.y = - 0.6 * maxVelocity.y;
+				animation.play('jump');
 			}
 		}
 
@@ -175,6 +195,7 @@ class Player extends FlxSprite
 				_jumpTime = 0;
 				velocity.y = - 0.6 * maxVelocity.y;
 				setJumpSongGround(false);
+				animation.play('dbljump');
 			}
 			setJumpPlayed(false);
 		}
