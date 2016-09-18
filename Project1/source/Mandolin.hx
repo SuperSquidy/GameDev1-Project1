@@ -82,7 +82,6 @@ class Mandolin extends FlxBasic
 	//Resets the recent notes
 	private function resetRecentNotes(){
 		_recentNotes = ["", "", "", "", ""];
-		resetSongsPlayed();
 	}
 
 	/* @function : Keeps track of timer & scrubs 
@@ -157,6 +156,7 @@ class Mandolin extends FlxBasic
 		//Water Song
 		if (checkSongPlayed(_waterSong)){
 			resetRecentNotes();							//Clear last song played
+			trace("Checking if waterSong played");
 			waterPlayed();
 			if(_waterActive){
 				_playerCharacter.setJumpPlayed(true);		//Trigger Player DoubleJump
@@ -243,12 +243,13 @@ class Mandolin extends FlxBasic
 		_playedEarth = true;
 	private function starPlayed()
 		_playedStar = true;
-	public function getWaterPlayed()
+	public function getWaterPlayed():Bool{
 		return _playedWater;
-	public function getWindPlayed()
+	}
+	public function getWindPlayed():Bool
 		return _playedWind;
-	public function getEarthPlayed()
+	public function getEarthPlayed():Bool
 		return _playedEarth;
-	public function getStarPlayed()
+	public function getStarPlayed():Bool
 		return _playedStar;
 }
