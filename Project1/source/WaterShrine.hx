@@ -2,10 +2,21 @@ package;
 import Shrine;
 import flixel.math.FlxPoint;
 
-/**
- * ...
- * @author wrighp & bormaj
- */
+/*
+This file contains information pertaining to the Water Shrine including :
+ - Recognizing when the player has interacted with the object
+ - Triggering logic & 'cutscenes' & correct story options
+ - Unlocking the Player's double jump
+
+ Current Implementation:
+ - If the player is in range of the shrine for the first time
+ 	- The first set of text scrolls, teaching them the song
+ - When the player plays the song in range of the shrine for the first time
+ 	- Second set of text scrolls, player unlocks double jump functionality
+ - If the player plays the song in range an additional time(s)
+ 	- The interaction animation plays, but nothing else
+*/
+
 class WaterShrine extends Shrine
 {
 	private static var songLearned:Bool = false;
@@ -26,8 +37,7 @@ class WaterShrine extends Shrine
 	}
 	
 	override public function update(elapsed:Float):Void{
-	
-	//	if (getCollisionPlayer() && !songPlayed)
+	//	if (getCollisionPlayer())
 	//		onActivate();
 	
 		super.update(elapsed);
@@ -45,12 +55,12 @@ class WaterShrine extends Shrine
 			learnSong();
 
 		if (Reg._player.getMandolinObj().getWaterPlayed()){
+			super.onActivate();
 			if(!storyLearned){
 				//Text prompt 2 scrolls, shares story
 				storyLearned = true;
 			}
-
-			super.onActivate();
+			finishInteraction("interacted");
 		}
 	}
 
@@ -61,8 +71,8 @@ class WaterShrine extends Shrine
 	private function learnSong(){
 		Reg._player.getMandolinObj().enableWaterSong();
 		ticker = new TickingText("Watershrine_interact.txt");
+		FlxG.sound.play("Water_Song");	}
 		songLearned = true;
-		animation.play("interacted", false);
 	}
 
 }
