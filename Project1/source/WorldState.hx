@@ -133,6 +133,12 @@ class WorldState extends FlxState
 			checkpoint.onActivate();
 		}
 	}
+
+	private function onWatershrineCollision(Player:FlxObject, shrine:WaterShrine):Void{
+		trace("Entered WaterShrine onCollision function");
+		shrine.onActivate();
+	}
+
 	public function onDeath():Void
 	{
 		//Particle "splash" on death
