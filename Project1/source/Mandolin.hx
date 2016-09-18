@@ -41,17 +41,18 @@ class Mandolin extends FlxBasic
 
 	//Song Processing : Note songs are stored backwards
 	var _recentNotes:Array<String>	= ["", "", "", "", ""];		//List of the most recent keys pressed
-	var _waterSong:Array<String>	= [";","L"];				//Double Jump
-	var _windSong:Array<String> 	= ["J", "J", "J"];			//Dash
-	var _earthSong:Array<String>	= ["", ""];					//Grow a temporary plant platform
-	var _starSong:Array<String> 	= [ "", ""];				//Fill the sky with stars
+	public static var _waterSong:Array<String>	= [";","L"];				//Double Jump
+	public static var _windSong:Array<String> 	= ["J", "J", "J"];			//Dash
+	public static var _earthSong:Array<String>	= ["", ""];					//Grow a temporary plant platform
+	public static var _starSong:Array<String> 	= [ "", ""];				//Fill the sky with stars
 	
 	//Flag Processing - True if the player has access to the special effects of the song
 	//NOTE : Set true for testing purposes only.
-	var _waterActive:Bool = true;		
-	var _windActive:Bool = true;
-	var _earthActive:Bool = true;
-	var _starActive:Bool = true;
+	//Changed to public static so that they persist between levels
+	public static var _waterActive:Bool = true;		
+	public static var _windActive:Bool = true;
+	public static var _earthActive:Bool = true;
+	public static var _starActive:Bool = true;
 
 /* CONSTRUCTOR */	
 	public function new(player:Player){

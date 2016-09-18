@@ -11,6 +11,7 @@ import flixel.addons.editors.tiled.TiledObject;
 import flixel.addons.editors.tiled.TiledObjectLayer;
 import flixel.addons.editors.tiled.TiledTileLayer;
 import flixel.addons.editors.tiled.TiledTileSet;
+import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.group.FlxGroup;
 import flixel.tile.FlxTilemap;
@@ -167,7 +168,7 @@ class TiledLevel extends TiledMap
 		if (o.gid != -1)
 			y -= g.map.getGidOwner(o.gid).tileHeight;
 		if (o.type.toLowerCase() == "player_spawn") o.type = "player_start"; //This is a fix so that both names work
-		switch (o.type.toLowerCase())
+		switch (o.type.toLowerCase()) //note the toLowerCase for objects
 		{
 			case "player_start":
 				//If player doesn't exist, create it
@@ -203,21 +204,8 @@ class TiledLevel extends TiledMap
 				state.shrines.add(new WaterShrine(x, y));
 			case "windshrine":
 				state.shrines.add(new WindShrine(x, y));
-			/*
-			case "coin":
-				var tileset = g.map.getGidOwner(o.gid);
-				var coin = new FlxSprite(x, y, 
-_LEVEL_TILESHEETS + tileset.imageSource);
-				state.coins.add(coin);
-				
-			case "exit":
-				// Create the level exit
-				var exit = new FlxSprite(x, y);
-				exit.makeGraphic(32, 32, 0xff3f3f3f);
-				exit.exists = false;
-				state.exit = exit;
-				group.add(exit);
-			*/
+			case "playerenter": //Check if player is coming from a level.
+				state.checkEnterFrom(o.properties.get("mapFrom"), new FlxPoint(o.x, o.y));
 		}
 	}
 
