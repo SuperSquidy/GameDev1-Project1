@@ -81,7 +81,7 @@ class Player extends FlxSprite
 	//Key Based
 	var _left:Bool = false;
 	var _right:Bool = false;
-	var _mando:Mandolin;
+	public static var _mando:Mandolin;
 
 /* CONSTRUCTOR & UPDATE */
 	/* Currently defines our player as 
@@ -111,7 +111,8 @@ class Player extends FlxSprite
 		acceleration.y = _gravity;
 
 		//Initialize Mandolin
-		_mando = new Mandolin(this);	
+		_mando = new Mandolin(this);
+		Reg.mando = _mando;
 	}
 
 	override public function update(elapsed:Float):Void
