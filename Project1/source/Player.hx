@@ -61,10 +61,11 @@ class Player extends FlxSprite
 	private static inline var _dashDuration:Float = 0.25;
 	private static inline var _dashCooldown:Float = 3.0;
 	
-	private var dashSong:Bool = false;	//Needed for Mandolin to dash
+	private var dashSong:Bool = false;		//Needed for Mandolin to dash
 	private var jumpSong:Bool = false;
 	private var jumpSongGround = false;
 	private var isWalking:Bool;
+	private var playerFrozen:Bool = false;	//For 'cutscenes'
 
 	private var _dashTime:Float = -1;
 
@@ -114,11 +115,14 @@ class Player extends FlxSprite
 		acceleration.x = 0;
 		acceleration.y = _gravity;
 		
-		movement();			//Trigger walking logic		
-		jump(elapsed);		//Trigger jump logic
-		dash(elapsed);		//Trigger dash logic
-		_mando.instrumentKeys();
-		_mando.noteTimer(elapsed);
+		//If in a cutscene, don't allow the player to move
+		if (!playerFrozen){
+			movement();			//Trigger walking logic		
+			jump(elapsed);		//Trigger jump logic
+			dash(elapsed);		//Trigger dash logic
+			_mando.instrumentKeys();
+			_mando.noteTimer(elapsed);
+		}
 
 		//Reset double jump on collision
 		if (isTouching(FlxObject.FLOOR) && !FlxG.keys.anyPressed(_jumpKeys))
@@ -246,6 +250,9 @@ class Player extends FlxSprite
 	}
 	public function setJumpPlayed(condition:Bool):Void{
 		jumpSong = condition;
+	}
+	public function setPlayerFrozen(condition:Bool):Void{
+		playerFrozen = condition;
 	}
 	private function setJumpSongGround(condition:Bool):Void{
 		jumpSongGround = condition;
