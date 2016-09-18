@@ -9,13 +9,15 @@ import flixel.math.FlxMath;
 
 class PlayState extends FlxState
 {
-	var _player:Player;
+	public var _player:Player;
 	
 	override public function create():Void
 	{
 		_player = new Player(20,20);	//Starting position of player
 		add(_player);
-		super.create();	
+		super.create();
+		Reg.state = this;
+		Reg._player = _player;
 	}
 
 	override public function update(elapsed:Float):Void
