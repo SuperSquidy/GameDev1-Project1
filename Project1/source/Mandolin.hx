@@ -47,12 +47,18 @@ class Mandolin extends FlxBasic
 	public static var _starSong:Array<String> 	= [ "", ""];				//Fill the sky with stars
 	
 	//Flag Processing - True if the player has access to the special effects of the song
-	//NOTE : Set true for testing purposes only.
+	//NOTE : Initialize to true for testing purposes only.
 	//Changed to public static so that they persist between levels
 	public static var _waterActive:Bool = true;		
 	public static var _windActive:Bool = true;
 	public static var _earthActive:Bool = true;
 	public static var _starActive:Bool = true;
+
+	//Holds true if a song was just played
+	private var _playedWater:Bool = false;
+	private var _playedWind:Bool = false;
+	private var _playedEarth:Bool = false;
+	private var _playedStar:Bool = false;
 
 /* CONSTRUCTOR */	
 	public function new(player:Player){
@@ -75,7 +81,8 @@ class Mandolin extends FlxBasic
 /*HELPER FUNCTIONS*/
 	//Resets the recent notes
 	private function resetRecentNotes(){
-		_recentNotes = ["", "", "", "", ""];	
+		_recentNotes = ["", "", "", "", ""];
+		resetSongsPlayed();
 	}
 
 	/* @function : Keeps track of timer & scrubs 
@@ -148,35 +155,45 @@ class Mandolin extends FlxBasic
 	*/
 	private function activateSongs():Void{
 		//Water Song
-		if (checkSongPlayed(_waterSong, _waterActive)){
+		if (checkSongPlayed(_waterSong)){
 			resetRecentNotes();							//Clear last song played
-			_playerCharacter.setJumpPlayed(true);		//Trigger Player DoubleJump
-			//Trigger Succesful Song Animation | Particles
-			//Trigger additional sound file ?
+			waterPlayed();
+			if(_waterActive){
+				_playerCharacter.setJumpPlayed(true);		//Trigger Player DoubleJump
+				//Trigger Succesful Song Animation | Particles
+				//Trigger additional sound file ?
+			}
 		}
 
 		//Wind Song
-		if (checkSongPlayed(_windSong, _windActive)){
+		if (checkSongPlayed(_windSong)){
 			resetRecentNotes();							//Clear last song played
-			_playerCharacter.setDashPlayed(true);		//Trigger Player Dash
-			//Trigger Succesful Song Animation | Particles
-			//Trigger additional sound file ?
+			windPlayed();
+			if(_windActive){
+				_playerCharacter.setDashPlayed(true);		//Trigger Player Dash
+				//Trigger Succesful Song Animation | Particles
+				//Trigger additional sound file ?
+			}
 		}
 
 		//Earth Song
-		if (checkSongPlayed(_earthSong, _earthActive)){
+		if (checkSongPlayed(_earthSong)){
 			resetRecentNotes();		//Clear last song played
-			//Trigger Earth Platform Thing
-			//Trigger Succesful Song Animation | Particles
-			//Trigger additional sound file ?
+			earthPlayed();
+			//if earthActive{
+				//Trigger Earth Platform Thing
+				//Trigger Succesful Song Animation | Particles
+				//Trigger additional sound file ?
 		}
 
 		//Star Song
-		if (checkSongPlayed(_starSong, _starActive)){
+		if (checkSongPlayed(_starSong)){
 			resetRecentNotes();		//Clear last song played
-			//Trigger Star Song
-			//Trigger Succesful Song Animation | Particles
-			//Trigger additional sound file ?
+			starPlayed();
+			//if (_starActive)
+				//Trigger Star Song
+				//Trigger Succesful Song Animation | Particles
+				//Trigger additional sound file ?
 		}
 	}
 
@@ -187,10 +204,7 @@ class Mandolin extends FlxBasic
 			_song  : The song of the element to check
 			_songActive : Boolean if the song has been unlocked
 	*/
-	private function checkSongPlayed(_song:Array<String>, _songActive:Bool):Bool{	//Water Song
-		if (!_songActive)
-			return false;
-
+	private function checkSongPlayed(_song:Array<String>):Bool{	//Water Song
 		var isActive:Bool = true;
 		for (i in 0 ... _song.length){		//Otherwise check if most recent notes match the song
 			if (_recentNotes[i] != _song[i])
@@ -213,4 +227,28 @@ class Mandolin extends FlxBasic
 		_earthActive = true;	}
 	public function enableStarSong(){
 		_starActive = true;		}
+
+/*FUNCTIONS FOR KEEPING TRACK OF SONGS Played*/
+	public function resetSongsPlayed(){
+		_playedWater = false;
+		_playedWind = false;
+		_playedEarth = false;
+		_playedStar = false;
+	}
+	private function waterPlayed()
+		_playedWater = true;
+	private function windPlayed()
+		_playedWind = true;
+	private function earthPlayed()
+		_playedEarth = true;
+	private function starPlayed()
+		_playedStar = true;
+	private function getWaterPlayed()
+		return _playedWater;
+	private function getWindPlayed()
+		return _playedWind;
+	private function getEarthPlayed()
+		return _playedEarth;
+	private function getStarPlayed()
+		return _playedStar;	
 }
