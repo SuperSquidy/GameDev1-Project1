@@ -243,12 +243,12 @@ class Mandolin extends FlxBasic
 		_playedEarth = true;
 	private function starPlayed()
 		_playedStar = true;
-	private function getWaterPlayed()
+	public function getWaterPlayed()
 		return _playedWater;
-	private function getWindPlayed()
+	public function getWindPlayed()
 		return _playedWind;
-	private function getEarthPlayed()
+	public function getEarthPlayed()
 		return _playedEarth;
-	private function getStarPlayed()
-		return _playedStar;	
+	public function getStarPlayed()
+		return _playedStar;
 }
