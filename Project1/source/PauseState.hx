@@ -1,11 +1,13 @@
 package;
 import flixel.FlxSubState;
 import flixel.FlxG;
+import flixel.input.FlxInput;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxStringUtil;
+import lime.ui.KeyCode;
 /**
  * ...
  * @author wrighp
@@ -23,15 +25,18 @@ class PauseState extends FlxSubState
 		_overlay.scale.set(FlxG.width, FlxG.height);
 		_overlay.screenCenter();
 		_overlay.scrollFactor.set(0, 0);
+		
 		add(_overlay);
+		FlxG.keys.reset();
 		opened();
+		
 	}
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		if (FlxG.keys.justPressed.TAB){ //Close out window
-			this.forEachOfType(TickingText, function(t){t.kill(); });
-			close();
+		if (FlxG.keys.justReleased.TAB){ //Close out window
+				this.forEachOfType(TickingText, function(t){t.kill(); });
+				close();
 		}
 	}
 	public function opened():Void{
