@@ -64,6 +64,7 @@ class Player extends FlxSprite
 	private var dashSong:Bool = false;	//Needed for Mandolin to dash
 	private var jumpSong:Bool = false;
 	private var jumpSongGround = false;
+	private var isWalking = false;
 
 	private var _dashTime:Float = -1;
 
@@ -136,7 +137,8 @@ class Player extends FlxSprite
 	{
 		// Defining Character Keys
 		_left = FlxG.keys.anyPressed([LEFT, A]);
-		_right = FlxG.keys.anyPressed([RIGHT, D]);	
+		_right = FlxG.keys.anyPressed([RIGHT, D]);
+		isWalking = false;
 
 		// Disallow Opposite Actions to occur
 		if (_left && _right){
@@ -148,6 +150,7 @@ class Player extends FlxSprite
 			acceleration.x = -drag.x;
 			if (velocity.y == 0){
 				animation.play('walk');
+				isWalking = true;
 			}
 			facing = FlxObject.LEFT;
 		}
@@ -155,14 +158,14 @@ class Player extends FlxSprite
 			acceleration.x = drag.x;
 			if (velocity.y == 0){
 				animation.play('walk');
+				isWalking = true;
 			}
 			facing = FlxObject.RIGHT;
 		}
 		
 		//Idle Animation
-		if ((acceleration.x == 0) && (acceleration.y == 0)){
+		if ( !isWalking || ((acceleration.x == 0) && (acceleration.y == 0)))
 			animation.play('idle');
-		}
 	}
 
 	/* Current Jump Code */
