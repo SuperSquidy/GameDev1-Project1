@@ -260,9 +260,6 @@ class Player extends FlxSprite
 	public function setPlayerFrozen(condition:Bool):Void{
 		playerFrozen = condition;
 	}
-	public function getMandolinObj():Mandolin{
-		return _mando;
-	}
 	private function setJumpSongGround(condition:Bool):Void{
 		jumpSongGround = condition;
 	}
