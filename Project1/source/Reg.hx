@@ -6,4 +6,5 @@ class Reg
 {
 	public static var state:PlayState;
 	public static var _player:Player;
+	public static var mando:Mandolin;
 }
