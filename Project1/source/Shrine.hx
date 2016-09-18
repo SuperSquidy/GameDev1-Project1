@@ -1,5 +1,7 @@
 package;
 import flixel.FlxSprite;
+import flixel.FlxG;
+
 
 /**
  * ...
@@ -7,9 +9,6 @@ import flixel.FlxSprite;
  */
 class Shrine extends FlxSprite
 {
-
-	private var collisionPlayer:Bool;
-
 	public function new(X:Float, Y:Float, ?Scale:Float = 2) 
 	{
 		super(X, Y);
@@ -22,24 +21,13 @@ class Shrine extends FlxSprite
 	}
 	
 	override public function update(elapsed:Float):Void{
-		//check collision player
-			//setCollisionPlayer
 		super.update(elapsed);
 	}
 
 	private function create(){	}
 	
-	public function onActivate(){
-		animation.play("interacted", false);
-	}
-
-	private function setCollisionPlayer(condition:Bool):Void{
-		collisionPlayer = condition;
-	}
-
-	public function getCollisionPlayer():Bool{
-		return collisionPlayer;
-	}
-
+//	public function onActivate(){
+//		animation.play("interacted", false);
+//	}
 
 }
