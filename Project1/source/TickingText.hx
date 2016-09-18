@@ -40,11 +40,13 @@ class TickingText extends FlxText
 		this.borderColor = 0xff000000;
 		this.borderStyle = SHADOW;
 		this.scrollFactor.set(0, 0);
+		trace("Initializing Text");
+
 	}
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
-		
+		trace("Updating text");
 		if (_currentText.length < allText[_index].length){
 			_time += elapsed;
 			var played = false;
