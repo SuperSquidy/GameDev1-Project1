@@ -119,7 +119,6 @@ class Player extends FlxSprite
 	{
 		acceleration.x = 0;
 		acceleration.y = _gravity;
-		_mando.resetSongsPlayed();
 		
 		//If in a cutscene, don't allow the player to move
 		if (!playerFrozen){
