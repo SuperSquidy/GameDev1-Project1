@@ -13,7 +13,7 @@ import flixel.FlxG.sound;
 class CheckPoint extends FlxSprite
 {
 	var currentState:String;
-	public static inline var HITBOX_HEIGHT = 300;
+	public static inline var HITBOX_HEIGHT = 160;
 	
 	var _particles:FlxEmitter;
 
@@ -53,6 +53,7 @@ class CheckPoint extends FlxSprite
 			}
 		}
 	}
+	
 	//Call whenever loadGraphic is used to resize the hitbox
 	private function resizeHitbox():Void{
 		offset.set(0, -HITBOX_HEIGHT+height);

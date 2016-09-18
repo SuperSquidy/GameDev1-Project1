@@ -1,13 +1,14 @@
 package;
 import flixel.FlxSprite;
+import flixel.FlxG;
+
 
 /**
  * ...
- * @author wrighp
+ * @author wrighp & bormaj
  */
 class Shrine extends FlxSprite
 {
-
 	public function new(X:Float, Y:Float, ?Scale:Float = 2) 
 	{
 		super(X, Y);
@@ -18,8 +19,15 @@ class Shrine extends FlxSprite
 		x -= frameWidth*Scale / (2);
 		y -= frameHeight*(Scale)-32;
 	}
-	private function create(){	}
-	public function onActivate(){
-		animation.play("interacted", false);
+	
+	override public function update(elapsed:Float):Void{
+		super.update(elapsed);
 	}
+
+	private function create(){	}
+	
+//	public function onActivate(){
+//		animation.play("interacted", false);
+//	}
+
 }

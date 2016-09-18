@@ -28,20 +28,37 @@ class WorldState extends FlxState
 	public var trees:FlxGroup;
 	
 	private var _levelName:String;
+	private var _enterFrom:String;	//Used to check what level a player entered from, null if they just spawned in.
+	private var _enterPosition:FlxPoint; //Null if player is spawning in, position of enter point otherwise
 	private var _activeCheckPoint:CheckPoint;
 	private var _checkpointPosition:FlxPoint;
+	
+	
 	private static inline var CAMERA_LERP = .1;
 
 	//Can pass a player in constructor if a player already exists (for loading multiple levels)
-	public function new(?player:Player, ?levelName:String = "test_map.tmx") 
+	public function new(?levelName:String = "test_map.tmx",?enterFrom:String = null) 
 	{
 		super();
-		this.player = player;
+		this._enterFrom = enterFrom;
 		_levelName = levelName;
+		trace("Loading level: " + levelName+" and entering from: " + _enterFrom);
+	}
+	/**
+	 * Checks to see if this is where a player should spawn from, if so, sets the player spawn to position.
+	 * @param	check The parameter to check from a playerEnter object
+	 */
+	public function checkEnterFrom(check:String, position:FlxPoint):Void{
+		if (_enterFrom != null && check == _enterFrom){
+			_enterPosition = position;
+		}
 	}
 	override public function create():Void 
 	{
 		super.create();
+		//Camera fade in
+		FlxG.camera.fade(.25, true);
+		
 		instance = this;
 		floors = new FlxGroup();
 		checkpoints = new FlxGroup();
@@ -50,6 +67,9 @@ class WorldState extends FlxState
 		trees = new FlxGroup();
 		
 		level = new TiledLevel("assets/tiled/" + _levelName, this);
+		if (_enterPosition != null){
+			player.setPosition(_enterPosition.x, _enterPosition.y-32);
+		}
 		_checkpointPosition = player.getPosition();
 		
 		//Added in order of depth, back to front
@@ -70,8 +90,11 @@ class WorldState extends FlxState
 		this.destroySubStates = true;
 		this.persistentDraw = true;
 
-		FlxG.sound.playMusic("ScarfDance");
-
+	//	if (FlxG.sound.music == null){
+	//		FlxG.sound.playMusic("ScarfDance");
+	//		FlxG.sound.music.persist = true; //Music will now persist between states
+	//	}
+		
 		var backButton  = new FlxButton(20,20, "Back", function(){FlxG.switchState(new MenuState());});
 		add(backButton); //Back to menu button
 		
@@ -86,6 +109,7 @@ class WorldState extends FlxState
 		level.collideWithLevel(player);
 		FlxG.overlap(player, triggers,Trigger.onTriggerCollision);
 		FlxG.overlap(player, checkpoints, onCheckpointCollision);
+		FlxG.overlap(player, shrines, onWatershrineCollision);
 		if (FlxG.overlap(player,floors)){
 			//Death by pitfall
 			onDeath();
@@ -112,6 +136,11 @@ class WorldState extends FlxState
 			checkpoint.onActivate();
 		}
 	}
+
+	private function onWatershrineCollision(Player:FlxObject, shrine:WaterShrine):Void{
+		shrine.onActivate();
+	}
+
 	public function onDeath():Void
 	{
 		//Particle "splash" on death
