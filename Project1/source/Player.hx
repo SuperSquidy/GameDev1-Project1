@@ -30,6 +30,7 @@ Current Jump Mechanics:
  
  Previous Issues:
  - [FIXED] Player Dash does not reset after initial dash
+ - [FIXED] Infinite Walk animation / No jump animation
 */
 
 
