@@ -40,16 +40,17 @@ class WaterShrine extends Shrine
 		}	
 	}
 
-	override public function onActivate():Void{
-		super.onActivate();
-			
+	override public function onActivate():Void{		
 		if(!songLearned)
 			learnSong();
 
-		if (Reg._player.getMandolinOb().get)
-		else if(!storyLearned){
-			//Text prompt 2 scrolls, shares story
-			storyLearned = true;
+		if (Reg._player.getMandolinObj().getWaterPlayed()){
+			if(!storyLearned){
+				//Text prompt 2 scrolls, shares story
+				storyLearned = true;
+			}
+
+			super.onActivate();
 		}
 	}
 
@@ -61,6 +62,7 @@ class WaterShrine extends Shrine
 		Reg._player.getMandolinObj().enableWaterSong();
 		ticker = new TickingText("Watershrine_interact.txt");
 		songLearned = true;
+		animation.play("interacted", false);
 	}
 
 }
