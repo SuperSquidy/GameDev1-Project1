@@ -25,6 +25,7 @@ class WorldState extends FlxState
 	public var checkpoints:FlxGroup;
 	public var triggers:FlxGroup;
 	public var shrines:FlxGroup;
+	public var trees:FlxGroup;
 	
 	private var _levelName:String;
 	private var _activeCheckPoint:CheckPoint;
@@ -46,6 +47,7 @@ class WorldState extends FlxState
 		checkpoints = new FlxGroup();
 		triggers = new FlxGroup();
 		shrines = new FlxGroup();
+		trees = new FlxGroup();
 		
 		level = new TiledLevel("assets/tiled/" + _levelName, this);
 		_checkpointPosition = player.getPosition();
