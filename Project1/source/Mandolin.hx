@@ -49,7 +49,7 @@ class Mandolin extends FlxBasic
 	//Flag Processing - True if the player has access to the special effects of the song
 	//NOTE : Initialize to true for testing purposes only.
 	//Changed to public static so that they persist between levels
-	public static var _waterActive:Bool = true;		
+	public static var _waterActive:Bool = false;		
 	public static var _windActive:Bool = true;
 	public static var _earthActive:Bool = true;
 	public static var _starActive:Bool = true;
