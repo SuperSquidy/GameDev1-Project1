@@ -88,10 +88,10 @@ class WorldState extends FlxState
 		this.destroySubStates = true;
 		this.persistentDraw = true;
 
-		if (FlxG.sound.music == null){
-			FlxG.sound.playMusic("ScarfDance");
-			FlxG.sound.music.persist = true; //Music will now persist between states
-		}
+	//	if (FlxG.sound.music == null){
+	//		FlxG.sound.playMusic("ScarfDance");
+	//		FlxG.sound.music.persist = true; //Music will now persist between states
+	//	}
 		
 		var backButton  = new FlxButton(20,20, "Back", function(){FlxG.switchState(new MenuState());});
 		add(backButton); //Back to menu button
@@ -107,6 +107,7 @@ class WorldState extends FlxState
 		level.collideWithLevel(player);
 		FlxG.overlap(player, triggers,Trigger.onTriggerCollision);
 		FlxG.overlap(player, checkpoints, onCheckpointCollision);
+		FlxG.overlap(player, shrines, onWatershrineCollision);
 		if (FlxG.overlap(player,floors)){
 			//Death by pitfall
 			onDeath();
@@ -135,7 +136,6 @@ class WorldState extends FlxState
 	}
 
 	private function onWatershrineCollision(Player:FlxObject, shrine:WaterShrine):Void{
-		trace("Entered WaterShrine onCollision function");
 		shrine.onActivate();
 	}
 
