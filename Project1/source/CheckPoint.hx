@@ -53,6 +53,7 @@ class CheckPoint extends FlxSprite
 			}
 		}
 	}
+	
 	//Call whenever loadGraphic is used to resize the hitbox
 	private function resizeHitbox():Void{
 		offset.set(0, -HITBOX_HEIGHT+height);

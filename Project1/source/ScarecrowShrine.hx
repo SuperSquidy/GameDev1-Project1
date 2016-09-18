@@ -27,8 +27,8 @@ class ScarecrowShrine extends Shrine
 		}	
 	}
 
-	override public function onActivate():Void{
-		super.onActivate();
+	public function onActivate():Void{
+		animation.play("interacted", false);
 	}
 
 }
