@@ -26,4 +26,9 @@ class ScarecrowShrine extends Shrine
 			animation.play("looping",true);	
 		}	
 	}
+
+	override public function onActivate():Void{
+		super.onActivate();
+	}
+
 }

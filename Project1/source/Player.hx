@@ -30,6 +30,7 @@ Current Jump Mechanics:
  
  Previous Issues:
  - [FIXED] Player Dash does not reset after initial dash
+ - [FIXED] Infinite Walk animation / No jump animation
 */
 
 
@@ -51,7 +52,6 @@ class Player extends FlxSprite
 	public static inline var _gravity:Int = 1500;
 	public static inline var _jumpSpeed:Int = 1075;
 	public static inline var _jumpsAllowed:Int = 2;
-
 	private var _jumpTime:Float = -1;
 	private var _timesJumped:Int = 0;
 	private var _jumpKeys:Array<FlxKey> = [W, SPACE];
@@ -60,14 +60,18 @@ class Player extends FlxSprite
 	private static inline var _dashSpeed:Int = 1000;
 	private static inline var _dashDuration:Float = 0.25;
 	private static inline var _dashCooldown:Float = 3.0;
+	private var _dashTime:Float = -1;
 	
-	private var dashSong:Bool = false;		//Needed for Mandolin to dash
+	//Mandolin Songs so elapsed works properly
+	private var dashSong:Bool = false;
 	private var jumpSong:Bool = false;
 	private var jumpSongGround = false;
+	
+	//Animation Vars
 	private var isWalking:Bool;
-	private var playerFrozen:Bool = false;	//For 'cutscenes'
-
-	private var _dashTime:Float = -1;
+	
+	//'Cutscene' Conditional
+	private var playerFrozen:Bool = false;
 
 	//Movement Conditionals
 	var _runSpeed:Float = 200;
@@ -114,6 +118,7 @@ class Player extends FlxSprite
 	{
 		acceleration.x = 0;
 		acceleration.y = _gravity;
+		_mando.resetSongsPlayed();
 		
 		//If in a cutscene, don't allow the player to move
 		if (!playerFrozen){
@@ -253,6 +258,9 @@ class Player extends FlxSprite
 	}
 	public function setPlayerFrozen(condition:Bool):Void{
 		playerFrozen = condition;
+	}
+	public function getMandolinObj():Mandolin{
+		return _mando;
 	}
 	private function setJumpSongGround(condition:Bool):Void{
 		jumpSongGround = condition;

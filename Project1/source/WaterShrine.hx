@@ -4,10 +4,14 @@ import flixel.math.FlxPoint;
 
 /**
  * ...
- * @author wrighp
+ * @author wrighp & bormaj
  */
 class WaterShrine extends Shrine
 {
+	private static var songLearned:Bool = false;
+	private static var storyLearned:Bool = false;
+	var ticker:TickingText;
+
 	override private function create():Void{
 		super.create();
 		//Don't worry about offsets for now
@@ -20,10 +24,45 @@ class WaterShrine extends Shrine
 		animation.finishCallback = finishInteraction;
 		animation.add("looping", [2,3,4], 3, true);
 	}
+	
+	override public function update(elapsed:Float):Void{
+	
+	//	if (getCollisionPlayer() && !songPlayed)
+	//		onActivate();
+	
+		super.update(elapsed);
+	}
+
 	private function finishInteraction(name:String):Void
 	{
 		if (name == "interacted"){
 			animation.play("looping",true);	
 		}	
 	}
+
+	override public function onActivate():Void{		
+		if(!songLearned)
+			learnSong();
+
+		if (Reg._player.getMandolinObj().getWaterPlayed()){
+			if(!storyLearned){
+				//Text prompt 2 scrolls, shares story
+				storyLearned = true;
+			}
+
+			super.onActivate();
+		}
+	}
+
+	/*	@function : Enables the water song
+			if they have not already unlocked it
+			& plays the first set of text
+	*/
+	private function learnSong(){
+		Reg._player.getMandolinObj().enableWaterSong();
+		ticker = new TickingText("Watershrine_interact.txt");
+		songLearned = true;
+		animation.play("interacted", false);
+	}
+
 }
