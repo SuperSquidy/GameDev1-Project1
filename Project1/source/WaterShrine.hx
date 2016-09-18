@@ -29,7 +29,15 @@ class WaterShrine extends Shrine
 {
 	private static var songLearned:Bool = false;
 	private static var storyLearned:Bool = false;
+	
+	//Initializing Story-related Variables
 	var ticker:TickingText;
+	var ticker2:TickingText;
+	var ticker3:TickingText;
+	var playText1:Bool = false;
+	var playText2:Bool = false;
+	var playText3:Bool = false;
+
 	var playerTrigger:Trigger;
 
 	override private function create():Void{
@@ -46,19 +54,32 @@ class WaterShrine extends Shrine
 		animation.add("interacted", [1, 2, 3, 4], 2, false);
 		animation.finishCallback = finishInteraction;
 		animation.add("looping", [2,3,4], 3, true);
+
+		//Initialize Text
+		ticker = new TickingText("Watershrine_interact_1.txt");
+		ticker2 = new TickingText("Watershrine_text_2.txt");
+		ticker3 = new TickingText("Watershrine_after_song_3.txt");
 	}
 	
 	override public function update(elapsed:Float):Void{
 		super.update(elapsed);
+		if(playText3)
+			ticker3.update(elapsed);
+		else if(playText2)
+			ticker2.update(elapsed);
+		else if(playText1)
+			ticker.update(elapsed);
 	}
 	
 	public function onActivate():Void{		
 		if(!songLearned)
 			learnSong();
 
-		else if (Reg.mando.getWaterPlayed()){		//If water song played
+		else if (Reg.mando.getWaterPlayed()){		//If water song was played
 			if(!storyLearned)
 				learnStory();
+			else
+				playText3=true;
 			finishInteraction("interacted");
 			Reg.mando.waterPlayed(false);
 		}
@@ -73,8 +94,8 @@ class WaterShrine extends Shrine
 	*/
 	private function learnSong(){
 		trace("Learning Song");
-		ticker = new TickingText("Watershrine_interact_1.txt");
 		songLearned = true;
+		playText1 = true;
 	}
 
 	/*	@function : Triggers the story text
@@ -85,8 +106,8 @@ class WaterShrine extends Shrine
 		FlxG.sound.play("Water_Song");
 		Reg.mando.enableWaterSong();
 		animation.play("interacted");
-		//Ticking Text
 		storyLearned = true;
+		playText2 = true;
 	}
 
 }
