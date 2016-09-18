@@ -72,7 +72,7 @@ class WaterShrine extends Shrine
 		else if (Reg.mando.getWaterPlayed()){		//If water song was played
 			if(!storyLearned)
 				learnStory();
-			else if (!ticker2.alive && !ticker3.alive){ //Prevents more overlapping
+			else if (!ticker2.alive){ //Prevents more overlapping
 				ticker3.resetText();
 				WorldState.instance.add(ticker3);
 				ticker3.doSkip = true;
