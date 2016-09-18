@@ -56,19 +56,13 @@ class WaterShrine extends Shrine
 		animation.add("looping", [2,3,4], 3, true);
 
 		//Initialize Text
-		ticker = new TickingText("Watershrine_interact_1.txt");
-		ticker2 = new TickingText("Watershrine_text_2.txt");
-		ticker3 = new TickingText("Watershrine_after_song_3.txt");
+		ticker = new TickingText(false, "Watershrine_interact_1.txt", .04, 12, "Water_Text", 100, Std.int(y) - 230);
+		ticker2 = new TickingText(false, "Watershrine_text_2.txt", .04, 12, "Water_Text", 100, Std.int(y) - 230);
+		ticker3 = new TickingText(false, "Watershrine_after_song_3.txt", .04, 12, "Water_Text", 100, Std.int(y) - 230);
 	}
 	
 	override public function update(elapsed:Float):Void{
 		super.update(elapsed);
-		if(playText3)
-			ticker3.update(elapsed);
-		else if(playText2)
-			ticker2.update(elapsed);
-		else if(playText1)
-			ticker.update(elapsed);
 	}
 	
 	public function onActivate():Void{		
@@ -79,7 +73,7 @@ class WaterShrine extends Shrine
 			if(!storyLearned)
 				learnStory();
 			else
-				playText3=true;
+				WorldState.instance.add(ticker3);
 			finishInteraction("interacted");
 			Reg.mando.waterPlayed(false);
 		}
@@ -95,7 +89,7 @@ class WaterShrine extends Shrine
 	private function learnSong(){
 		trace("Learning Song");
 		songLearned = true;
-		playText1 = true;
+		WorldState.instance.add(ticker);
 	}
 
 	/*	@function : Triggers the story text
@@ -107,7 +101,7 @@ class WaterShrine extends Shrine
 		Reg.mando.enableWaterSong();
 		animation.play("interacted");
 		storyLearned = true;
-		playText2 = true;
+		WorldState.instance.add(ticker2);
 	}
 
 }
