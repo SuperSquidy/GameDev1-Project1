@@ -156,7 +156,7 @@ class Mandolin extends FlxBasic
 		//Water Song
 		if (checkSongPlayed(_waterSong)){
 			resetRecentNotes();							//Clear last song played
-			waterPlayed();
+			waterPlayed(true);
 			if(_waterActive){
 				_playerCharacter.setJumpPlayed(true);		//Trigger Player DoubleJump
 				//Trigger Succesful Song Animation | Particles
@@ -167,7 +167,7 @@ class Mandolin extends FlxBasic
 		//Wind Song
 		if (checkSongPlayed(_windSong)){
 			resetRecentNotes();							//Clear last song played
-			windPlayed();
+			windPlayed(true);
 			if(_windActive){
 				_playerCharacter.setDashPlayed(true);		//Trigger Player Dash
 				//Trigger Succesful Song Animation | Particles
@@ -178,7 +178,7 @@ class Mandolin extends FlxBasic
 		//Earth Song
 		if (checkSongPlayed(_earthSong)){
 			resetRecentNotes();		//Clear last song played
-			earthPlayed();
+			earthPlayed(true);
 			//if earthActive{
 				//Trigger Earth Platform Thing
 				//Trigger Succesful Song Animation | Particles
@@ -188,7 +188,7 @@ class Mandolin extends FlxBasic
 		//Star Song
 		if (checkSongPlayed(_starSong)){
 			resetRecentNotes();		//Clear last song played
-			starPlayed();
+			starPlayed(true);
 			//if (_starActive)
 				//Trigger Star Song
 				//Trigger Succesful Song Animation | Particles
@@ -228,17 +228,16 @@ class Mandolin extends FlxBasic
 		_starActive = true;		}
 
 /*FUNCTIONS FOR KEEPING TRACK OF SONGS Played*/
-	private function waterPlayed()
-		_playedWater = true;
-	private function windPlayed()
-		_playedWind = true;
-	private function earthPlayed()
-		_playedEarth = true;
-	private function starPlayed()
-		_playedStar = true;
-	public function getWaterPlayed():Bool{
+	public function waterPlayed(condition:Bool)
+		_playedWater = condition;
+	public function windPlayed(condition:Bool)
+		_playedWind = condition;
+	public function earthPlayed(condition:Bool)
+		_playedEarth = condition;
+	public function starPlayed(condition:Bool)
+		_playedStar = condition;
+	public function getWaterPlayed():Bool
 		return _playedWater;
-	}
 	public function getWindPlayed():Bool
 		return _playedWind;
 	public function getEarthPlayed():Bool
