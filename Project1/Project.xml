@@ -35,6 +35,7 @@
 		<sound path="sounds/blip2.wav" id="blip2" />
 		<sound path="sounds/textScroll.wav" id="textScroll"/>
 		<sound path="sounds/Water_Song.wav" id="Water_Song"/>
+		<sound path="sounds/Water_Text.wav" id="Water_Text"/>
 	
    		<music path="music/ScarfDance.wav" id="ScarfDance" />
 		
