@@ -72,9 +72,10 @@ class WaterShrine extends Shrine
 		else if (Reg.mando.getWaterPlayed()){		//If water song was played
 			if(!storyLearned)
 				learnStory();
-			else{
+			else if (!ticker2.alive){ //Prevents more overlapping
+				ticker3.resetText();
 				WorldState.instance.add(ticker3);
-				ticker3.doSkip = false;
+				ticker3.doSkip = true;
 				ticker3.scrollFactor.set(1,1);
 			}
 			finishInteraction("interacted");
@@ -106,7 +107,8 @@ class WaterShrine extends Shrine
 		animation.play("interacted");
 		storyLearned = true;
 		WorldState.instance.add(ticker2);
-		ticker2.scrollFactor.set(1,1);
+		ticker2.scrollFactor.set(1, 1);
+		ticker.kill(); //Prevents text overlapping
 	}
 
 }
