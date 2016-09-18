@@ -3,7 +3,7 @@ import flixel.FlxSprite;
 
 /**
  * ...
- * @author wrighp
+ * @author wrighp & bormaj
  */
 class Shrine extends FlxSprite
 {
