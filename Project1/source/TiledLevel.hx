@@ -116,7 +116,7 @@ class TiledLevel extends TiledMap
 			}
 			
 			//objects layer
-			if (layer.name == "objects")
+			if (layer.name == "objects" || true) //Set so that objects can be placed in different folders of different names
 			{
 				for (o in objectLayer.objects)
 				{
@@ -203,6 +203,12 @@ class TiledLevel extends TiledMap
 				state.shrines.add(new WindShrine(x, y));
 			case "playerenter": //Check if player is coming from a level.
 				state.checkEnterFrom(o.properties.get("mapFrom"), new FlxPoint(o.x, o.y));
+			case "tree":
+				if (o.properties.contains("lifespan")){
+					state.trees.add(new GrowingTree(o.x, o.y,Std.parseFloat(o.properties.get("lifespan"))));
+				}else{
+					state.trees.add(new GrowingTree(o.x, o.y));
+				}
 		}
 	}
 

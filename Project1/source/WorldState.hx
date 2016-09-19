@@ -25,6 +25,7 @@ class WorldState extends FlxState
 	public var checkpoints:FlxGroup;
 	public var triggers:FlxGroup;
 	public var shrines:FlxGroup;
+	public var trees:FlxGroup;
 	
 	private var _levelName:String;
 	private var _enterFrom:String;	//Used to check what level a player entered from, null if they just spawned in.
@@ -63,6 +64,7 @@ class WorldState extends FlxState
 		checkpoints = new FlxGroup();
 		triggers = new FlxGroup();
 		shrines = new FlxGroup();
+		trees = new FlxGroup();
 		
 		level = new TiledLevel("assets/tiled/" + _levelName, this);
 		if (_enterPosition != null){
@@ -77,6 +79,7 @@ class WorldState extends FlxState
 		add(checkpoints);
 		add(shrines);
 		add(triggers);
+		add(trees);
 		add(level.objectsLayer);	//add objects (including player)
 		add(level.foregroundTiles); //add forground
 		
@@ -105,6 +108,7 @@ class WorldState extends FlxState
 		if (FlxG.keys.justPressed.B) FlxG.debugger.drawDebug = !FlxG.debugger.drawDebug;
 		
 		level.collideWithLevel(player);
+		FlxG.collide(player, trees);
 		FlxG.overlap(player, triggers,Trigger.onTriggerCollision);
 		FlxG.overlap(player, checkpoints, onCheckpointCollision);
 		FlxG.overlap(player, shrines, onWatershrineCollision);
