@@ -79,6 +79,7 @@ class WorldState extends FlxState
 		add(checkpoints);
 		add(shrines);
 		add(triggers);
+		add(trees);
 		add(level.objectsLayer);	//add objects (including player)
 		add(level.foregroundTiles); //add forground
 		
@@ -107,6 +108,7 @@ class WorldState extends FlxState
 		if (FlxG.keys.justPressed.B) FlxG.debugger.drawDebug = !FlxG.debugger.drawDebug;
 		
 		level.collideWithLevel(player);
+		FlxG.collide(player, trees);
 		FlxG.overlap(player, triggers,Trigger.onTriggerCollision);
 		FlxG.overlap(player, checkpoints, onCheckpointCollision);
 		FlxG.overlap(player, shrines, onWatershrineCollision);
