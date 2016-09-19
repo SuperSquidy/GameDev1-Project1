@@ -43,7 +43,7 @@ class Mandolin extends FlxBasic
 	var _recentNotes:Array<String>	= ["", "", "", "", ""];		//List of the most recent keys pressed
 	public static var _waterSong:Array<String>	= [";","L"];				//Double Jump
 	public static var _windSong:Array<String> 	= ["J", "J", "J"];			//Dash
-	public static var _earthSong:Array<String>	= ["", ""];					//Grow a temporary plant platform
+	public static var _earthSong:Array<String>	= ["H", "K", "L", "J", "H"];					//Grow a temporary plant platform
 	public static var _starSong:Array<String> 	= [ "", ""];				//Fill the sky with stars
 	
 	//Flag Processing - True if the player has access to the special effects of the song
@@ -179,10 +179,12 @@ class Mandolin extends FlxBasic
 		if (checkSongPlayed(_earthSong)){
 			resetRecentNotes();		//Clear last song played
 			earthPlayed(true);
-			//if earthActive{
+			if (_earthActive){
+				GrowingTree.onPlayMusic();
 				//Trigger Earth Platform Thing
 				//Trigger Succesful Song Animation | Particles
 				//Trigger additional sound file ?
+			}
 		}
 
 		//Star Song
