@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="34" tilewidth="32" tileheight="32" nextobjectid="14">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="34" tilewidth="32" tileheight="32" nextobjectid="18">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="9" columns="3">
   <image source="../images/badtiles.png" width="96" height="96"/>
  </tileset>
@@ -122,6 +122,11 @@
   <object id="12" name="Instrument Pickup" type="trigger" x="64" y="1024" width="32" height="32">
    <properties>
     <property name="triggerType" value="instrumentPickup"/>
+   </properties>
+  </object>
+  <object id="17" name="Player entrance from overworld" type="playerEnter" x="2800" y="192" width="32" height="32">
+   <properties>
+    <property name="mapFrom" value="overworld"/>
    </properties>
   </object>
  </objectgroup>
