@@ -263,7 +263,7 @@
   <object id="84" name="Checkpoint" type="checkpoint" x="3808" y="1216" width="32" height="32"/>
   <object id="87" name="Overworld to Water Shrine" type="trigger" x="0" y="2112" width="32" height="1376">
    <properties>
-    <property name="triggerType" value="overworldToAir"/>
+    <property name="triggerType" value="overworldToWater"/>
    </properties>
   </object>
   <object id="88" name="Player Intro From Water" type="playerEnter" x="192" y="3456" width="32" height="32">
