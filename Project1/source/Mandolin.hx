@@ -179,10 +179,12 @@ class Mandolin extends FlxBasic
 		if (checkSongPlayed(_earthSong)){
 			resetRecentNotes();		//Clear last song played
 			earthPlayed(true);
-			//if earthActive{
+			if (_earthActive){
+				GrowingTree.onPlayMusic();
 				//Trigger Earth Platform Thing
 				//Trigger Succesful Song Animation | Particles
 				//Trigger additional sound file ?
+			}
 		}
 
 		//Star Song
