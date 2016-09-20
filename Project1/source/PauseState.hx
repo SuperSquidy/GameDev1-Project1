@@ -58,7 +58,7 @@ class PauseState extends FlxSubState
 			}*/
 			
 			var text:String;
-			
+			var offset:Float = 0;
 			//These very verbose method chains are because the songs are written backwards in Mandolin.
 			for (i in 0...4){
 				var speed = .02 + .0025 * i;
@@ -66,35 +66,31 @@ class PauseState extends FlxSubState
 					var reversedWater = FlxStringUtil.formatArray(Reg.mando.getWaterSong()).split(',');
 					reversedWater.reverse();
 					text = "Hymn of Rain:     " + FlxStringUtil.formatArray(reversedWater) + "\n" + Assets.getText("assets/data/" + "Hymn_of_Rain_Description.txt");
-					createText(speed,(80 + 36 * i),text);
-					continue;
+					offset = .8;
 				}
 				else if(i == 1){//} && ScarecrowShrine.songLearned){
 					var reversedEarth = FlxStringUtil.formatArray(Reg.mando.getEarthSong()).split(',');
 					reversedEarth.reverse();
 					text = "Song of Growth     " + FlxStringUtil.formatArray(reversedEarth) + "\n" + Assets.getText("assets/data/" + "Song_of_Growth_Description.txt");
-					createText(speed,(80 + 36 * i) * 2.6,text);
-					continue;
+					offset = 2.6;
 				}
 				else if(i == 2 ){ //&& Reg.mando.getWindActive()){
 					var reversedWind = FlxStringUtil.formatArray(Reg.mando.getWindSong()).split(',');
 					reversedWind.reverse();
 					text = "Aria of Breezes     " + FlxStringUtil.formatArray(reversedWind) + "\n" + Assets.getText("assets/data/" + "Aria_of_Breezes_Description.txt");
-					createText(speed,(80 + 36 * i) * 3.5,text);
-					continue;
+					offset = 3.5;
 				}
 				else if(i == 3 ){ //&& Reg.mando.getStarActive()){
 					var reversedStar = FlxStringUtil.formatArray(Reg.mando.getStarSong()).split(',');
 					reversedStar.reverse();
 					text = "Ballad of Stars     " + FlxStringUtil.formatArray(reversedStar) + "\n" + Assets.getText("assets/data/" + "Ballad_of_Stars_Description.txt");
-					createText(speed,(80 + 36 * i) * 4.2, text);
-					continue;
+					offset = 4.2;
 				}
 				else{
 					text = "????????   ? ? ?";
 				}
 				text = StringTools.replace(text, ",", "   "); //Set the text to be placed in between each keypress.
-				createText(.04 + .005 * i,(80 + 36 * i) * 3,text);
+				createText(.04 + .005 * i,(80 + 36 * i) * offset,text);
 			}
 		}
 	}
