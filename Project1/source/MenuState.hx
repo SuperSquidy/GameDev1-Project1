@@ -27,6 +27,7 @@ class MenuState extends FlxState
 		_playButton  = new FlxButton(0, 0, "Play",function(){FlxG.switchState(new WorldState("water_shrine.tmx")); });
 		_playButton.loadGraphic("assets/images/Button_SpriteSheet.png", true, 160, 64);
 		_playButton.screenCenter();
+		_playButton.y += 150;
 		add(_playButton);
 		
 		var i = 0;
