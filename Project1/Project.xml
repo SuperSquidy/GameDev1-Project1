@@ -44,7 +44,7 @@
    		<sound path="sounds/step.wav" id="Step"/>		
 		<sound path="sounds/enable_Checkpoint.wav" id="CheckPoint"/>
 		
-		<music path="music/ScarfDance.wav" id="ScarfDance" />
+		<music path="music/Bird_Ambience.wav" id="Birds" />
 		
 		<sound path="sounds/koto_c1.wav" id="koto_c1" />
 		<sound path="sounds/koto_c2.wav" id="koto_c2" />
