@@ -324,49 +324,49 @@
   <object id="51" name="Tree" type="tree" x="2016" y="3008" width="32" height="32"/>
   <object id="54" name="Tree" type="tree" x="1312" y="1984" width="32" height="32">
    <properties>
-    <property name="lifespan" type="float" value="12"/>
+    <property name="lifespan" type="float" value="2"/>
    </properties>
   </object>
   <object id="58" name="Tree" type="tree" x="224" y="1984" width="32" height="32"/>
   <object id="66" name="Tree" type="tree" x="2112" y="1568" width="32" height="32"/>
   <object id="67" name="Tree" type="tree" x="1056" y="1984" width="32" height="32">
    <properties>
-    <property name="lifespan" type="float" value="12"/>
+    <property name="lifespan" type="float" value="4"/>
    </properties>
   </object>
   <object id="68" name="Tree" type="tree" x="768" y="1984" width="32" height="32">
    <properties>
-    <property name="lifespan" type="float" value="12"/>
+    <property name="lifespan" type="float" value="6"/>
    </properties>
   </object>
   <object id="69" name="Tree" type="tree" x="448" y="1984" width="32" height="32">
    <properties>
-    <property name="lifespan" type="float" value="12"/>
+    <property name="lifespan" type="float" value="2"/>
    </properties>
   </object>
   <object id="71" name="Tree" type="tree" x="576" y="1568" width="32" height="32">
    <properties>
-    <property name="lifespan" type="float" value="11"/>
+    <property name="lifespan" type="float" value="1.25"/>
    </properties>
   </object>
   <object id="73" name="Tree" type="tree" x="768" y="1568" width="32" height="32">
    <properties>
-    <property name="lifespan" type="float" value="11"/>
+    <property name="lifespan" type="float" value="2.5"/>
    </properties>
   </object>
   <object id="74" name="Tree" type="tree" x="1120" y="1568" width="32" height="32">
    <properties>
-    <property name="lifespan" type="float" value="11"/>
+    <property name="lifespan" type="float" value="4"/>
    </properties>
   </object>
   <object id="75" name="Tree" type="tree" x="1408" y="1568" width="32" height="32">
    <properties>
-    <property name="lifespan" type="float" value="11"/>
+    <property name="lifespan" type="float" value="5.5"/>
    </properties>
   </object>
   <object id="76" name="Tree" type="tree" x="1728" y="1568" width="32" height="32">
    <properties>
-    <property name="lifespan" type="float" value="11"/>
+    <property name="lifespan" type="float" value="1.25"/>
    </properties>
   </object>
   <object id="77" name="Tree" type="tree" x="3648" y="1760" width="32" height="32"/>
