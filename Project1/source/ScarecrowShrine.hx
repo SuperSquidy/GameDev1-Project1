@@ -47,9 +47,9 @@ class ScarecrowShrine extends Shrine
 		animation.add("looping", [4,3,4,5], 3, true);
 
 		//Initializing Story Text Files
-		ticker = new TickingText(false, "Earthshrine_interact_0.txt", .04, 12, "Earth_Text", 700, 400);
-		ticker2 = new TickingText(false, "Earthshrine_interact_0.txt", .04, 12, "Earth_Text", 700, 400);
-		ticker3 = new TickingText(false, "Earthshrine_interact_0.txt", .04, 12, "Earth_Text", 700, 400);
+		ticker = new TickingText(false, "Earthshrine_interact_0.txt", .04, 12, "Earth_Text", 750, 400);
+		ticker2 = new TickingText(false, "Earthshrine_text_1.txt", .02, 12, "Earth_Text", 750, 400);
+		ticker3 = new TickingText(false, "Earthshrine_after_song_2.txt", .04, 12, "Earth_Text", 750, 400);
 	}
 
 	public function onActivate():Void{
