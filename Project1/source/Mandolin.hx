@@ -63,12 +63,6 @@ class Mandolin extends FlxBasic
 	public function new(player:Player){
 		super();
 		_playerCharacter = player;
-
-		//Only initialize true for testing
-		_waterActive = true;
-		_windActive = true;
-		_earthActive = true;
-		_starActive = true;
 	}
 
 /* FUNCTIONS TO PLAY NOTES */
@@ -165,7 +159,6 @@ class Mandolin extends FlxBasic
 			if(_waterActive){
 				_playerCharacter.setJumpPlayed(true);		//Trigger Player DoubleJump
 				//Trigger Succesful Song Animation | Particles
-				//Trigger additional sound file ?
 			}
 		}
 
@@ -176,7 +169,6 @@ class Mandolin extends FlxBasic
 			if(_windActive){
 				_playerCharacter.setDashPlayed(true);		//Trigger Player Dash
 				//Trigger Succesful Song Animation | Particles
-				//Trigger additional sound file ?
 			}
 		}
 
@@ -186,8 +178,6 @@ class Mandolin extends FlxBasic
 			earthPlayed(true);
 			if (_earthActive){
 				GrowingTree.onPlayMusic();
-				//Trigger Earth Platform Thing
-				//Trigger Succesful Song Animation | Particles
 				//Trigger additional sound file ?
 			}
 		}

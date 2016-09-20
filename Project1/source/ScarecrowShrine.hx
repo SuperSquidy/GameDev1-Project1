@@ -90,7 +90,7 @@ class ScarecrowShrine extends Shrine
 	private function learnStory(){
 		trace("Learning Story");
 		FlxG.sound.play("Earth_Song");
-		Reg.mando.enableWaterSong();
+		Reg.mando.enableEarthSong();
 		animation.play("interacted");
 		storyLearned = true;
 		WorldState.instance.add(ticker2);
