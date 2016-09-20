@@ -19,7 +19,7 @@ This file contains information pertaining to the ScareCrow (Earth) Shrine includ
  - If the player is in range of the shrine for the first time
  	- The first set of text scrolls, teaching them the song
  - When the player plays the song in range of the shrine for the first time
- 	- Second set of text scrolls, player unlocks double jump functionality
+ 	- Second set of text scrolls, player unlocks growing tree functionality
  - If the player plays the song in range an additional time(s)
  	- The interaction animation plays, but nothing else
 */
