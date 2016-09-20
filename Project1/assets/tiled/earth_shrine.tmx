@@ -6,6 +6,20 @@
  <tileset firstgid="10" name="allTerrainTiles" tilewidth="32" tileheight="32" tilecount="40" columns="5">
   <image source="../images/allTerrainTiles.png" width="160" height="256"/>
  </tileset>
+ <imagelayer name="Image Layer 1">
+  <image source="../images/Backgrounds/EarthArea/EarthShrineLayout_paper.png" width="3200" height="1120"/>
+  <properties>
+   <property name="scrollX" type="float" value="1"/>
+   <property name="scrollY" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Image Layer 2">
+  <image source="../images/Backgrounds/EarthArea/EarthShrineLayout_tree.png" width="3200" height="1120"/>
+  <properties>
+   <property name="scrollX" type="float" value="1"/>
+   <property name="scrollY" type="float" value="1"/>
+  </properties>
+ </imagelayer>
  <layer name="Foreground" width="100" height="35">
   <properties>
    <property name="tileset" value="allTerrainTiles"/>
