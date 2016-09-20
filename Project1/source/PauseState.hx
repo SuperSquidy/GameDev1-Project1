@@ -57,17 +57,17 @@ class PauseState extends FlxSubState
 			
 			var text:String;
 			for (i in 0...4){
-				if (i == 0 && Mandolin._waterActive){
-					text = "Water     " + FlxStringUtil.formatArray(Mandolin._waterSong);
+				if (i == 0 && Reg.mando.getWaterActive()){
+					text = "Water     " + FlxStringUtil.formatArray(Reg.mando.getWaterSong());
 				}
-				else if(i == 1 && Mandolin._windActive){
-					text = "Wind      " + FlxStringUtil.formatArray(Mandolin._windSong);
+				else if(i == 1 && Reg.mando.getWindActive()){
+					text = "Wind      " + FlxStringUtil.formatArray(Reg.mando.getWindSong());
 				}
-				else if(i == 2 && Mandolin._earthActive){
-					text = "Earth     " + FlxStringUtil.formatArray(Mandolin._earthSong);
+				else if(i == 2 && Reg.mando.getEarthActive()){
+					text = "Earth     " + FlxStringUtil.formatArray(Reg.mando.getEarthSong());
 				}
-				else if(i == 3 && Mandolin._starActive){
-					text = "Star      " + FlxStringUtil.formatArray(Mandolin._starSong);
+				else if(i == 3 && Reg.mando.getStarActive()){
+					text = "Star      " + FlxStringUtil.formatArray(Reg.mando.getStarSong());
 				}
 				else{
 					text = "????????   ? ? ?";
