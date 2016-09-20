@@ -34,3 +34,7 @@ PC:
 	DASH:
 		animation.add('dash', [15, 16, 17], 12, true);
 		loop while dashing
+
+BUTTON:
+	Image: Button_SpriteSheet.png(480x64, 160x64 per frame)
+	left is plain button, middle is hover, last is pressed
