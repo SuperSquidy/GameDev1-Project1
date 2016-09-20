@@ -24,7 +24,7 @@ class MenuState extends FlxState
 		bkg.loadGraphic("assets/images/Menu_bkg.png", false, 640, 480);
 		add(bkg);
 		// add(new FlxText(10,10,20, "Hello, world!"));
-		_playButton  = new FlxButton(0, 0, "Play", clickPlay);
+		_playButton  = new FlxButton(0, 0, "Play",function(){FlxG.switchState(new WorldState("water_shrine.tmx")); });
 		_playButton.loadGraphic("assets/images/Button_SpriteSheet.png", true, 160, 64);
 		_playButton.screenCenter();
 		add(_playButton);
@@ -59,5 +59,6 @@ class MenuState extends FlxState
 	{
 		// switch to play scene!
 		FlxG.switchState(new PlayState());
+		//FlxG.switchState(FlxG.switchState(new WorldState("assets/tiled/water_shrine.tmx")));
 	}
 }
