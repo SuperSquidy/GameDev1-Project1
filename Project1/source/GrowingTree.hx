@@ -42,11 +42,15 @@ class GrowingTree extends FlxSprite
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
-		if (animation.name == "idle_large"){
+		//if (animation.name == "idle_large"){
+		if (_lifeLeft > 0){
 			_lifeLeft -= elapsed;
-			if (_lifeLeft <= 0){
+			if (_lifeLeft <= 2){
 				animation.play("ungrow");
 				//remove hitbox
+				//allowCollisions = FlxObject.NONE;
+			}
+			if(_lifeLeft <= 0){
 				allowCollisions = FlxObject.NONE;
 			}
 		}
