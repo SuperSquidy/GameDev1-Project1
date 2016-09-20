@@ -65,7 +65,8 @@ class PauseState extends FlxSubState
 					var reversedWater = FlxStringUtil.formatArray(Reg.mando.getWaterSong()).split(',');
 					reversedWater.reverse();
 					text = "Hymn of Rain:     " + FlxStringUtil.formatArray(reversedWater) + "\n" + Assets.getText("assets/data/" + "Hymn_of_Rain_Description.txt");
-
+					createText(.04 + .005 * i,(80 + 36 * i),text);
+					continue;
 				}
 				else if(i == 1 && Reg.mando.getWindActive()){
 					var reversedWind = FlxStringUtil.formatArray(Reg.mando.getWindSong()).split(',');
@@ -86,7 +87,7 @@ class PauseState extends FlxSubState
 					text = "????????   ? ? ?";
 				}
 				text = StringTools.replace(text, ",", "   "); //Set the text to be placed in between each keypress.
-				createText(.04 + .005 * i,80 + 36 * i,text);
+				createText(.04 + .005 * i,(80 + 36 * i) * 3,text);
 			}
 		}
 	}
