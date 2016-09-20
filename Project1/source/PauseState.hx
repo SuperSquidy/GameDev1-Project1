@@ -89,7 +89,7 @@ class PauseState extends FlxSubState
 				else{
 					text = "????????   ? ? ?";
 				}
-				text = StringTools.replace(text, ",", "   "); //Set the text to be placed in between each keypress.
+			//	text = StringTools.replace(text, ",", "   "); //Set the text to be placed in between each keypress.
 				createText(.04 + .005 * i,(80 + 36 * i) * offset,text);
 			}
 		}
