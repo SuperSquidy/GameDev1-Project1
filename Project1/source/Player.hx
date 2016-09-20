@@ -211,8 +211,10 @@ class Player extends FlxSprite
 
 		if(!(FlxG.keys.anyPressed(_jumpKeys)) && velocity.y < 0 && jumpSongGround){
 			acceleration.y = _gravity * 3;
+			animation.play('fall');
 		} else{
 			acceleration.y = _gravity;
+			animation.play('fall');
 		}
 	}
 
