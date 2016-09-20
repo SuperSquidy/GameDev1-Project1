@@ -43,6 +43,8 @@ import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.FlxObject;
+import flixel.FlxG.sound;
+
 
 class Player extends FlxSprite
 {

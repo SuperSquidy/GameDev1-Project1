@@ -41,8 +41,9 @@ class TickingText extends FlxText
 		this.speed = speed;
 		this.borderColor = 0xff000000;
 		this.borderStyle = SHADOW;
+		this.borderSize = 3;
 		this.scrollFactor.set(0, 0);
-		trace("Initializing Text");
+		//trace("Initializing Text");
 
 	}
 	override public function update(elapsed:Float):Void 
@@ -66,7 +67,6 @@ class TickingText extends FlxText
 				_time = 0;
 				if (_ellipses < 3){
 					if (Std.int(_ellipses+elapsed) > Std.int(_ellipses )){
-						_currentText += ". ";
 						FlxG.sound.play(sound,.5,false);
 					}
 					text = _currentText;

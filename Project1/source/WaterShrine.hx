@@ -27,18 +27,13 @@ This file contains information pertaining to the Water Shrine including :
 
 class WaterShrine extends Shrine
 {
-	private static var songLearned:Bool = false;
+	public static var songLearned:Bool = false;
 	private static var storyLearned:Bool = false;
 	
 	//Initializing Story-related Variables
 	var ticker:TickingText;
 	var ticker2:TickingText;
 	var ticker3:TickingText;
-	var playText1:Bool = false;
-	var playText2:Bool = false;
-	var playText3:Bool = false;
-
-	var playerTrigger:Trigger;
 
 	override private function create():Void{
 		super.create();
@@ -56,16 +51,12 @@ class WaterShrine extends Shrine
 		animation.add("looping", [2,3,4], 3, true);
 
 		//Initialize Text Assets
-		ticker = new TickingText(false, "Watershrine_interact_1.txt", .04, 12, "Water_Text", 100, Std.int(y) - 100);
-		ticker2 = new TickingText(false, "Watershrine_text_2.txt", .04, 12, "Water_Text", 100, Std.int(y) - 100);
-		ticker3 = new TickingText(false, "Watershrine_after_song_3.txt", .04, 12, "Water_Text", 100, Std.int(y) - 100);
+		ticker = new TickingText(false, "Watershrine_interact_1.txt", .04, 12, "Water_Text", 100, Std.int(y) - 250);
+		ticker2 = new TickingText(false, "Watershrine_text_2.txt", .04, 12, "Water_Text", 100, Std.int(y) - 250);
+		ticker3 = new TickingText(false, "Watershrine_after_song_3.txt", .04, 12, "Water_Text", 100, Std.int(y) - 250);
 	}
 	
-	override public function update(elapsed:Float):Void{
-		super.update(elapsed);
-	}
-	
-	public function onActivate():Void{		
+	public override function onActivate():Void{		
 		if(!songLearned)
 			learnSong();
 
@@ -76,7 +67,7 @@ class WaterShrine extends Shrine
 				ticker3.resetText();
 				WorldState.instance.add(ticker3);
 				ticker3.doSkip = true;
-				ticker3.scrollFactor.set(1,1);
+		//		ticker3.scrollFactor.set(1,1);
 			}
 			finishInteraction("interacted");
 			Reg.mando.waterPlayed(false);
@@ -94,7 +85,7 @@ class WaterShrine extends Shrine
 		trace("Learning Song");
 		songLearned = true;
 		WorldState.instance.add(ticker);
-		ticker.scrollFactor.set(1,1);
+	//	ticker.scrollFactor.set(1,1);
 	}
 
 	/*	@function : Triggers the story text
@@ -107,7 +98,7 @@ class WaterShrine extends Shrine
 		animation.play("interacted");
 		storyLearned = true;
 		WorldState.instance.add(ticker2);
-		ticker2.scrollFactor.set(1, 1);
+	//	ticker2.scrollFactor.set(1, 1);
 		ticker.kill(); //Prevents text overlapping
 	}
 

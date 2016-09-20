@@ -26,8 +26,8 @@ class Shrine extends FlxSprite
 
 	private function create(){	}
 	
-//	public function onActivate(){
-//		animation.play("interacted", false);
-//	}
+	public function onActivate(){
+		//animation.play("interacted", false);
+	}
 
 }
