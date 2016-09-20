@@ -14,12 +14,18 @@ class MenuState extends FlxState
 {
 	var _playButton:FlxButton;
 	var ticker:TickingText;
+	var bkg:FlxSprite;
 	override public function create():Void
 	{
 		super.create();
 		
+		//add background
+		bkg = new FlxSprite();
+		bkg.loadGraphic("assets/images/Menu_bkg.png", false, 640, 480);
+		add(bkg);
 		// add(new FlxText(10,10,20, "Hello, world!"));
-		_playButton  = new FlxButton(0,0, "Play", clickPlay);
+		_playButton  = new FlxButton(0, 0, "Play", clickPlay);
+		_playButton.loadGraphic("assets/images/Button_SpriteSheet.png", true, 160, 64);
 		_playButton.screenCenter();
 		add(_playButton);
 		
