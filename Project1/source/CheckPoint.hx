@@ -69,6 +69,8 @@ class CheckPoint extends FlxSprite
 	//	Sets the current checkpoint to active
 	public function onActivate():Void{
 		currentState = "Active";
+		FlxG.sound.play("CheckPoint");
+
 		//Flickering animation
 		loadGraphic('assets/images/Checkpoint_on_anim.png', true, 32, 96); //Checkpoint turned off art
 		animation.add("flicker", [0, 1, 2, 1], 4, true);
