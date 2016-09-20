@@ -41,8 +41,9 @@
 		<sound path="sounds/Wind_Text.wav" id="Wind_Text"/>
 		<sound path="sounds/Earth_Song.wav" id="Earth_Song"/>
 		<sound path="sounds/Earth_Text.wav" id="Earth_Text"/>
-   		
+   		<sound path="sounds/step.wav" id="Step"/>		
 		<sound path="sounds/enable_Checkpoint.wav" id="CheckPoint"/>
+		
 		<music path="music/ScarfDance.wav" id="ScarfDance" />
 		
 		<sound path="sounds/koto_c1.wav" id="koto_c1" />
