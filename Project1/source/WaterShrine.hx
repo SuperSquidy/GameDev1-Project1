@@ -27,7 +27,7 @@ This file contains information pertaining to the Water Shrine including :
 
 class WaterShrine extends Shrine
 {
-	private static var songLearned:Bool = false;
+	public static var songLearned:Bool = false;
 	private static var storyLearned:Bool = false;
 	
 	//Initializing Story-related Variables

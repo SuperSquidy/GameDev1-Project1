@@ -25,7 +25,7 @@ This file contains information pertaining to the ScareCrow (Earth) Shrine includ
 */
 class ScarecrowShrine extends Shrine
 {
-	private static var songLearned:Bool = false;
+	public static var songLearned:Bool = false;
 	private static var storyLearned:Bool = false;
 	
 	var ticker:TickingText;
@@ -47,9 +47,12 @@ class ScarecrowShrine extends Shrine
 		animation.add("looping", [4,3,4,5], 3, true);
 
 		//Initializing Story Text Files
-		ticker = new TickingText(false, "Earthshrine_interact_0.txt", .04, 12, "Water_Text", 100, Std.int(y) - 100);
-		ticker2 = new TickingText(false, "Earthshrine_text_1.txt", .04, 12, "Water_Text", 100, Std.int(y) - 100);
-		ticker3 = new TickingText(false, "Earthshrine_after_song_2.txt", .04, 12, "Water_Text", 100, Std.int(y) - 100);
+		ticker = new TickingText(false, "Earthshrine_interact_0.txt", .04, 12, "Water_Text", 0, Std.int(y) - 200);
+		ticker.x = this.x -250;  ticker.fieldWidth = 500;
+		ticker2 = new TickingText(false, "Earthshrine_text_1.txt", .04, 12, "Water_Text", 0, Std.int(y) - 200);
+		ticker2.x = this.x -250; ticker.fieldWidth = 500;
+		ticker3 = new TickingText(false, "Earthshrine_after_song_2.txt", .04, 12, "Water_Text", 0, Std.int(y) - 200);
+		ticker3.x = this.x -250; ticker.fieldWidth = 500;
 	}
 
 	public function onActivate():Void{
@@ -92,7 +95,7 @@ class ScarecrowShrine extends Shrine
 	private function learnStory(){
 		trace("Learning Story");
 		FlxG.sound.play("Earth_Song");
-		Reg.mando.enableWaterSong();
+		Reg.mando.enableEarthSong();
 		animation.play("interacted");
 		storyLearned = true;
 		WorldState.instance.add(ticker2);
