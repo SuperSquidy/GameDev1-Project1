@@ -57,13 +57,13 @@ class PauseState extends FlxSubState
 			
 			var text:String;
 			for (i in 0...4){
-				if (i == 0 && Reg.mando.getWaterActive()){
+				if (i == 0 && WaterShrine.songLearned){
 					text = "Water     " + FlxStringUtil.formatArray(Reg.mando.getWaterSong());
 				}
 				else if(i == 1 && Reg.mando.getWindActive()){
 					text = "Wind      " + FlxStringUtil.formatArray(Reg.mando.getWindSong());
 				}
-				else if(i == 2 && Reg.mando.getEarthActive()){
+				else if(i == 2 && ScarecrowShrine.songLearned){
 					text = "Earth     " + FlxStringUtil.formatArray(Reg.mando.getEarthSong());
 				}
 				else if(i == 3 && Reg.mando.getStarActive()){

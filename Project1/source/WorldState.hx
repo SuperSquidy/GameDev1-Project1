@@ -111,7 +111,7 @@ class WorldState extends FlxState
 		FlxG.collide(player, trees);
 		FlxG.overlap(player, triggers,Trigger.onTriggerCollision);
 		FlxG.overlap(player, checkpoints, onCheckpointCollision);
-		FlxG.overlap(player, shrines, onWatershrineCollision);
+		FlxG.overlap(player, shrines, onShrineCollision);
 		if (FlxG.overlap(player,floors)){
 			//Death by pitfall
 			onDeath();
@@ -139,11 +139,7 @@ class WorldState extends FlxState
 		}
 	}
 
-	private function onWatershrineCollision(Player:FlxObject, shrine:WaterShrine):Void{
-		shrine.onActivate();
-	}
-
-	private function onEarthshrineCollision(Player:FlxObject, shrine:ScarecrowShrine):Void{
+	private function onShrineCollision(Player:FlxObject, shrine:Shrine):Void{
 		shrine.onActivate();
 	}
 

@@ -27,7 +27,7 @@ This file contains information pertaining to the Water Shrine including :
 
 class WaterShrine extends Shrine
 {
-	private static var songLearned:Bool = false;
+	public static var songLearned:Bool = false;
 	private static var storyLearned:Bool = false;
 	
 	//Initializing Story-related Variables
@@ -56,7 +56,7 @@ class WaterShrine extends Shrine
 		ticker3 = new TickingText(false, "Watershrine_after_song_3.txt", .04, 12, "Water_Text", 100, Std.int(y) - 250);
 	}
 	
-	public function onActivate():Void{		
+	public override function onActivate():Void{		
 		if(!songLearned)
 			learnSong();
 
