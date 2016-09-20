@@ -43,16 +43,15 @@ class Mandolin extends FlxBasic
 	var _recentNotes:Array<String>	= ["", "", "", "", ""];		//List of the most recent keys pressed
 	public static var _waterSong:Array<String>	= [";","L"];				//Double Jump
 	public static var _windSong:Array<String> 	= ["J", "J", "J"];			//Dash
-	public static var _earthSong:Array<String>	= ["H", "K", "L", "J", "H"];					//Grow a temporary plant platform
+	public static var _earthSong:Array<String>	= ["H", "J", "L", "K", "H"];					//Grow a temporary plant platform
 	public static var _starSong:Array<String> 	= [ "", ""];				//Fill the sky with stars
 	
 	//Flag Processing - True if the player has access to the special effects of the song
-	//NOTE : Initialize to true for testing purposes only.
 	//Changed to public static so that they persist between levels
-	public static var _waterActive:Bool = false;		
-	public static var _windActive:Bool = true;
-	public static var _earthActive:Bool = true;
-	public static var _starActive:Bool = true;
+	public static var _waterActive:Bool;		
+	public static var _windActive:Bool;
+	public static var _earthActive:Bool;
+	public static var _starActive:Bool;
 
 	//Holds true if a song was just played
 	private var _playedWater:Bool = false;
@@ -64,6 +63,12 @@ class Mandolin extends FlxBasic
 	public function new(player:Player){
 		super();
 		_playerCharacter = player;
+
+		//Only initialize true for testing
+		_waterActive = false;
+		_windActive = true;
+		_earthActive = true;
+		_starActive = true;
 	}
 
 /* FUNCTIONS TO PLAY NOTES */
@@ -246,4 +251,23 @@ class Mandolin extends FlxBasic
 		return _playedEarth;
 	public function getStarPlayed():Bool
 		return _playedStar;
+
+/*HELPER FUNCTIONS FOR ACCESSING VARS*/
+	public function getWaterActive():Bool
+		return _waterActive;
+	public function getWindActive():Bool
+		return _windActive;
+	public function getEarthActive():Bool
+		return _earthActive;
+	public function getStarActive():Bool
+		return _starActive;
+	public function getWaterSong():Array<String>
+		return _waterSong;
+	public function getWindSong():Array<String>
+		return _windSong;
+	public function getEarthSong():Array<String>
+		return _earthSong;
+	public function getStarSong():Array<String>
+		return _starSong;
+
 }
