@@ -34,7 +34,7 @@ class TickingText extends FlxText
 	{
 		super(margin,height, FlxG.width - margin, "", size);
 		if (!customText){
-			allText = Assets.getText("assets/data/" + textFile).split("\n");
+			allText = Assets.getText("assets/data/" + textFile).split("$");
 		}else{allText = new Array<String>(); }
 		_currentText = "";
 		this.sound = sound;
