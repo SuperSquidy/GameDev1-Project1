@@ -68,17 +68,17 @@ class PauseState extends FlxSubState
 					createText(.04 + .005 * i,(80 + 36 * i),text);
 					continue;
 				}
-				else if(i == 1 ){ //&& Reg.mando.getWindActive()){
-					var reversedWind = FlxStringUtil.formatArray(Reg.mando.getWindSong()).split(',');
-					reversedWind.reverse();
-					text = "Aria of Breezes     " + FlxStringUtil.formatArray(reversedWind) + "\n" + Assets.getText("assets/data/" + "Aria_of_Breezes_Description.txt");
-					createText(.04 + .005 * i,(80 + 36 * i) * 2.6,text);
-					continue;
-				}
-				else if(i == 2){//} && ScarecrowShrine.songLearned){
+				else if(i == 1){//} && ScarecrowShrine.songLearned){
 					var reversedEarth = FlxStringUtil.formatArray(Reg.mando.getEarthSong()).split(',');
 					reversedEarth.reverse();
 					text = "Song of Growth     " + FlxStringUtil.formatArray(reversedEarth) + "\n" + Assets.getText("assets/data/" + "Song_of_Growth_Description.txt");
+					createText(.04 + .005 * i,(80 + 36 * i) * 2.6,text);
+					continue;
+				}
+				else if(i == 2 ){ //&& Reg.mando.getWindActive()){
+					var reversedWind = FlxStringUtil.formatArray(Reg.mando.getWindSong()).split(',');
+					reversedWind.reverse();
+					text = "Aria of Breezes     " + FlxStringUtil.formatArray(reversedWind) + "\n" + Assets.getText("assets/data/" + "Aria_of_Breezes_Description.txt");
 					createText(.04 + .005 * i,(80 + 36 * i) * 3.5,text);
 					continue;
 				}
@@ -86,7 +86,7 @@ class PauseState extends FlxSubState
 					var reversedStar = FlxStringUtil.formatArray(Reg.mando.getStarSong()).split(',');
 					reversedStar.reverse();
 					text = "Ballad of Stars     " + FlxStringUtil.formatArray(reversedStar) + "\n" + Assets.getText("assets/data/" + "Ballad_of_Stars_Description.txt");
-					createText(.04 + .005 * i,(80 + 36 * i) * 4.0,text);
+					createText(.04 + .005 * i,(80 + 36 * i) * 4.2, text);
 					continue;
 				}
 				else{
