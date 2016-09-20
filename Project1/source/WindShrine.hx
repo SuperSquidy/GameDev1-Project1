@@ -69,7 +69,7 @@ class WindShrine extends Shrine
 				ticker3.scrollFactor.set(1,1);
 			}
 			finishInteraction("interacted");
-			Reg.mando.getWindPlayed(false);
+			Reg.mando.windPlayed(false);
 		}
 	}
 
