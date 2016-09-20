@@ -56,7 +56,7 @@ class WaterShrine extends Shrine
 		ticker3 = new TickingText(false, "Watershrine_after_song_3.txt", .04, 12, "Water_Text", 100, Std.int(y) - 100);
 	}
 	
-	public function onActivate():Void{		
+	public override function onActivate():Void{		
 		if(!songLearned)
 			learnSong();
 

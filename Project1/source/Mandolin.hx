@@ -65,7 +65,7 @@ class Mandolin extends FlxBasic
 		_playerCharacter = player;
 
 		//Only initialize true for testing
-		_waterActive = false;
+		_waterActive = true;
 		_windActive = true;
 		_earthActive = true;
 		_starActive = true;
