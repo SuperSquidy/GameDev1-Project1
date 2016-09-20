@@ -214,7 +214,6 @@ class Player extends FlxSprite
 			animation.play('fall');
 		} else{
 			acceleration.y = _gravity;
-			animation.play('fall');
 		}
 	}
 
