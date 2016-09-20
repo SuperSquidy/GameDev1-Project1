@@ -1,4 +1,4 @@
-Credits:
+Credits: 
 Kaitlin Dell : Producer, Core Artist
 Steven Wood : Programmer, Level Design
 Jazmyn Borman : Programmer, Sound, UI

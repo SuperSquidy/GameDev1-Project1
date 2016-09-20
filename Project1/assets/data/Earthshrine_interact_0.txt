@@ -1,2 +1,2 @@
 (You can see what looks like an old, weathered scarecrow. You can see some notes etched into the stone)
-Play H,K,L,J,H
+Play H,K,L,J,H 
