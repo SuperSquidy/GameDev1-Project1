@@ -34,11 +34,6 @@ class WaterShrine extends Shrine
 	var ticker:TickingText;
 	var ticker2:TickingText;
 	var ticker3:TickingText;
-	var playText1:Bool = false;
-	var playText2:Bool = false;
-	var playText3:Bool = false;
-
-	var playerTrigger:Trigger;
 
 	override private function create():Void{
 		super.create();
@@ -59,10 +54,6 @@ class WaterShrine extends Shrine
 		ticker = new TickingText(false, "Watershrine_interact_1.txt", .04, 12, "Water_Text", 100, Std.int(y) - 100);
 		ticker2 = new TickingText(false, "Watershrine_text_2.txt", .04, 12, "Water_Text", 100, Std.int(y) - 100);
 		ticker3 = new TickingText(false, "Watershrine_after_song_3.txt", .04, 12, "Water_Text", 100, Std.int(y) - 100);
-	}
-	
-	override public function update(elapsed:Float):Void{
-		super.update(elapsed);
 	}
 	
 	public function onActivate():Void{		
