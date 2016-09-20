@@ -8,6 +8,8 @@ import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxStringUtil;
 import lime.ui.KeyCode;
+import openfl.Assets;
+
 /**
  * ...
  * @author wrighp
@@ -62,22 +64,23 @@ class PauseState extends FlxSubState
 				if (i == 0 && WaterShrine.songLearned){
 					var reversedWater = FlxStringUtil.formatArray(Reg.mando.getWaterSong()).split(',');
 					reversedWater.reverse();
-					text = "Water     " + FlxStringUtil.formatArray(reversedWater);
+					text = "Hymn of Rain:     " + FlxStringUtil.formatArray(reversedWater) + "\n" + Assets.getText("assets/data/" + "Hymn_of_Rain_Description.txt");
+
 				}
 				else if(i == 1 && Reg.mando.getWindActive()){
 					var reversedWind = FlxStringUtil.formatArray(Reg.mando.getWindSong()).split(',');
 					reversedWind.reverse();
-					text = "Wind     " + FlxStringUtil.formatArray(reversedWind);
+					text = "Aria of Breezes     " + FlxStringUtil.formatArray(reversedWind) + "\n" + Assets.getText("assets/data/" + "Aria_of_Breezes_Description.txt");
 				}
 				else if(i == 2 && ScarecrowShrine.songLearned){
 					var reversedEarth = FlxStringUtil.formatArray(Reg.mando.getEarthSong()).split(',');
 					reversedEarth.reverse();
-					text = "Earth     " + FlxStringUtil.formatArray(reversedEarth);
+					text = "Song of Growth     " + FlxStringUtil.formatArray(reversedEarth) + "\n" + Assets.getText("assets/data/" + "Song_of_Growth_Description.txt");
 				}
 				else if(i == 3 && Reg.mando.getStarActive()){
 					var reversedStar = FlxStringUtil.formatArray(Reg.mando.getStarSong()).split(',');
 					reversedStar.reverse();
-					text = "Star     " + FlxStringUtil.formatArray(reversedStar);
+					text = "Ballad of Stars     " + FlxStringUtil.formatArray(reversedStar);
 				}
 				else{
 					text = "????????   ? ? ?";
