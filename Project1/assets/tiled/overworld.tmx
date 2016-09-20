@@ -6,6 +6,27 @@
  <tileset firstgid="10" name="allTerrainTiles" tilewidth="32" tileheight="32" tilecount="40" columns="5">
   <image source="../images/allTerrainTiles.png" width="160" height="256"/>
  </tileset>
+ <imagelayer name="Image Layer 1">
+  <image source="../images/Backgrounds/Overworld/Overworld_bkg_paper.png" width="5632" height="3584"/>
+  <properties>
+   <property name="scrollX" type="float" value="1"/>
+   <property name="scrollY" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Image Layer 2">
+  <image source="../images/Backgrounds/Overworld/Overworld_bkg_mt.png" width="5632" height="3584"/>
+  <properties>
+   <property name="scrollX" type="float" value="0.85"/>
+   <property name="scrollY" type="float" value="0.9"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Image Layer 3">
+  <image source="../images/Backgrounds/Overworld/Overworld_bkg_trees.png" width="5632" height="3584"/>
+  <properties>
+   <property name="scrollX" type="float" value="1"/>
+   <property name="scrollY" type="float" value="1"/>
+  </properties>
+ </imagelayer>
  <layer name="Foreground" width="176" height="112">
   <properties>
    <property name="tileset" value="allTerrainTiles"/>
