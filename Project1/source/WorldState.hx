@@ -164,5 +164,6 @@ class WorldState extends FlxState
 		//Effects (shake, flicker, sound, etc)
 		FlxG.camera.shake(.01, .2);
 		FlxFlicker.flicker(player, .5, .06);
+		FlxG.sound.play("hurt");
 	}
 }
