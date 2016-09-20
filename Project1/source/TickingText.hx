@@ -41,6 +41,7 @@ class TickingText extends FlxText
 		this.speed = speed;
 		this.borderColor = 0xff000000;
 		this.borderStyle = SHADOW;
+		this.borderSize = 2;
 		this.scrollFactor.set(0, 0);
 		trace("Initializing Text");
 
