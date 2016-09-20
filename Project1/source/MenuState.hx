@@ -44,11 +44,18 @@ class MenuState extends FlxState
 			i++;
 		}
 		
+		//credits button
+		var credits  = new FlxButton(0, 0, "", function(){if (ticker == null){ ticker = new TickingText("Credits.txt"); add(ticker); }else{ticker.skipText(); }});
+		credits.loadGraphic("assets/images/Button_SpriteSheet_credits.png", true, 144, 32);
+		credits.screenCenter();
+		credits.y += 210;
+		add(credits);
 		
-		var demoText  = new FlxButton(0, 0, "Demo Text", function(){if (ticker == null){ ticker = new TickingText("test.txt"); add(ticker); }else{ticker.skipText(); }});
+		/*var demoText  = new FlxButton(0, 0, "Demo Text", function(){if (ticker == null){ ticker = new TickingText("test.txt"); add(ticker); }else{ticker.skipText(); }});
 		demoText.screenCenter();
 		demoText.y += 30;
 		add(demoText); //Add or skip ahead ticking text
+		*/
 	}
 
 	override public function update(elapsed:Float):Void
