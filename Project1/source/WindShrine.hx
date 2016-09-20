@@ -49,9 +49,9 @@ class WindShrine extends Shrine
 		animation.add("looping", [1, 2, 3, 4], 3, true);
 
 		//Initialize Text Assets
-		ticker = new TickingText(false, "Windshrine_interact_1.txt", .04, 12, "Water_Text", 100, Std.int(y) - 250);
-		ticker2 = new TickingText(false, "Windshrine_text_2.txt", .04, 12, "Water_Text", 100, Std.int(y) - 250);
-		ticker3 = new TickingText(false, "Windshrine_after_song_3.txt", .04, 12, "Water_Text", 100, Std.int(y) - 250);
+		ticker = new TickingText(false, "Windshrine_interact_1.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 250);
+		ticker2 = new TickingText(false, "Windshrine_text_2.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 250);
+		ticker3 = new TickingText(false, "Windshrine_after_song_3.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 250);
 		
 	}
 
