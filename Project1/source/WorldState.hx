@@ -143,6 +143,10 @@ class WorldState extends FlxState
 		shrine.onActivate();
 	}
 
+	private function onEarthshrineCollision(Player:FlxObject, shrine:ScarecrowShrine):Void{
+		shrine.onActivate();
+	}
+
 	public function onDeath():Void
 	{
 		//Particle "splash" on death
