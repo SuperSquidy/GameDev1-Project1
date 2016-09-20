@@ -67,7 +67,6 @@ class TickingText extends FlxText
 				_time = 0;
 				if (_ellipses < 3){
 					if (Std.int(_ellipses+elapsed) > Std.int(_ellipses )){
-						_currentText += ". ";
 						FlxG.sound.play(sound,.5,false);
 					}
 					text = _currentText;
