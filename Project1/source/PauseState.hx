@@ -56,18 +56,28 @@ class PauseState extends FlxSubState
 			}*/
 			
 			var text:String;
+			
+			//These very verbose method chains are because the songs are written backwards in Mandolin.
 			for (i in 0...4){
 				if (i == 0 && WaterShrine.songLearned){
-					text = "Water     " + FlxStringUtil.formatArray(Reg.mando.getWaterSong());
+					var reversedWater = FlxStringUtil.formatArray(Reg.mando.getWaterSong()).split(',');
+					reversedWater.reverse();
+					text = "Water     " + FlxStringUtil.formatArray(reversedWater);
 				}
 				else if(i == 1 && Reg.mando.getWindActive()){
-					text = "Wind      " + FlxStringUtil.formatArray(Reg.mando.getWindSong());
+					var reversedWind = FlxStringUtil.formatArray(Reg.mando.getWindSong()).split(',');
+					reversedWind.reverse();
+					text = "Wind     " + FlxStringUtil.formatArray(reversedWind);
 				}
 				else if(i == 2 && ScarecrowShrine.songLearned){
-					text = "Earth     " + FlxStringUtil.formatArray(Reg.mando.getEarthSong());
+					var reversedEarth = FlxStringUtil.formatArray(Reg.mando.getEarthSong()).split(',');
+					reversedEarth.reverse();
+					text = "Earth     " + FlxStringUtil.formatArray(reversedEarth);
 				}
 				else if(i == 3 && Reg.mando.getStarActive()){
-					text = "Star      " + FlxStringUtil.formatArray(Reg.mando.getStarSong());
+					var reversedStar = FlxStringUtil.formatArray(Reg.mando.getStarSong()).split(',');
+					reversedStar.reverse();
+					text = "Star     " + FlxStringUtil.formatArray(reversedStar);
 				}
 				else{
 					text = "????????   ? ? ?";
