@@ -11,7 +11,7 @@ import flixel.FlxObject;
  */
 class GrowingTree extends FlxSprite
 {
-	private static inline var SONG_DISTANCE = 300;
+	private static inline var SONG_DISTANCE = 1000;
 	
 	private var _lifeDuration:Float;
 	private var _lifeLeft:Float;
@@ -22,7 +22,7 @@ class GrowingTree extends FlxSprite
 	 * @param	Y	Y position.
 	 * @param	lifeDuration = 5	How long the tree will last for, before ungrowing.
 	 */
-	public function new(X:Float,Y:Float, ?lifeDuration:Float = 5) 
+	public function new(X:Float,Y:Float, ?lifeDuration:Float = 20) 
 	{
 		super(X - 32, Y - 96);
 		this.immovable = true;
