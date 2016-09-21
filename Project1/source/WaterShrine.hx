@@ -101,7 +101,9 @@ class WaterShrine extends Shrine
 		WorldState.instance.add(ticker2);
 		ticker2.scrollFactor.set(1, 1);
 		ticker.kill(); //Prevents text overlapping
-		//Rain
+		
+		//Rain Animations
+			//rain song file
 		var rain = new FlxSprite(0, 0);
 		rain.loadGraphic("assets/images/Shrines/Water_Shrine_Rain.png", true, 640, 480);
 		rain.animation.add("rain", [0, 1], 6, true);
