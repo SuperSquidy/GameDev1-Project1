@@ -69,7 +69,7 @@ class Mandolin extends FlxBasic
 	private function playC3(){
 		FlxG.sound.play("koto_c3");	}
 	private function playG2(){
-		FlxG.sound.play("koto_g2");	}
+		FlxG.sound.play("koto_g3");	}
 	private function playC2(){
 		FlxG.sound.play("koto_c2");	}
 	private function playG1(){
