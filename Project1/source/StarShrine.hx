@@ -29,54 +29,40 @@ class StarShrine extends Shrine
 	public static var songLearned:Bool = false;
 	private static var storyLearned:Bool = false;
 
+	var starBackground = new FlxSprite(0,0);
+
 	//Initializing Story-related Variables
 	var ticker:TickingText;
 	var ticker2:TickingText;
-	var ticker3:TickingText;
 
 	override private function create():Void{
 		super.create();
 		//Don't worry about offsets for now
-		var tileSizeX = 96;
-		var tileSizeY = 96;
+		var tileSizeX = 128;
+		var tileSizeY = 128;
 
 		//Sprite Sheet & Animations
 		loadGraphic('assets/images/Shrines/Star_Shrine_SpriteSheet.png', true, tileSizeX, tileSizeY);
-		animation.add("interacted", [0, 1, 2], 0, false);
-		animation.finishCallback = finishInteraction;
+		animation.add("melting", [0,1,1,1,1,2,2,2,2,2], false);
 
 		//Initialize Text Assets
-		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
+		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
 		ticker.x = this.x -250;  ticker.fieldWidth = 550;
-		ticker2 = new TickingText(false, "Shrine_of_stars_text_2.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
+		ticker2 = new TickingText(false, "Shrine_of_stars_text_2.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
 		ticker2.x = this.x -250;  ticker.fieldWidth = 550;
-		
-		//ticker = new TickingText(false, "Windshrine_etching_interact_2.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 250);
 	}
 
 	public override function onActivate():Void{
 		if(!songLearned)
 			learnSong();
 
-		else if (Reg.mando.getWindPlayed()){		//If Earth song was played
+		else if (Reg.mando.getStarPlayed()){		//If Earth song was played
 			if(!storyLearned)
 				learnStory();
-			else if (!ticker2.alive){ //Prevents more overlapping
-				ticker3.resetText();
-				WorldState.instance.add(ticker3);
-				ticker3.doSkip = true;
-				ticker3.scrollFactor.set(1,1);
-			}
-			finishInteraction("interacted");
-			Reg.mando.windPlayed(false);
+			//Player walks into dark animation
+			//Fade to black
+			Reg.mando.starPlayed(false);
 		}
-	}
-
-	private function finishInteraction(name:String):Void
-	{
-		if (name == "interacted"){
-			animation.play("looping",true);	
-		}	
 	}
 
 	/*	@function : Triggers scrolling text to learn song
@@ -93,10 +79,9 @@ class StarShrine extends Shrine
 	*/
 	private function learnStory(){
 		trace("Learning Story");
-	//	FlxG.sound.play("Wind_Song");
-		loadGraphic('assets/images/Backgrounds/StarArea/Stars.png', false, 2400, 1600);
+	//	FlxG.sound.play("Star_Song");
+		animation.play("melting");
 		Reg.mando.enableStarSong();
-		animation.play("interacted");
 		storyLearned = true;
 		WorldState.instance.add(ticker2);
 		ticker2.scrollFactor.set(1, 1);
