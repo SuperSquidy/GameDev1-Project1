@@ -48,9 +48,9 @@ class StarShrine extends Shrine
 
 		//Initialize Text Assets
 		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
-		ticker.x = this.x -250;  ticker.fieldWidth = 550;
+		ticker.x = this.x -250;  ticker.fieldWidth = 500;
 		ticker2 = new TickingText(false, "Shrine_of_stars_text_2.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
-		ticker2.x = this.x -250;  ticker.fieldWidth = 550;
+		ticker2.x = this.x -250;  ticker.fieldWidth = 500;
 	}
 
 	public override function onActivate():Void{
