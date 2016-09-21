@@ -97,7 +97,7 @@ class StarShrine extends Shrine
 	*/
 	private function learnStory(){
 		trace("Learning Story");
-	//	FlxG.sound.play("Star_Song");
+		FlxG.sound.play("Star_Song");
 		animation.play("melting");
 		Reg.mando.enableStarSong();
 		storyLearned = true;
