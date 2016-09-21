@@ -1,2 +1,3 @@
 (The shrine has some musical notes etched into it)
 Press L, ; 
+Press TAB to review songs learned
