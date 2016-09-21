@@ -31,6 +31,10 @@ class StarShrine extends Shrine
 
 	var starBackground = new FlxSprite(0,0);
 
+	private var _fadeTime:Float = 40;
+	private var _duration:Float = 0;
+	private var _hasFaded:Bool = false;
+
 	//Initializing Story-related Variables
 	var ticker:TickingText;
 	var ticker2:TickingText;
@@ -86,5 +90,20 @@ class StarShrine extends Shrine
 		WorldState.instance.add(ticker2);
 		ticker2.scrollFactor.set(1, 1);
 		ticker.kill(); //Prevents text overlapping
+		
 	}
+
+	override public function update(elapsed:Float):Void{
+		super.update(elapsed);
+		//this is garbage
+		if(storyLearned && !_hasFaded){
+			_duration += elapsed;
+			if(_duration > _fadeTime){
+				trace("fade out");
+				_hasFaded = true;
+				FlxG.camera.fade(2, false);
+			}
+		}
+	}
+
 }
