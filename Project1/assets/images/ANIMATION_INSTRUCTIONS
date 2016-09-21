@@ -1,0 +1,40 @@
+ANIMATION INSTRUCTIONS:
+	All of these files will be placed in the images folder and their names will not change. Shrines will be in the Shrine Folder, PC in PC, etc. as needed.
+
+WATER SHRINE:
+	Use Water_Shrine_SpriteSheet.png (320x64, 64x64 per frame) frame 0 as still image
+	Use Water_Shrine_SpriteSheet.png frames 1-4 once when it has been interacted with
+	Use Water_Shrine_SpriteSheet.png frames 2-4 looping as idle animation after it has been interacted with
+EARTH SHRINE:
+	Use Scarecrow_Shrine_SpriteSheet.png (192x64, 32x64 per frame) frame 0 as still image
+	Use Scarecrow_Shrine_SpriteSheet.png frames 0-5 once when it has been interacted with
+	Use Scarecrow_Shrine_SpriteSheet.png frames [4, 3, 4, 5] looping as idle animation after it has been interacted with
+WIND SHRINE:
+	Use Wind_Shrine_SpriteSheet.png (480x96, 96x96 per frame) frame 0 as still image
+	Use Wind_Shrine_SpriteSheet.png frames 0-4 once when interacted with
+	Use Wind_Shrine_SpriteSheet.png frames 1-4 looping as idle animation after it has been interacted with
+PC:
+	All Animations on PC_SpriteSheet.png (160x256, 64x32 per frame) in the images folder
+	/12 fps is just my guess atm, can be changed for each depending on how it looks in game
+	STANDING STILL:
+		frame 0
+	IDLE:
+		animation.add('idle', [13, 14], 5, true);
+	WALK:
+		animation.add('walk', [1,2,3,4], 12, true);
+	JUMP:
+		animation.add('jump', [5,6], 12, false); 
+		make sure stay on frame 6 while going up
+	DBLJUMP:
+		animation.add('dbljump', [7, 8, 9], 12, false);
+		probably switch to frame 6 after initial animation
+	FALLING:
+		animation.add('fall', [10, 11, 12], 12, true);
+		loop while vertical velocity is negative
+	DASH:
+		animation.add('dash', [15, 16, 17], 12, true);
+		loop while dashing
+
+BUTTON:
+	Image: Button_SpriteSheet.png(480x64, 160x64 per frame)
+	left is plain button, middle is hover, last is pressed
