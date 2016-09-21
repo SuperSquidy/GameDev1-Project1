@@ -50,14 +50,11 @@ class WindShrine extends Shrine
 
 		//Initialize Text Assets
 		ticker = new TickingText(false, "Windshrine_interact_1.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
-		ticker.x = this.x -250;  ticker.fieldWidth = 500;
-		ticker.y = this.y -250;
+		ticker.x = this.x -250;  ticker.fieldWidth = 550;
 		ticker2 = new TickingText(false, "Windshrine_text_3.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
-		ticker2.x = this.x -250;  ticker.fieldWidth = 500;
-		ticker2.y = this.y -250;
+		ticker2.x = this.x -250;  ticker.fieldWidth = 550;
 		ticker3 = new TickingText(false, "Windshrine_after_song_4.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
-		ticker3.x = this.x -250;  ticker.fieldWidth = 500;
-		ticker2.y = this.y -250;
+		ticker3.x = this.x -250;  ticker.fieldWidth = 550;
 		
 		//ticker = new TickingText(false, "Windshrine_etching_interact_2.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 250);
 	}
@@ -66,7 +63,7 @@ class WindShrine extends Shrine
 		if(!songLearned)
 			learnSong();
 
-		else if (Reg.mando.getWindPlayed()){		//If Earth song was played
+		else if (Reg.mando.getWindPlayed() && EtchingShrine.songLearned){		//If Earth song was played
 			if(!storyLearned)
 				learnStory();
 			else if (!ticker2.alive){ //Prevents more overlapping
@@ -75,8 +72,8 @@ class WindShrine extends Shrine
 				ticker3.doSkip = true;
 				ticker3.scrollFactor.set(1,1);
 			}
-			finishInteraction("interacted");
-			Reg.mando.windPlayed(false);
+			//finishInteraction("interacted");
+			//Reg.mando.windPlayed(false);
 		}
 	}
 
@@ -102,7 +99,7 @@ class WindShrine extends Shrine
 	private function learnStory(){
 		trace("Learning Story");
 		FlxG.sound.play("Wind_Song");
-		Reg.mando.enableWindSong();
+		//Reg.mando.enableWindSong(); Windsong already enabled form etching
 		animation.play("interacted");
 		storyLearned = true;
 		WorldState.instance.add(ticker2);

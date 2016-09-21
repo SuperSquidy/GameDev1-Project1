@@ -41,7 +41,7 @@ class Trigger extends FlxObject
 				moveArea("earth_shrine.tmx");
 			case "overworldToWater":
 				moveArea("water_shrine.tmx", "overworld");
-			case "overworldtoStar":
+			case "overworldToStar":
 				moveArea("star_shrine.tmx");
 			case "overworldToAir":
 				moveArea("air_shrine.tmx");

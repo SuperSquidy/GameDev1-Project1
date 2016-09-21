@@ -3,6 +3,7 @@ package;
 import Shrine;
 import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
@@ -57,9 +58,9 @@ class WaterShrine extends Shrine
 	}
 	
 	public override function onActivate():Void{		
-		if(!songLearned)
+		if(!songLearned){
 			learnSong();
-
+		}
 		else if (Reg.mando.getWaterPlayed()){		//If water song was played
 			if(!storyLearned)
 				learnStory();
@@ -67,7 +68,7 @@ class WaterShrine extends Shrine
 				ticker3.resetText();
 				WorldState.instance.add(ticker3);
 				ticker3.doSkip = true;
-		//		ticker3.scrollFactor.set(1,1);
+				ticker3.scrollFactor.set(1,1);
 			}
 			finishInteraction("interacted");
 			Reg.mando.waterPlayed(false);
@@ -85,7 +86,7 @@ class WaterShrine extends Shrine
 		trace("Learning Song");
 		songLearned = true;
 		WorldState.instance.add(ticker);
-	//	ticker.scrollFactor.set(1,1);
+		ticker.scrollFactor.set(1,1);
 	}
 
 	/*	@function : Triggers the story text
@@ -98,8 +99,19 @@ class WaterShrine extends Shrine
 		animation.play("interacted");
 		storyLearned = true;
 		WorldState.instance.add(ticker2);
-	//	ticker2.scrollFactor.set(1, 1);
+		ticker2.scrollFactor.set(1, 1);
 		ticker.kill(); //Prevents text overlapping
+		//Rain
+		var rain = new FlxSprite(0, 0);
+		rain.loadGraphic("assets/images/Shrines/Water_Shrine_Rain.png", true, 640, 480);
+		rain.animation.add("rain", [0, 1], 6, true);
+		rain.animation.play("rain");
+		rain.scrollFactor.set(0, 0);
+		rain.setGraphicSize(1280, 960);
+		rain.animation.callback = function(s:String, i:Int, j:Int){ rain.set_flipY(FlxG.random.bool()); rain.set_flipX(FlxG.random.bool()); };
+		rain.screenCenter();
+		rain.set_alpha(.75);
+		WorldState.instance.level.foregroundTiles.add(rain);
 	}
 
 }

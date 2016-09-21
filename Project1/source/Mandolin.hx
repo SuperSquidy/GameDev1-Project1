@@ -40,11 +40,11 @@ class Mandolin extends FlxBasic
 	var _notesThisFrame:Bool = false;
 
 	//Song Processing : Note songs are stored backwards
-	var _recentNotes:Array<String>	= ["", "", "", "", ""];		//List of the most recent keys pressed
+	var _recentNotes:Array<String>	= ["", "", "", "", "", "", "", "", ""];		//List of the most recent keys pressed
 	public static var _waterSong:Array<String>	= [";","L"];				//Double Jump
 	public static var _windSong:Array<String> 	= ["J", "J", "J"];			//Dash
 	public static var _earthSong:Array<String>	= ["H", "J", "L", "K", "H"];					//Grow a temporary plant platform
-	public static var _starSong:Array<String> 	= [ "", ""];				//Fill the sky with stars
+	public static var _starSong:Array<String> 	= [ "H", "J", "J", "K", "L"];	//Fill the sky with stars
 	
 	//Flag Processing - True if the player has access to the special effects of the song
 	//Changed to public static so that they persist between levels
@@ -69,7 +69,7 @@ class Mandolin extends FlxBasic
 	private function playC3(){
 		FlxG.sound.play("koto_c3");	}
 	private function playG2(){
-		FlxG.sound.play("koto_g2");	}
+		FlxG.sound.play("koto_g3");	}
 	private function playC2(){
 		FlxG.sound.play("koto_c2");	}
 	private function playG1(){
@@ -161,6 +161,9 @@ class Mandolin extends FlxBasic
 				//Trigger Succesful Song Animation | Particles
 			}
 		}
+		else{
+			waterPlayed(false);
+		}
 
 		//Wind Song
 		if (checkSongPlayed(_windSong)){
@@ -171,7 +174,10 @@ class Mandolin extends FlxBasic
 				//Trigger Succesful Song Animation | Particles
 			}
 		}
-
+		else{
+			windPlayed(false);
+		}
+		
 		//Earth Song
 		if (checkSongPlayed(_earthSong)){
 			resetRecentNotes();		//Clear last song played
@@ -181,15 +187,20 @@ class Mandolin extends FlxBasic
 				//Trigger additional sound file ?
 			}
 		}
+		else{
+			earthPlayed(false);
+		}
 
 		//Star Song
 		if (checkSongPlayed(_starSong)){
+			trace("StarSong Played");
 			resetRecentNotes();		//Clear last song played
 			starPlayed(true);
 			//if (_starActive)
 				//Trigger Star Song
-				//Trigger Succesful Song Animation | Particles
-				//Trigger additional sound file ?
+		}
+		else{
+			starPlayed(false);
 		}
 	}
 

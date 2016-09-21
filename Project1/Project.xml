@@ -50,7 +50,7 @@
 		<sound path="sounds/koto_c2.wav" id="koto_c2" />
 		<sound path="sounds/koto_c3.wav" id="koto_c3" />
 		<sound path="sounds/koto_g1.wav" id="koto_g1" />
-		<sound path="sounds/koto_g2.wav" id="koto_g2" />	
+		<sound path="sounds/koto_g3.wav" id="koto_g3" />	
 
 	</assets>
 
