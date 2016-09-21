@@ -104,6 +104,8 @@ class WaterShrine extends Shrine
 		
 		//Rain Animations
 			//rain song file
+			FlxG.sound.playMusic("Rain");
+			FlxG.sound.music.persist = false; //Music will now maybe not persist between states
 		var rain = new FlxSprite(0, 0);
 		rain.loadGraphic("assets/images/Shrines/Water_Shrine_Rain.png", true, 640, 480);
 		rain.animation.add("rain", [0, 1], 6, true);
