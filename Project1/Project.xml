@@ -37,7 +37,7 @@
 		<sound path="sounds/textScroll.wav" id="textScroll"/>
 		<sound path="sounds/Water_Song.wav" id="Water_Song"/>
 		<sound path="sounds/Water_Text.wav" id="Water_Text"/>
-		<sound path="sounds/Wind_Songv2.wav" id="Wind_Song"/>
+		<sound path="sounds/Wind_Songv3.wav" id="Wind_Song"/>
 		<sound path="sounds/Wind_Text.wav" id="Wind_Text"/>
 		<sound path="sounds/Earth_Song.wav" id="Earth_Song"/>
 		<sound path="sounds/Earth_Text.wav" id="Earth_Text"/>
