@@ -281,4 +281,8 @@ class Player extends FlxSprite
 			animation.play('blank');
 		}
 	}*/
+
+	public function onPlayerDeath(){
+		_dashTime = -1;
+	}
 }

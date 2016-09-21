@@ -160,6 +160,7 @@ class WorldState extends FlxState
 		player.setPosition(_checkpointPosition.x, _checkpointPosition.y);
 		//Kill player movement (and probably abilities too)
 		player.velocity.set(0, 0);
+		player.onPlayerDeath();
 		
 		//Effects (shake, flicker, sound, etc)
 		FlxG.camera.shake(.01, .2);
