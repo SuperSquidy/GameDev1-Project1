@@ -59,6 +59,7 @@ class StarShrine extends Shrine
 		else if (Reg.mando.getStarPlayed()){		//If Earth song was played
 			if(!storyLearned)
 				learnStory();
+			//delete player object
 			//Player walks into dark animation
 			//Fade to black
 			Reg.mando.starPlayed(false);
