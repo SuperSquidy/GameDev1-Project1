@@ -9,7 +9,7 @@ import flixel.FlxBasic;
 import flixel.FlxG.sound;
 
 /*
-This file contains information pertaining to the Wind Shrine including :
+This file contains information pertaining to the Star Shrine including :
  - Recognizing when the player has interacted with the object
  - Triggering logic & 'cutscenes' & correct story options
  - Unlocking the Player's double jump
@@ -18,9 +18,8 @@ This file contains information pertaining to the Wind Shrine including :
  - If the player is in range of the shrine for the first time
  	- The first set of text scrolls, teaching them the song
  - When the player plays the song in range of the shrine for the first time
- 	- Second set of text scrolls, player unlocks dash functionality
- - If the player plays the song in range an additional time(s)
- 	- The interaction animation plays, but nothing else
+ 	- Second set of text scrolls, player turns invisible
+ 	- When text ends, game ideally fades to black
 */
 
 class StarShrine extends Shrine
@@ -47,9 +46,9 @@ class StarShrine extends Shrine
 		animation.add("ending", [3, 4, 5], 1, false);
 
 		//Initialize Text Assets
-		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
+		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Star_Text", 75, Std.int(y) - 200);
 		ticker.x = this.x -250;  ticker.fieldWidth = 500;
-		ticker2 = new TickingText(false, "Shrine_of_stars_text_2.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
+		ticker2 = new TickingText(false, "Shrine_of_stars_text_2.txt", .04, 12, "Star_Text", 75, Std.int(y) - 200);
 		ticker2.x = this.x -250;  ticker.fieldWidth = 500;
 	}
 
@@ -96,8 +95,8 @@ class StarShrine extends Shrine
 	*/
 	private function endGame(){
 		endBackground.loadGraphic('assets/images/blackFade.png', true, 2400, 1600);
-		animation.add('fadeOut', [0, 1, 2, 3, 4, 5],1, false);
-		animation.play('fadeOut');
+		animation.add('fadeOut', [0, 1, 2, 3, 4, 5], 1, true);
 		WorldState.instance.add(endBackground);
+		animation.play('fadeOut');
 	}
 }
