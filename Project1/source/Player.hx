@@ -86,8 +86,9 @@ class Player extends FlxSprite
 	public static var _mando:Mandolin;
 
 /* CONSTRUCTOR & UPDATE */
-	/* Currently defines our player as 
-	a 32x64 Green Square & Initializes instrument*/
+	/* Full character animations declared
+		Physics variables initialized
+		Instrument Initialization*/
 
 	public function new(?X:Float=0, ?Y:Float=0)
 	{	
