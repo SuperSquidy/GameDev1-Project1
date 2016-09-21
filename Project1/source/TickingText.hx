@@ -65,12 +65,12 @@ class TickingText extends FlxText
 				}
 			}else if(doSkip){
 				_time = 0;
-				if (_ellipses < 3){
+				if (_ellipses < 2){
 					if (Std.int(_ellipses+elapsed) > Std.int(_ellipses )){
 						FlxG.sound.play(sound,.5,false);
 					}
 					text = _currentText;
-				} else if (_ellipses > 4){
+				} else if (_ellipses > 3){
 					skipText();
 				}
 				_ellipses += elapsed;
