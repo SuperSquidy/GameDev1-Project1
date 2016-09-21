@@ -46,7 +46,7 @@ class WindShrine extends Shrine
 		animation.play("idle", false);
 		animation.add("interacted", [0, 1, 2, 3,4], 2, false);
 		animation.finishCallback = finishInteraction;
-		animation.add("looping", [1, 2, 3, 4], 3, true);
+		animation.add("looping", [2, 3, 4], 3, true);
 
 		//Initialize Text Assets
 		ticker = new TickingText(false, "Windshrine_interact_1.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);

@@ -61,7 +61,7 @@ class Player extends FlxSprite
 	/*Dash stuffs*/
 	private static inline var _dashSpeed:Int = 1000;
 	private static inline var _dashDuration:Float = 0.25;
-	private static inline var _dashCooldown:Float = 3.0;
+	private static inline var _dashCooldown:Float = 2.0;
 	private var _dashTime:Float = -1;
 	
 	//Mandolin Songs so elapsed works properly
@@ -74,6 +74,7 @@ class Player extends FlxSprite
 	
 	//'Cutscene' Conditional
 	private var playerFrozen:Bool = false;
+	public static var invis:Bool = false;
 
 	//Movement Conditionals
 	var _runSpeed:Float = 200;
@@ -86,8 +87,9 @@ class Player extends FlxSprite
 	public static var _mando:Mandolin;
 
 /* CONSTRUCTOR & UPDATE */
-	/* Currently defines our player as 
-	a 32x64 Green Square & Initializes instrument*/
+	/* Full character animations declared
+		Physics variables initialized
+		Instrument Initialization*/
 
 	public function new(?X:Float=0, ?Y:Float=0)
 	{	
@@ -106,6 +108,7 @@ class Player extends FlxSprite
 		animation.add('dbljump', [7, 8, 9, 6], 5, false);	// Double Jump
 		animation.add('fall', [10, 11, 12], 12, true);	// Fall
 		animation.add('dash', [15, 16, 17], 12, true);	// Dash
+		animation.add('blank', [18, 19], 5, false); //for ending
 		
 		//Physics & Jump
 		drag.set(_runSpeed * 8, _runSpeed * 8);
@@ -129,6 +132,10 @@ class Player extends FlxSprite
 			dash(elapsed);		//Trigger dash logic
 			_mando.instrumentKeys();
 			_mando.noteTimer(elapsed);
+		}
+		if (invis){
+			animation.play('blank');
+			setPlayerFrozen(true);
 		}
 
 		//Reset double jump on collision
@@ -246,6 +253,7 @@ class Player extends FlxSprite
 
 			if(_dashTime > _dashCooldown){
 				_dashTime = -1;
+				//Give player indication that dash is available again
 			}
 
 			setDashPlayed(false);
@@ -265,4 +273,12 @@ class Player extends FlxSprite
 	private function setJumpSongGround(condition:Bool):Void{
 		jumpSongGround = condition;
 	}
+	
+/*function for ending
+	public function setPlayerInvis(condition:Bool):Void{
+		invis = condition;
+		if invis{
+			animation.play('blank');
+		}
+	}*/
 }

@@ -104,7 +104,7 @@ class PauseState extends FlxSubState
 	 * @param	textString	String of text to display.
 	 */
 	private function createText(Speed:Float, Y:Float, textString:String){
-		var text = new TickingText(true,Speed,24);
+		var text = new TickingText(true,Speed, 24, "Water_Text");
 		text.y = Y;
 		text.doSkip = false;
 		text.allText.push(textString);

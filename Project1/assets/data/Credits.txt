@@ -1,6 +1,6 @@
 Credits: 
 Kaitlin Dell : Producer, Core Artist
-Steven Wood : Programmer, Level Design
+Stephen Wood : Programmer, Level Design
 Jazmyn Borman : Programmer, Sound, UI
 Patrick Wright : Programmer, UI
 Casey Lee : Writer, Level QA
