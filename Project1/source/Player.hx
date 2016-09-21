@@ -134,6 +134,7 @@ class Player extends FlxSprite
 		}
 		if (invis){
 			animation.play('blank');
+			setPlayerFrozen(true);
 		}
 
 		//Reset double jump on collision

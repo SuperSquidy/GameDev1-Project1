@@ -66,9 +66,9 @@ class StarShrine extends Shrine
 			//Player walks into dark animation
 			animation.play("ending");
 			//Fade to black
-			loadGraphic('assets/images/blackFade.png', true, 2400, 1600);
+			/*loadGraphic('assets/images/blackFade.png', true, 2400, 1600);
 			animation.add('fadeOut', [0, 1, 2, 3, 4, 5],5, false);
-			animation.play('fadeOut');
+			animation.play('fadeOut');*/
 			Reg.mando.starPlayed(false);
 		}
 	}
