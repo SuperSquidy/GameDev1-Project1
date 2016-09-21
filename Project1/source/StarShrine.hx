@@ -29,7 +29,7 @@ class StarShrine extends Shrine
 	public static var songLearned:Bool = false;
 	private static var storyLearned:Bool = false;
 
-	var starBackground = new FlxSprite(0,0);
+	var endBackground = new FlxSprite(0,0);
 
 	//Initializing Story-related Variables
 	var ticker:TickingText;
@@ -44,7 +44,7 @@ class StarShrine extends Shrine
 		//Sprite Sheet & Animations
 		loadGraphic('assets/images/Shrines/Star_Shrine_SpriteSheet.png', true, tileSizeX, tileSizeY);
 		animation.add("melting", [0, 1, 2], 3, false);
-		animation.add("ending", [3, 4, 5], 3, false);
+		animation.add("ending", [3, 4, 5], 1, false);
 
 		//Initialize Text Assets
 		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
@@ -58,18 +58,13 @@ class StarShrine extends Shrine
 			learnSong();
 
 		else if (Reg.mando.getStarPlayed()){		//If Earth song was played
-			if(!storyLearned)
+			if(!storyLearned){
 				learnStory();
-			//delete player object
-			//Player.setPlayerInvis(true);
-			Player.invis = true;
-			//Player walks into dark animation
-			animation.play("ending");
-			//Fade to black
-			/*loadGraphic('assets/images/blackFade.png', true, 2400, 1600);
-			animation.add('fadeOut', [0, 1, 2, 3, 4, 5],5, false);
-			animation.play('fadeOut');*/
-			Reg.mando.starPlayed(false);
+				Player.invis = true;
+				animation.play("ending");		//Player walks into Shrine
+			}
+			if (!ticker2.alive)				//When text is done, End game
+				endGame();
 		}
 	}
 
@@ -94,5 +89,15 @@ class StarShrine extends Shrine
 		WorldState.instance.add(ticker2);
 		ticker2.scrollFactor.set(1, 1);
 		ticker.kill(); //Prevents text overlapping
+	}
+
+	/*	@function : Ends game when
+			last text scrolls out
+	*/
+	private function endGame(){
+		endBackground.loadGraphic('assets/images/blackFade.png', true, 2400, 1600);
+		WorldState.instance.add(endBackground);
+		animation.add('fadeOut', [0, 1, 2, 3, 4, 5],5, false);
+		animation.play('fadeOut');
 	}
 }
