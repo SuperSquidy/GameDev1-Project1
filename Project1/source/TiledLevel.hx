@@ -201,6 +201,8 @@ class TiledLevel extends TiledMap
 				state.shrines.add(new WaterShrine(x, y));
 			case "windshrine":
 				state.shrines.add(new WindShrine(x, y));
+			case "airsong":
+				state.shrines.add(new EtchingShrine(x, y));
 			case "starshrine":
 				state.shrines.add(new StarShrine(x, y));
 			case "playerenter": //Check if player is coming from a level.
