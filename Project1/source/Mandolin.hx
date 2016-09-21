@@ -161,6 +161,9 @@ class Mandolin extends FlxBasic
 				//Trigger Succesful Song Animation | Particles
 			}
 		}
+		else{
+			waterPlayed(false);
+		}
 
 		//Wind Song
 		if (checkSongPlayed(_windSong)){
@@ -171,7 +174,10 @@ class Mandolin extends FlxBasic
 				//Trigger Succesful Song Animation | Particles
 			}
 		}
-
+		else{
+			windPlayed(false);
+		}
+		
 		//Earth Song
 		if (checkSongPlayed(_earthSong)){
 			resetRecentNotes();		//Clear last song played
@@ -181,6 +187,9 @@ class Mandolin extends FlxBasic
 				//Trigger additional sound file ?
 			}
 		}
+		else{
+			earthPlayed(false);
+		}
 
 		//Star Song
 		if (checkSongPlayed(_starSong)){
@@ -189,6 +198,9 @@ class Mandolin extends FlxBasic
 			starPlayed(true);
 			//if (_starActive)
 				//Trigger Star Song
+		}
+		else{
+			starPlayed(false);
 		}
 	}
 
