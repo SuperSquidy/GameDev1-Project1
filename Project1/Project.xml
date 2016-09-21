@@ -41,6 +41,7 @@
 		<sound path="sounds/Wind_Text.wav" id="Wind_Text"/>
 		<sound path="sounds/Earth_Song.wav" id="Earth_Song"/>
 		<sound path="sounds/Earth_Text.wav" id="Earth_Text"/>
+		<sound path="sounds/Star_Text.wav" id="Star_Text"/>
    		<sound path="sounds/step.wav" id="Step"/>		
 		<sound path="sounds/enable_Checkpoint.wav" id="CheckPoint"/>
 		
