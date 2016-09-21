@@ -61,7 +61,7 @@ class Player extends FlxSprite
 	/*Dash stuffs*/
 	private static inline var _dashSpeed:Int = 1000;
 	private static inline var _dashDuration:Float = 0.25;
-	private static inline var _dashCooldown:Float = 3.0;
+	private static inline var _dashCooldown:Float = 2.0;
 	private var _dashTime:Float = -1;
 	
 	//Mandolin Songs so elapsed works properly
@@ -253,6 +253,7 @@ class Player extends FlxSprite
 
 			if(_dashTime > _dashCooldown){
 				_dashTime = -1;
+				//Give player indication that dash is available again
 			}
 
 			setDashPlayed(false);
