@@ -63,7 +63,7 @@ class WindShrine extends Shrine
 		if(!songLearned)
 			learnSong();
 
-		else if (Reg.mando.getWindPlayed()){		//If Earth song was played
+		else if (Reg.mando.getWindPlayed() && EtchingShrine.songLearned){		//If Earth song was played
 			if(!storyLearned)
 				learnStory();
 			else if (!ticker2.alive){ //Prevents more overlapping
@@ -72,8 +72,8 @@ class WindShrine extends Shrine
 				ticker3.doSkip = true;
 				ticker3.scrollFactor.set(1,1);
 			}
-			finishInteraction("interacted");
-			Reg.mando.windPlayed(false);
+			//finishInteraction("interacted");
+			//Reg.mando.windPlayed(false);
 		}
 	}
 
@@ -99,7 +99,7 @@ class WindShrine extends Shrine
 	private function learnStory(){
 		trace("Learning Story");
 		FlxG.sound.play("Wind_Song");
-		Reg.mando.enableWindSong();
+		//Reg.mando.enableWindSong(); Windsong already enabled form etching
 		animation.play("interacted");
 		storyLearned = true;
 		WorldState.instance.add(ticker2);

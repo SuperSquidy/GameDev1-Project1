@@ -74,7 +74,7 @@ class PauseState extends FlxSubState
 					text = "Song of Growth     " + FlxStringUtil.formatArray(reversedEarth) + "\n" + Assets.getText("assets/data/" + "Song_of_Growth_Description.txt");
 					offset = 2.6;
 				}
-				else if(i == 2 ){ //&& Reg.mando.getWindActive()){
+				else if(i == 2 ){ //&& EtchingShrine.songLearned){
 					var reversedWind = FlxStringUtil.formatArray(Reg.mando.getWindSong()).split(',');
 					reversedWind.reverse();
 					text = "Aria of Breezes     " + FlxStringUtil.formatArray(reversedWind) + "\n" + Assets.getText("assets/data/" + "Aria_of_Breezes_Description.txt");
