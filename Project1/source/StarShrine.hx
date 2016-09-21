@@ -28,17 +28,25 @@ class StarShrine extends Shrine
 	public static var songLearned:Bool = false;
 	private static var storyLearned:Bool = false;
 
-	var endBackground = new FlxSprite(0,0);
-
 	//Initializing Story-related Variables
 	var ticker:TickingText;
 	var ticker2:TickingText;
+
+	var _X:Float;
+	var _Y:Float;
+	var _background = new FadeBackground(0,0);
+	var endGameThing = new FlxSprite(0,0);
+
 
 	override private function create():Void{
 		super.create();
 		//Don't worry about offsets for now
 		var tileSizeX = 128;
 		var tileSizeY = 128;
+
+		_X = this.x;
+		_Y = this.y;
+
 
 		//Sprite Sheet & Animations
 		loadGraphic('assets/images/Shrines/Star_Shrine_SpriteSheet.png', true, tileSizeX, tileSizeY);
@@ -53,6 +61,8 @@ class StarShrine extends Shrine
 	}
 
 	public override function onActivate():Void{
+		endGame();
+
 		if(!songLearned)
 			learnSong();
 
@@ -61,9 +71,12 @@ class StarShrine extends Shrine
 				learnStory();
 				Player.invis = true;
 				animation.play("ending");		//Player walks into Shrine
+				if (!ticker2.alive){
+					endGameThing.loadGraphic('assets/images/blackFade.png', true, 2400, 1600);
+					WorldState.instance.add(endGameThing);
+				//	endGame();
+				}
 			}
-			if (!ticker2.alive)				//When text is done, End game
-				endGame();
 		}
 	}
 
@@ -94,9 +107,6 @@ class StarShrine extends Shrine
 			last text scrolls out
 	*/
 	private function endGame(){
-		endBackground.loadGraphic('assets/images/blackFade.png', true, 2400, 1600);
-		animation.add('fadeOut', [0, 1, 2, 3, 4, 5], 1, true);
-		WorldState.instance.add(endBackground);
-		animation.play('fadeOut');
+		_background.endGame();
 	}
 }
