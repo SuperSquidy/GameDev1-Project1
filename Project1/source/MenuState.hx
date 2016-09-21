@@ -29,7 +29,7 @@ class MenuState extends FlxState
 		_playButton.screenCenter();
 		_playButton.y += 150;
 		add(_playButton);
-		
+		/*
 		var i = 0;
 		for (s in FileSystem.readDirectory("assets/tiled")){
 			var demoWorldButton:FlxButton = new FlxButton(0, 0, "     Demo: " + s,function(){FlxG.switchState(new WorldState(s)); });
@@ -42,7 +42,7 @@ class MenuState extends FlxState
 			demoWorldButton.x += 100;
 			add(demoWorldButton); //Switch to WorldState
 			i++;
-		}
+		}*/
 		
 		//credits button
 		var credits  = new FlxButton(0, 0, "", function(){if (ticker == null){ ticker = new TickingText("Credits.txt"); add(ticker); }else{ticker.skipText(); }});
