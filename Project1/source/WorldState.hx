@@ -93,11 +93,11 @@ class WorldState extends FlxState
 
 		if (FlxG.sound.music == null && _levelName == "overworld.tmx"){
 			FlxG.sound.playMusic("Birds");
-		//	FlxG.sound.music.persist = true; //Music will now persist between states
+			FlxG.sound.music.persist = true; //Music will now persist between states
 		}
 		
-		var backButton  = new FlxButton(20,20, "Back", function(){FlxG.switchState(new MenuState());});
-		add(backButton); //Back to menu button
+		/*var backButton  = new FlxButton(20,20, "Back", function(){FlxG.switchState(new MenuState());});
+		add(backButton); //Back to menu button*/
 		
 	}
 	
