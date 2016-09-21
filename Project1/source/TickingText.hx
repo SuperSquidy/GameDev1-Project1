@@ -57,7 +57,7 @@ class TickingText extends FlxText
 					_time -= speed;
 					var char =  allText[_index].charAt(_currentText.length);
 						if (!played && char != ' '){
-							FlxG.sound.play(sound, .5, false);
+							FlxG.sound.play(sound, .3, false);
 							played = true;
 						}
 						_currentText += char;
