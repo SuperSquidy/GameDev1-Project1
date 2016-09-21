@@ -61,7 +61,7 @@ class StarShrine extends Shrine
 	}
 
 	public override function onActivate():Void{
-		endGame();
+		//endGame();
 
 		if(!songLearned)
 			learnSong();
@@ -71,6 +71,8 @@ class StarShrine extends Shrine
 				learnStory();
 				Player.invis = true;
 				animation.play("ending");		//Player walks into Shrine
+				
+				/*NONE OF THIS CODE DOES ANYTHING*/
 				if (!ticker2.alive){
 					endGameThing.loadGraphic('assets/images/blackFade.png', true, 2400, 1600);
 					WorldState.instance.add(endGameThing);
@@ -85,6 +87,7 @@ class StarShrine extends Shrine
 	private function learnSong(){
 		trace("Learning Song");
 		songLearned = true;
+		FlxG.sound.play("Twinkle");
 		WorldState.instance.add(ticker);
 		ticker.scrollFactor.set(1,1);
 	}
@@ -103,6 +106,8 @@ class StarShrine extends Shrine
 		ticker.kill(); //Prevents text overlapping
 	}
 
+
+	/*NONE OF THIS CODE DOES ANYTHING*/
 	/*	@function : Ends game when
 			last text scrolls out
 	*/
