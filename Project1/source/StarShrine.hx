@@ -46,12 +46,10 @@ class StarShrine extends Shrine
 		animation.finishCallback = finishInteraction;
 
 		//Initialize Text Assets
-		ticker = new TickingText(false, "Shrine_of_Stars_interact_1.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
+		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
 		ticker.x = this.x -250;  ticker.fieldWidth = 550;
-		ticker2 = new TickingText(false, "Shrine_of_Stars_text_3.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
+		ticker2 = new TickingText(false, "Shrine_of_stars_text_2.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
 		ticker2.x = this.x -250;  ticker.fieldWidth = 550;
-		ticker3 = new TickingText(false, "Shrine_of_Stars_after_song_4.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
-		ticker3.x = this.x -250;  ticker.fieldWidth = 550;
 		
 		//ticker = new TickingText(false, "Windshrine_etching_interact_2.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 250);
 	}
