@@ -43,11 +43,12 @@ class StarShrine extends Shrine
 
 		//Sprite Sheet & Animations
 		loadGraphic('assets/images/Shrines/Star_Shrine_SpriteSheet.png', true, tileSizeX, tileSizeY);
+		animation.add("melting", [0,1,1,1,1,2,2,2,2,2], false);
 
 		//Initialize Text Assets
-		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
+		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
 		ticker.x = this.x -250;  ticker.fieldWidth = 550;
-		ticker2 = new TickingText(false, "Shrine_of_stars_text_2.txt", .04, 12, "Wind_Text", 100, Std.int(y) - 200);
+		ticker2 = new TickingText(false, "Shrine_of_stars_text_2.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
 		ticker2.x = this.x -250;  ticker.fieldWidth = 550;
 	}
 
@@ -58,6 +59,8 @@ class StarShrine extends Shrine
 		else if (Reg.mando.getStarPlayed()){		//If Earth song was played
 			if(!storyLearned)
 				learnStory();
+			//Player walks into dark animation
+			//Fade to black
 			Reg.mando.starPlayed(false);
 		}
 	}
@@ -77,9 +80,7 @@ class StarShrine extends Shrine
 	private function learnStory(){
 		trace("Learning Story");
 	//	FlxG.sound.play("Star_Song");
-		starBackground.loadGraphic('assets/images/Backgrounds/StarArea/Stars.png', false, 2400, 1600);
-		WorldState.instance.add(starBackground);
-		starBackground.scrollFactor.set(.9, .9);
+		animation.play("melting");
 		Reg.mando.enableStarSong();
 		storyLearned = true;
 		WorldState.instance.add(ticker2);
