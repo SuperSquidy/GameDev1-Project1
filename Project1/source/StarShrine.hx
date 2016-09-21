@@ -28,6 +28,10 @@ class StarShrine extends Shrine
 	public static var songLearned:Bool = false;
 	private static var storyLearned:Bool = false;
 
+	private var _fadeTime:Float = 40;
+	private var _duration:Float = 0;
+	private var _hasFaded:Bool = false;
+
 	//Initializing Story-related Variables
 	var ticker:TickingText;
 	var ticker2:TickingText;
@@ -105,6 +109,20 @@ class StarShrine extends Shrine
 		ticker2.scrollFactor.set(1, 1);
 		ticker.kill(); //Prevents text overlapping
 	}
+
+	override public function update(elapsed:Float):Void{
+		super.update(elapsed);
+		//this is garbage
+		if(storyLearned && !_hasFaded){
+			_duration += elapsed;
+			if(_duration > _fadeTime){
+				trace("fade out");
+				_hasFaded = true;
+				FlxG.camera.fade(2, false);
+			}
+		}
+	}
+
 
 
 	/*NONE OF THIS CODE DOES ANYTHING*/
