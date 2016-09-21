@@ -43,7 +43,7 @@ class StarShrine extends Shrine
 
 		//Sprite Sheet & Animations
 		loadGraphic('assets/images/Shrines/Star_Shrine_SpriteSheet.png', true, tileSizeX, tileSizeY);
-		animation.add("melting", [0,1,2], false);
+		animation.add("melting", [0,1,2], 3, false);
 
 		//Initialize Text Assets
 		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
