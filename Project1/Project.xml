@@ -46,6 +46,7 @@
 		<sound path="sounds/enable_Checkpoint.wav" id="CheckPoint"/>
 		
 		<music path="music/Bird_Ambience.wav" id="Birds" />
+		<music path="music/Rain.wav" id="Rain" />
 		
 		<sound path="sounds/koto_c1.wav" id="koto_c1" />
 		<sound path="sounds/koto_c2.wav" id="koto_c2" />
