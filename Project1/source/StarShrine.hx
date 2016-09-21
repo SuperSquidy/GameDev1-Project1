@@ -96,7 +96,7 @@ class StarShrine extends Shrine
 	*/
 	private function endGame(){
 		endBackground.loadGraphic('assets/images/blackFade.png', true, 2400, 1600);
-		animation.add('fadeOut', [0, 1, 2, 3, 4, 5],5, false);
+		animation.add('fadeOut', [0, 1, 2, 3, 4, 5],1, false);
 		animation.play('fadeOut');
 		WorldState.instance.add(endBackground);
 	}
