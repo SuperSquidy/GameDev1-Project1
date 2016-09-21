@@ -67,7 +67,7 @@ class WaterShrine extends Shrine
 				ticker3.resetText();
 				WorldState.instance.add(ticker3);
 				ticker3.doSkip = true;
-		//		ticker3.scrollFactor.set(1,1);
+				ticker3.scrollFactor.set(1,1);
 			}
 			finishInteraction("interacted");
 			Reg.mando.waterPlayed(false);
@@ -85,7 +85,7 @@ class WaterShrine extends Shrine
 		trace("Learning Song");
 		songLearned = true;
 		WorldState.instance.add(ticker);
-	//	ticker.scrollFactor.set(1,1);
+		ticker.scrollFactor.set(1,1);
 	}
 
 	/*	@function : Triggers the story text
@@ -98,7 +98,7 @@ class WaterShrine extends Shrine
 		animation.play("interacted");
 		storyLearned = true;
 		WorldState.instance.add(ticker2);
-	//	ticker2.scrollFactor.set(1, 1);
+		ticker2.scrollFactor.set(1, 1);
 		ticker.kill(); //Prevents text overlapping
 	}
 
