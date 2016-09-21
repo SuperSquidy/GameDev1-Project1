@@ -62,35 +62,38 @@ class PauseState extends FlxSubState
 			//These very verbose method chains are because the songs are written backwards in Mandolin.
 			for (i in 0...4){
 				var speed = .02 + .0025 * i;
-				if (i == 0 ){//&& WaterShrine.songLearned){
-					var reversedWater = FlxStringUtil.formatArray(Reg.mando.getWaterSong()).split(',');
-					reversedWater.reverse();
-					text = "Hymn of Rain:     " + FlxStringUtil.formatArray(reversedWater) + "\n" + Assets.getText("assets/data/" + "Hymn_of_Rain_Description.txt");
+				if (i == 0 && WaterShrine.songLearned){
 					offset = .8;
+						var reversedWater = FlxStringUtil.formatArray(Reg.mando.getWaterSong()).split(',');
+						reversedWater.reverse();
+						text = "Hymn of Rain:     " + FlxStringUtil.formatArray(reversedWater) + "\n" + Assets.getText("assets/data/" + "Hymn_of_Rain_Description.txt");
+						createText(.04 + .005 * i,(80 + 36 * i) * offset,text);	
 				}
-				else if(i == 1){//} && ScarecrowShrine.songLearned){
-					var reversedEarth = FlxStringUtil.formatArray(Reg.mando.getEarthSong()).split(',');
-					reversedEarth.reverse();
-					text = "Song of Growth     " + FlxStringUtil.formatArray(reversedEarth) + "\n" + Assets.getText("assets/data/" + "Song_of_Growth_Description.txt");
+				else if(i == 1){
 					offset = 2.6;
+					if (ScarecrowShrine.songLearned){
+						var reversedEarth = FlxStringUtil.formatArray(Reg.mando.getEarthSong()).split(',');
+						reversedEarth.reverse();
+						text = "Song of Growth     " + FlxStringUtil.formatArray(reversedEarth) + "\n" + Assets.getText("assets/data/" + "Song_of_Growth_Description.txt");
+						createText(.04 + .005 * i,(80 + 36 * i) * offset,text);	
+					}
 				}
-				else if(i == 2 ){ //&& EtchingShrine.songLearned){
-					var reversedWind = FlxStringUtil.formatArray(Reg.mando.getWindSong()).split(',');
-					reversedWind.reverse();
-					text = "Aria of Breezes     " + FlxStringUtil.formatArray(reversedWind) + "\n" + Assets.getText("assets/data/" + "Aria_of_Breezes_Description.txt");
+				else if(i == 2){
 					offset = 3.5;
+					if(EtchingShrine.songLearned){
+						var reversedWind = FlxStringUtil.formatArray(Reg.mando.getWindSong()).split(',');
+						reversedWind.reverse();
+						text = "Aria of Breezes     " + FlxStringUtil.formatArray(reversedWind) + "\n" + Assets.getText("assets/data/" + "Aria_of_Breezes_Description.txt");
+						createText(.04 + .005 * i,(80 + 36 * i) * offset,text);	
+					}
 				}
-				else if(i == 3 ){ //&& Reg.mando.getStarActive()){
+				else if(i == 3 && Reg.mando.getStarActive()){
+					offset = 4.2;
 					var reversedStar = FlxStringUtil.formatArray(Reg.mando.getStarSong()).split(',');
 					reversedStar.reverse();
 					text = "Ballad of Stars     " + FlxStringUtil.formatArray(reversedStar) + "\n" + Assets.getText("assets/data/" + "Ballad_of_Stars_Description.txt");
-					offset = 4.2;
+					createText(.04 + .005 * i,(80 + 36 * i) * offset,text);
 				}
-				else{
-					text = "????????   ? ? ?";
-				}
-			//	text = StringTools.replace(text, ",", "   "); //Set the text to be placed in between each keypress.
-				createText(.04 + .005 * i,(80 + 36 * i) * offset,text);
 			}
 		}
 	}
