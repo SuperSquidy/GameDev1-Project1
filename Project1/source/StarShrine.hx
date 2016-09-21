@@ -43,7 +43,8 @@ class StarShrine extends Shrine
 
 		//Sprite Sheet & Animations
 		loadGraphic('assets/images/Shrines/Star_Shrine_SpriteSheet.png', true, tileSizeX, tileSizeY);
-		animation.add("melting", [0,1,2], 3, false);
+		animation.add("melting", [0, 1, 2], 3, false);
+		animation.add("ending", [3, 4, 5], 3, false);
 
 		//Initialize Text Assets
 		ticker = new TickingText(false, "Shrine_of_stars_interact_1.txt", .04, 12, "Wind_Text", 75, Std.int(y) - 200);
@@ -60,8 +61,14 @@ class StarShrine extends Shrine
 			if(!storyLearned)
 				learnStory();
 			//delete player object
+			//Player.setPlayerInvis(true);
+			Player.invis = true;
 			//Player walks into dark animation
+			animation.play("ending");
 			//Fade to black
+			loadGraphic('assets/images/blackFade.png', true, 2400, 1600);
+			animation.add('fadeOut', [0, 1, 2, 3, 4, 5],5, false);
+			animation.play('fadeOut');
 			Reg.mando.starPlayed(false);
 		}
 	}

@@ -74,6 +74,7 @@ class Player extends FlxSprite
 	
 	//'Cutscene' Conditional
 	private var playerFrozen:Bool = false;
+	public static var invis:Bool = false;
 
 	//Movement Conditionals
 	var _runSpeed:Float = 200;
@@ -106,6 +107,7 @@ class Player extends FlxSprite
 		animation.add('dbljump', [7, 8, 9, 6], 5, false);	// Double Jump
 		animation.add('fall', [10, 11, 12], 12, true);	// Fall
 		animation.add('dash', [15, 16, 17], 12, true);	// Dash
+		animation.add('blank', [18, 19], 5, false); //for ending
 		
 		//Physics & Jump
 		drag.set(_runSpeed * 8, _runSpeed * 8);
@@ -129,6 +131,9 @@ class Player extends FlxSprite
 			dash(elapsed);		//Trigger dash logic
 			_mando.instrumentKeys();
 			_mando.noteTimer(elapsed);
+		}
+		if (invis){
+			animation.play('blank');
 		}
 
 		//Reset double jump on collision
@@ -265,4 +270,12 @@ class Player extends FlxSprite
 	private function setJumpSongGround(condition:Bool):Void{
 		jumpSongGround = condition;
 	}
+	
+/*function for ending
+	public function setPlayerInvis(condition:Bool):Void{
+		invis = condition;
+		if invis{
+			animation.play('blank');
+		}
+	}*/
 }
