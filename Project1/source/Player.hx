@@ -284,5 +284,6 @@ class Player extends FlxSprite
 
 	public function onPlayerDeath(){
 		_dashTime = -1;
+		maxVelocity.set(_runSpeed, _jumpSpeed);
 	}
 }
